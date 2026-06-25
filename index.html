@@ -384,6 +384,15 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
 .reader-transcript h5{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;color:var(--ice);margin-bottom:8px;text-transform:uppercase}
 /* REVIEWS */
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.nero-banner{display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center;margin:6px 0 32px;
+  background:linear-gradient(180deg,#0b0e12,#070809);border:1px solid rgba(60,224,122,.35);border-radius:16px;
+  padding:24px 26px;transition:.22s var(--ease)}
+.nero-banner:hover{transform:translateY(-3px);border-color:rgba(60,224,122,.75);box-shadow:0 16px 46px -14px rgba(60,224,122,.45)}
+.nero-banner .nb-top{font-family:var(--font-display);font-weight:700;line-height:1.12;color:#fff;letter-spacing:.01em;font-size:clamp(1.1rem,3.4vw,1.95rem)}
+.nero-banner .nb-top b{color:#3CE07A}
+.nero-banner .nb-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;color:#e8eef0;
+  font-family:var(--font-body);font-weight:700;letter-spacing:.02em;font-size:clamp(.82rem,2.1vw,1.05rem)}
+.nero-banner .nb-badges span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .review{display:block;cursor:pointer;transition:.25s var(--ease);overflow:hidden}
 .review:hover{transform:translateY(-5px)}
 .rev-cover{aspect-ratio:16/10;position:relative;display:grid;place-items:center}
@@ -583,6 +592,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
     <p id="revTagline"></p>
   </div>
   <div class="mag-intro" id="revLinks"></div>
+  <a class="nero-banner" id="neroBanner" target="_blank" rel="noopener"></a>
   <div class="reviews-grid" id="reviewsGrid" style="margin-top:28px"></div>
 </section>
 
@@ -811,6 +821,7 @@ const DEFAULTS = {
     twitch:"",   // your Twitch channel URL
     tiktok:"https://www.tiktok.com/@thefavoriteproducer",
     tagline:"Honest music reviews — live on Twitch, clipped on TikTok.",
+    nero:{enabled:true,url:"https://nero.fan/trappsota",handle:"NERO.FAN/TRAPPSOTA"},
     items:[
       {title:"Live Review Stream", platform:"Twitch", hue:265, url:"", note:"Catch the next live review session."},
       {title:"Quick Takes", platform:"TikTok", hue:200, url:"https://www.tiktok.com/@thefavoriteproducer", note:"Bite-size reviews & reactions."},
@@ -1085,6 +1096,16 @@ document.getElementById('revTagline').textContent=REV.tagline||'';
 document.getElementById('revLinks').innerHTML=
   (REV.twitch?`<a class="btn btn-ice btn-sm" href="${REV.twitch}" target="_blank" rel="noopener">${svg('twitch')} Watch live on Twitch</a>`:'')
   +(REV.tiktok?`<a class="btn btn-ghost btn-sm" href="${REV.tiktok}" target="_blank" rel="noopener">${svg('tiktok')} Reviews on TikTok</a>`:'');
+/* nero.fan submission banner */
+(function(){
+  const n=(REV&&REV.nero)||{};
+  const el=document.getElementById('neroBanner');
+  if(!el)return;
+  if(n.enabled===false){el.style.display='none';return;}
+  el.href=n.url||'https://nero.fan/trappsota';
+  el.innerHTML=`<div class="nb-top">SUBMIT YOUR MUSIC TO <b>${n.handle||'NERO.FAN/TRAPPSOTA'}</b></div>`
+    +`<div class="nb-badges"><span>THRONE \u{1F525}</span><span>SUPER SKIP \u{23E9}</span><span>SKIP \u{23E9}</span><span>GUARANTEED PLAY \u{1F680}</span></div>`;
+})();
 document.getElementById('reviewsGrid').innerHTML=REV.items.map(r=>`
   <a class="glass review" ${r.url?`href="${r.url}" target="_blank" rel="noopener"`:''}>
     <div class="rev-cover" style="background:${art(r.hue)}"><span class="rev-plat">${r.platform}</span><div class="rev-play">${svg('play')}</div></div>
