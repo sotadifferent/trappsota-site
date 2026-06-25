@@ -1,0 +1,171 @@
+media:
+  input: assets
+  output: assets
+
+content:
+  - name: content
+    label: Site Content
+    type: file
+    path: content.json
+    fields:
+      # ---------- Contact & global links ----------
+      - { name: bookingEmail, label: "Booking / general email", type: string }
+      - { name: beatEmail, label: "Beat inquiries email", type: string }
+      - { name: magEmail, label: "SOTA Mag submissions email", type: string }
+      - { name: managementEmail, label: "Management email (optional)", type: string }
+      - { name: phone, label: "Phone (optional)", type: string }
+      - { name: city, label: "Based in", type: string }
+      - { name: formEndpoint, label: "Booking form endpoint (optional, Formspree)", type: string }
+      - { name: spotifyEmbed, label: "Music page: Spotify artist embed URL", type: string }
+      - { name: facebook, label: "Facebook URL", type: string }
+      - { name: unitedmasters, label: "UnitedMasters (all links) URL", type: string }
+      - { name: sotaMag, label: "SOTA Mag Instagram URL", type: string }
+      - name: socials
+        label: "Social links (header & footer icons)"
+        type: object
+        fields:
+          - { name: instagram, label: Instagram, type: string }
+          - { name: twitter, label: "X / Twitter", type: string }
+          - { name: tiktok, label: TikTok, type: string }
+          - { name: youtube, label: YouTube, type: string }
+          - { name: spotify, label: Spotify, type: string }
+          - { name: appleMusic, label: Apple Music, type: string }
+          - { name: soundcloud, label: SoundCloud, type: string }
+          - { name: beatstars, label: BeatStars, type: string }
+      - name: streaming
+        label: "Music page: Listen-everywhere buttons"
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Button label, type: string }
+          - { name: url, label: Link, type: string }
+
+      # ---------- Music releases ----------
+      - name: releases
+        label: Music releases
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: year, label: Year, type: string }
+          - { name: type, label: "Type (Single / EP / Album)", type: string }
+          - { name: cover, label: "Cover image (optional)", type: image }
+          - { name: hue, label: "Color seed 0-360 (fallback art)", type: number }
+          - name: links
+            label: Platform links
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Platform, type: string }
+              - { name: url, label: Link, type: string }
+
+      # ---------- Beats ----------
+      - name: beats
+        label: Beats for sale
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: bpm, label: BPM, type: number }
+          - { name: key, label: Key, type: string }
+          - { name: price, label: "Price ($)", type: number }
+          - { name: tags, label: Tags, type: string, list: true }
+          - { name: buy, label: "Buy / store link", type: string }
+          - { name: contract, label: "License agreement (PDF)", type: file }
+
+      # ---------- Shows ----------
+      - name: shows
+        label: "Shows (upcoming & past — sorted automatically by date)"
+        type: object
+        list: true
+        fields:
+          - { name: date, label: Date, type: date }
+          - { name: venue, label: Venue, type: string }
+          - { name: city, label: City, type: string }
+          - { name: badge, label: "Badge (Headline / Support / Festival)", type: string }
+          - { name: tickets, label: Tickets link, type: string }
+
+      # ---------- Podcast ----------
+      - name: podcast
+        label: "Podcast (Sota Tired)"
+        type: object
+        fields:
+          - { name: spotifyShowEmbed, label: "Spotify show embed URL (plays episodes on-page)", type: string }
+          - name: subscribe
+            label: Subscribe buttons
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Label, type: string }
+              - { name: url, label: Link, type: string }
+          - name: episodes
+            label: Episodes
+            type: object
+            list: true
+            fields:
+              - { name: n, label: "Episode #", type: number }
+              - { name: title, label: Title, type: string }
+              - { name: date, label: Date, type: date }
+              - { name: dur, label: "Duration (e.g. 58:40)", type: string }
+              - { name: desc, label: Description, type: text }
+              - { name: audio, label: "Audio file (optional)", type: file }
+
+      # ---------- Media gallery ----------
+      - name: photos
+        label: "Gallery: photos"
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image }
+          - { name: cap, label: Caption, type: string }
+          - { name: hue, label: "Color seed (fallback)", type: number }
+      - name: videos
+        label: "Gallery: videos"
+        type: object
+        list: true
+        fields:
+          - { name: cap, label: Title, type: string }
+          - { name: url, label: Video link, type: string }
+          - { name: hue, label: "Color seed", type: number }
+
+      # ---------- SOTA Mag ----------
+      - name: sotamag
+        label: SOTA Mag
+        type: object
+        fields:
+          - { name: instagram, label: Instagram URL, type: string }
+          - { name: submit, label: "Submit / feature link (optional)", type: string }
+          - { name: tagline, label: Tagline, type: string }
+          - name: issues
+            label: Issues
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: date, label: "Date (YYYY-MM)", type: string }
+              - { name: blurb, label: Short blurb, type: string }
+              - { name: caption, label: Caption, type: text }
+              - { name: cover, label: "Cover image", type: image }
+              - { name: pdf, label: "Issue PDF (flips page-by-page)", type: file }
+              - { name: pages, label: "OR page images (instead of a PDF)", type: image, list: true }
+              - { name: transcript, label: "Transcript (shows under the pages)", type: text }
+              - { name: hue, label: "Color seed (fallback)", type: number }
+
+      # ---------- Live Music Reviews ----------
+      - name: reviews
+        label: Live Music Reviews
+        type: object
+        fields:
+          - { name: twitch, label: Twitch channel URL, type: string }
+          - { name: tiktok, label: TikTok URL, type: string }
+          - { name: tagline, label: Tagline, type: string }
+          - name: items
+            label: Review entries
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: platform, label: "Platform (Twitch / TikTok)", type: string }
+              - { name: url, label: Link, type: string }
+              - { name: note, label: Note, type: string }
+              - { name: hue, label: "Color seed", type: number }
