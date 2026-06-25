@@ -360,7 +360,7 @@
     "tiktok": "https://www.tiktok.com/@thefavoriteproducer",
     "tagline": "Honest music reviews — live on Twitch, clipped on TikTok.",
     "nero": {
-      "enabled": false
+      "enabled": true
     },
     "items": [
       {
