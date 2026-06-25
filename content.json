@@ -301,7 +301,8 @@
       "hue": 255
     },
     {
-      "cap": "CROWD GO CRAZY",
+      "image": "assets/IMG_6735.png",
+      "cap": "Klick n' Flow - Camden",
       "hue": 190
     },
     {
@@ -311,10 +312,6 @@
     {
       "cap": "THE VOGUE · CHI",
       "hue": 280
-    },
-    {
-      "cap": "SOUNDCHECK",
-      "hue": 210
     }
   ],
   "videos": [
