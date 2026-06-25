@@ -279,10 +279,6 @@
       {
         "label": "Apple Podcasts",
         "url": "#"
-      },
-      {
-        "label": "iHeartRadio",
-        "url": "#"
       }
     ],
     "episodes": [
@@ -292,27 +288,6 @@
         "date": "2026-06-10",
         "dur": "1:04:22",
         "desc": "On grinding through the winter, staying independent, and why tired hits different up north."
-      },
-      {
-        "n": 11,
-        "title": "The Beat Business",
-        "date": "2026-05-27",
-        "dur": "58:40",
-        "desc": "Selling beats, licensing, and turning a laptop into a label."
-      },
-      {
-        "n": 10,
-        "title": "Live & Unfiltered",
-        "date": "2026-05-13",
-        "dur": "1:12:05",
-        "desc": "Stories from the road and what really happens after the show."
-      },
-      {
-        "n": 9,
-        "title": "Why Sota Different",
-        "date": "2026-04-29",
-        "dur": "47:18",
-        "desc": "The origin of the name, the sound, and the mission."
       }
     ]
   },
@@ -382,6 +357,9 @@
   "reviews": {
     "tiktok": "https://www.tiktok.com/@thefavoriteproducer",
     "tagline": "Honest music reviews — live on Twitch, clipped on TikTok.",
+    "nero": {
+      "enabled": false
+    },
     "items": [
       {
         "title": "Live Review Stream",
