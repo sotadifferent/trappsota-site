@@ -270,6 +270,7 @@
     }
   ],
   "podcast": {
+    "spotifyShowEmbed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/show/0anh4R7BhTf7qEKgfQVLkO?utm_source=generator&si=e0530318e01d4753\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
     "subscribe": [
       {
         "label": "Spotify",
