@@ -912,6 +912,8 @@ function _toLinks(x){return Array.isArray(x)?x:(x&&typeof x==='object'?Object.en
 CONFIG.streaming=_toLinks(CONFIG.streaming);
 if(CONFIG.podcast)CONFIG.podcast.subscribe=_toLinks(CONFIG.podcast.subscribe);
 (CONFIG.releases||[]).forEach(r=>{r.links=_toLinks(r.links);});
+/* expose nav + handlers EARLY so tabs always work, even if a later section hits bad data */
+Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp,openLicense,closeLicense});
 
 /* ============================================================
    ICONS
@@ -1153,11 +1155,12 @@ function openIssue(i){
   const stage=document.getElementById('readerStage'),nav=document.getElementById('readerNav');
   magPage=0;magTotal=0;readerMode='ph';pdfDoc=null;
   if(iss.pdf){
+    const purl=/^https?:/i.test(iss.pdf)?iss.pdf:iss.pdf.split('/').map(encodeURIComponent).join('/');
     readerMode='pdf';stage.innerHTML='<canvas id="magCanvas"></canvas>';nav.innerHTML='<span class="pg">Loading…</span>';
     if(window.pdfjsLib){
-      pdfjsLib.getDocument(iss.pdf).promise.then(doc=>{pdfDoc=doc;magTotal=doc.numPages;magPage=0;renderPdfPage();})
-        .catch(()=>{readerMode='iframe';stage.innerHTML=`<iframe src="${iss.pdf}" title="${iss.title}"></iframe>`;nav.innerHTML='';});
-    }else{readerMode='iframe';stage.innerHTML=`<iframe src="${iss.pdf}" title="${iss.title}"></iframe>`;nav.innerHTML='';}
+      pdfjsLib.getDocument(purl).promise.then(doc=>{pdfDoc=doc;magTotal=doc.numPages;magPage=0;renderPdfPage();})
+        .catch(()=>{readerMode='iframe';stage.innerHTML=`<iframe src="${purl}" title="${iss.title}"></iframe>`;nav.innerHTML='';});
+    }else{readerMode='iframe';stage.innerHTML=`<iframe src="${purl}" title="${iss.title}"></iframe>`;nav.innerHTML='';}
   }else if(iss.pages&&iss.pages.length){
     readerMode='images';magPages=iss.pages;magTotal=iss.pages.length;magPage=0;renderImgPage();
   }else{
