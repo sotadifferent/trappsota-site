@@ -335,7 +335,7 @@
     "issues": [
       {
         "title": "Issue 01",
-        "date": "2026-01",
+        "date": "2025-07",
         "blurb": "Debut Issue",
         "caption": "The debut issue of SOTA Mag.",
         "cover": "assets/SOTA Mag Issue No. 1 - July [PUBLISHED].png",
@@ -350,7 +350,7 @@
       },
       {
         "title": "Issue 03",
-        "date": "2026-05",
+        "date": "2025-07",
         "blurb": "Producers & the beat economy.",
         "hue": 190
       }
