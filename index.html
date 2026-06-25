@@ -233,6 +233,14 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;
 .lic-actions{display:flex;flex-direction:column;gap:10px}
 .lic-actions .btn{width:100%;justify-content:center}
 .lic-note{margin-top:16px;font-family:var(--font-mono);font-size:.66rem;line-height:1.7;color:var(--steel-dim)}
+.svc-card{padding:26px 28px}
+.svc-rows{display:flex;flex-direction:column}
+.svc-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+.svc-row:last-child{border-bottom:0}
+.svc-row .sv-name{font-family:var(--font-body);font-weight:500;color:var(--frost);font-size:.98rem}
+.svc-row .sv-price{font-family:var(--font-mono);font-weight:700;color:var(--ice);white-space:nowrap;font-size:.92rem}
+.svc-bundle-h{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin:22px 0 4px}
+.svc-cta{width:100%;justify-content:center;margin-top:24px}
 .beat-progress{grid-column:1/-1;height:3px;border-radius:3px;background:rgba(120,180,220,.12);overflow:hidden;display:none}
 .beat.playing .beat-progress{display:block}
 .beat-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ice),var(--cryo))}
@@ -542,6 +550,18 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
     <a class="btn btn-ghost btn-sm" id="beatstoreLink" target="_blank" rel="noopener">Full store on BeatStars →</a>
   </div>
   <div class="beats" id="beatList"></div>
+
+  <div class="sec-head" id="svcHead" style="margin:58px 0 22px">
+    <span class="eyebrow">Production Services</span>
+    <h2 class="display" style="font-size:2rem">Work with Sota</h2>
+    <p id="svcIntro"></p>
+  </div>
+  <div class="glass svc-card">
+    <div class="svc-rows" id="svcItems"></div>
+    <div class="svc-bundle-h" id="svcBundleH">Bundle Packages</div>
+    <div class="svc-rows" id="svcBundles"></div>
+    <a class="btn btn-ice svc-cta" id="svcCta" target="_blank" rel="noopener">Request a service / get a quote</a>
+  </div>
 </section>
 
 <!-- ===================== MEDIA ===================== -->
@@ -636,7 +656,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
         <label>What's the ask?</label>
         <select id="bk-type">
           <option>Live booking / show</option><option>Feature / collab</option>
-          <option>Beat licensing / exclusive</option><option>Podcast guest</option>
+          <option>Beat licensing / exclusive</option><option>Production / mixing / songwriting</option><option>Podcast guest</option>
           <option>Press / interview</option><option>SOTA Mag submission</option><option>Other</option>
         </select>
         <input id="bk-date" type="text" onfocus="this.type='date'" placeholder="Date (if applicable)">
@@ -783,6 +803,25 @@ const DEFAULTS = {
   ],
 
   /* --- BEATS: your store. bpm drives the preview tempo --- */
+  services:{
+    email:"sotadifferentllc@gmail.com",
+    intro:"Custom production beyond the beat store — beats, songwriting, vocals, mixing & more. Reach out for a quote.",
+    items:[
+      {name:"Custom Beat (non-exclusive)", price:"$80 – $175"},
+      {name:"Custom Beat (exclusive rights)", price:"$250 – $500"},
+      {name:"Songwriting (hooks, verses)", price:"$50 – $100 / section"},
+      {name:"Full Songwriting (lyrics only)", price:"$150 – $350"},
+      {name:"Vocal Arrangement / Melody Writing", price:"$100 – $200"},
+      {name:"Vocal Feature", price:"$60"},
+      {name:"Mixing & Mastering (per track)", price:"$75 – $150"},
+      {name:"Beat Leasing", price:"$45 – $85"},
+      {name:"Music Consulting (branding, feedback)", price:"$55 / hr"},
+    ],
+    bundles:[
+      {name:"Beat + Hook + Verse", price:"$250"},
+      {name:"Full Song (Beat + Lyrics + Mix/Master)", price:"$500+"},
+    ]
+  },
   licensing:[
     {name:"MP3 Lease", price:30, includes:"Tagless MP3 · up to 5,000 streams · non-profit live use"},
     {name:"WAV Lease", price:50, includes:"WAV + MP3 · up to 10,000 streams · 1 music video"},
@@ -1016,6 +1055,18 @@ function playLoop(i){
   };
   tick();
 }
+/* production services rate card */
+(function(){
+  const s=CONFIG.services;const head=document.getElementById('svcHead');
+  if(!s){if(head)head.style.display='none';const c=document.querySelector('.svc-card');if(c)c.style.display='none';return;}
+  document.getElementById('svcIntro').textContent=s.intro||'';
+  const row=x=>`<div class="svc-row"><span class="sv-name">${x.name}</span><span class="sv-price">${x.price}</span></div>`;
+  document.getElementById('svcItems').innerHTML=(s.items||[]).map(row).join('');
+  const bw=document.getElementById('svcBundles'),bh=document.getElementById('svcBundleH');
+  if(s.bundles&&s.bundles.length){bw.innerHTML=s.bundles.map(row).join('');}else{bw.style.display='none';bh.style.display='none';}
+  const em=s.email||CONFIG.beatEmail||CONFIG.bookingEmail;
+  document.getElementById('svcCta').href=`mailto:${em}?subject=${encodeURIComponent('Production services inquiry — Sota Different')}`;
+})();
 let prevAudio=null;
 function toggleBeat(i){if(curBeat===i){stopBeat();return;}stopBeat();curBeat=i;
   const el=document.getElementById('beat-'+i);el.classList.add('playing');
@@ -1234,6 +1285,7 @@ function submitBooking(){
   let to=CONFIG.bookingEmail;
   if(/beat/i.test(type))to=CONFIG.beatEmail;
   else if(/mag/i.test(type))to=CONFIG.magEmail;
+  else if(/production|mixing|songwriting/i.test(type))to=(CONFIG.services&&CONFIG.services.email)||CONFIG.beatEmail;
   const body=`Name: ${name}%0AEmail: ${email}%0AOrg/Venue: ${g('bk-org')}%0AType: ${type}%0ADate: ${g('bk-date')}%0A%0A${g('bk-msg')}`;
   if(CONFIG.formEndpoint){
     fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},
