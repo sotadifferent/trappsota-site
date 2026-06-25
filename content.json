@@ -211,8 +211,10 @@
         "Trap",
         "808"
       ],
-      "buy": "#",
-      "contract": ""
+      "contract": "",
+      "beatstars": "",
+      "stripe": "",
+      "preview": ""
     },
     {
       "title": "WHITEOUT",
@@ -223,8 +225,10 @@
         "Melodic",
         "R&B"
       ],
-      "buy": "#",
-      "contract": ""
+      "contract": "",
+      "beatstars": "",
+      "stripe": "",
+      "preview": ""
     },
     {
       "title": "BLIZZARD",
@@ -235,8 +239,10 @@
         "Hard",
         "Aggressive"
       ],
-      "buy": "#",
-      "contract": ""
+      "contract": "",
+      "beatstars": "",
+      "stripe": "",
+      "preview": ""
     },
     {
       "title": "DRIFT",
@@ -247,8 +253,10 @@
         "Ambient",
         "Spacey"
       ],
-      "buy": "#",
-      "contract": ""
+      "contract": "",
+      "beatstars": "",
+      "stripe": "",
+      "preview": ""
     },
     {
       "title": "ICEPICK",
@@ -259,8 +267,10 @@
         "Rage",
         "Hyper"
       ],
-      "buy": "#",
-      "contract": ""
+      "contract": "",
+      "beatstars": "",
+      "stripe": "",
+      "preview": ""
     },
     {
       "title": "PERMAFROST",
@@ -271,8 +281,10 @@
         "Soul",
         "Sample"
       ],
-      "buy": "#",
-      "contract": ""
+      "contract": "",
+      "beatstars": "",
+      "stripe": "",
+      "preview": ""
     }
   ],
   "shows": [
@@ -481,5 +493,32 @@
       "url": "https://nero.fan/trappsota",
       "handle": "NERO.FAN/TRAPPSOTA"
     }
-  }
+  },
+  "licensing": [
+    {
+      "name": "MP3 Lease",
+      "price": 30,
+      "includes": "Tagless MP3 · up to 5,000 streams · non-profit live use"
+    },
+    {
+      "name": "WAV Lease",
+      "price": 50,
+      "includes": "WAV + MP3 · up to 10,000 streams · 1 music video"
+    },
+    {
+      "name": "Trackout / Premium",
+      "price": 100,
+      "includes": "Track stems + WAV + MP3 · up to 100,000 streams"
+    },
+    {
+      "name": "Unlimited",
+      "price": 150,
+      "includes": "WAV + stems · unlimited streams & sales"
+    },
+    {
+      "name": "Exclusive",
+      "price": 300,
+      "includes": "Full ownership · beat removed from the store"
+    }
+  ]
 }
