@@ -60,6 +60,14 @@ content:
               - { name: url, label: Link, type: string }
 
       # ---------- Beats ----------
+      - name: licensing
+        label: "License tiers (shown on every beat)"
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Tier name, type: string }
+          - { name: price, label: "Price ($)", type: number }
+          - { name: includes, label: "What's included", type: string }
       - name: beats
         label: Beats for sale
         type: object
@@ -68,9 +76,11 @@ content:
           - { name: title, label: Title, type: string }
           - { name: bpm, label: BPM, type: number }
           - { name: key, label: Key, type: string }
-          - { name: price, label: "Price ($)", type: number }
+          - { name: price, label: "Starting price ($)", type: number }
           - { name: tags, label: Tags, type: string, list: true }
-          - { name: buy, label: "Buy / store link", type: string }
+          - { name: beatstars, label: "BeatStars link (this beat)", type: string }
+          - { name: stripe, label: "Buy-here link (Stripe Payment Link)", type: string }
+          - { name: preview, label: "Preview audio (optional MP3)", type: file }
           - { name: contract, label: "License agreement (PDF)", type: file }
 
       # ---------- Shows ----------
