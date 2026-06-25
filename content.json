@@ -1,0 +1,480 @@
+{
+  "socials": {
+    "instagram": "https://www.instagram.com/trappsota",
+    "twitter": "https://x.com/trappsota",
+    "tiktok": "https://www.tiktok.com/@thefavoriteproducer",
+    "youtube": "https://www.youtube.com/results?search_query=Trapp+Sota",
+    "spotify": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N",
+    "appleMusic": "https://music.apple.com/us/artist/trapp-sota/1757435105",
+    "soundcloud": "https://soundcloud.com/trapp-sota",
+    "beatstars": "https://www.beatstars.com/trappsota"
+  },
+  "facebook": "https://www.facebook.com/61566843698788",
+  "unitedmasters": "https://unitedmasters.com/a/trapp-sota",
+  "sotaMag": "https://www.instagram.com/sota_mag/",
+  "bookingEmail": "trappsotaofficial@gmail.com",
+  "beatEmail": "sotadifferentllc@gmail.com",
+  "magEmail": "sotamagteam@gmail.com",
+  "managementEmail": "",
+  "phone": "",
+  "city": "Philadelphia, PA",
+  "formEndpoint": "",
+  "spotifyEmbed": "https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
+  "streaming": [
+    {
+      "label": "Spotify",
+      "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+    },
+    {
+      "label": "Apple Music",
+      "url": "https://music.apple.com/us/artist/trapp-sota/1757435105"
+    },
+    {
+      "label": "Amazon Music",
+      "url": "https://music.amazon.com/search/Trapp%20Sota"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/results?search_query=Trapp+Sota"
+    },
+    {
+      "label": "SoundCloud",
+      "url": "https://soundcloud.com/trapp-sota"
+    },
+    {
+      "label": "All Links",
+      "url": "https://unitedmasters.com/a/trapp-sota"
+    }
+  ],
+  "releases": [
+    {
+      "title": "Fixated",
+      "year": "2026",
+      "type": "Single",
+      "hue": 198,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/2b/ca/932bca09-c763-5ff8-4ce3-946fdc3f1066/827425143507-copy-e7f25895.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/fixated-single/1895647334"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "Best of Both Worlds",
+      "year": "2026",
+      "type": "Single",
+      "hue": 222,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/9a/8e/999a8ee6-ce26-a51a-4aab-10394b3dbebb/822299627849-copy-176738b6.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/best-of-both-worlds-single/1888627615"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "One More Day",
+      "year": "2026",
+      "type": "Single",
+      "hue": 188,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/ea/92/c6ea9221-eb92-4fd6-6ab8-91056cf5f55a/822299550390.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/one-more-day-single/1887632300"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "Not Your Neighborhood Hero",
+      "year": "2026",
+      "type": "EP",
+      "hue": 255,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/85/bc/9785bc50-dd40-3968-7007-d3ed8bc385dc/199976705696.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/not-your-neighborhood-hero-ep/1874392728"
+        },
+        {
+          "label": "All Platforms",
+          "url": "https://unitedmasters.com/m/not-your-neighborhood-hero"
+        }
+      ]
+    },
+    {
+      "title": "Protective Custody",
+      "year": "2025",
+      "type": "Album",
+      "hue": 238,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/96/fe/39/96fe3927-d03a-306d-c6db-220df9f0e582/199633036217-copy-5a92c0ac.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/protective-custody/1833090783"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "Big Rich Town",
+      "year": "2025",
+      "type": "Single",
+      "hue": 208,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/67/7e/58677e5b-408d-4da4-c9ae-7856395bd070/199826079472.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/big-rich-town-single/1847677957"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "ringtone",
+      "year": "2025",
+      "type": "Single",
+      "hue": 280,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e4/8c/72/e48c7291-2472-7fb7-8496-83d37b1e42a7/199479337899.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/ringtone-single/1825243813"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "Baby, That's Sota",
+      "year": "2025",
+      "type": "Single",
+      "hue": 200,
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/83/79/76/83797633-85b4-2025-a812-646b07b39fda/199355643342.png/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/us/album/baby-thats-sota-single/1816970066"
+        },
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"
+        }
+      ]
+    },
+    {
+      "title": "S.O.T.A",
+      "year": "2024",
+      "type": "EP",
+      "hue": 262,
+      "links": [
+        {
+          "label": "All Platforms",
+          "url": "https://unitedmasters.com/m/s-o-t-a"
+        },
+        {
+          "label": "SoundCloud",
+          "url": "https://soundcloud.com/trapp-sota/4-levels-sota-ep"
+        }
+      ]
+    }
+  ],
+  "beats": [
+    {
+      "title": "GLACIER",
+      "bpm": 140,
+      "key": "F# Min",
+      "price": 30,
+      "tags": [
+        "Dark",
+        "Trap",
+        "808"
+      ],
+      "buy": "#",
+      "contract": ""
+    },
+    {
+      "title": "WHITEOUT",
+      "bpm": 75,
+      "key": "C Min",
+      "price": 35,
+      "tags": [
+        "Melodic",
+        "R&B"
+      ],
+      "buy": "#",
+      "contract": ""
+    },
+    {
+      "title": "BLIZZARD",
+      "bpm": 150,
+      "key": "G Min",
+      "price": 30,
+      "tags": [
+        "Hard",
+        "Aggressive"
+      ],
+      "buy": "#",
+      "contract": ""
+    },
+    {
+      "title": "DRIFT",
+      "bpm": 130,
+      "key": "A Min",
+      "price": 40,
+      "tags": [
+        "Ambient",
+        "Spacey"
+      ],
+      "buy": "#",
+      "contract": ""
+    },
+    {
+      "title": "ICEPICK",
+      "bpm": 160,
+      "key": "D Min",
+      "price": 30,
+      "tags": [
+        "Rage",
+        "Hyper"
+      ],
+      "buy": "#",
+      "contract": ""
+    },
+    {
+      "title": "PERMAFROST",
+      "bpm": 88,
+      "key": "E Min",
+      "price": 50,
+      "tags": [
+        "Soul",
+        "Sample"
+      ],
+      "buy": "#",
+      "contract": ""
+    }
+  ],
+  "shows": [
+    {
+      "date": "2026-07-12",
+      "venue": "First Avenue",
+      "city": "Minneapolis, MN",
+      "badge": "Headline",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-08-03",
+      "venue": "The Vogue",
+      "city": "Chicago, IL",
+      "badge": "Support",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-09-19",
+      "venue": "Skyway Theatre",
+      "city": "Minneapolis, MN",
+      "badge": "Festival",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-05-02",
+      "venue": "Amsterdam Bar",
+      "city": "St. Paul, MN",
+      "badge": "Headline",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-03-15",
+      "venue": "7th St Entry",
+      "city": "Minneapolis, MN",
+      "badge": "Headline",
+      "tickets": "#"
+    }
+  ],
+  "podcast": {
+    "spotifyShowEmbed": "",
+    "subscribe": [
+      {
+        "label": "Spotify",
+        "url": "#"
+      },
+      {
+        "label": "Apple Podcasts",
+        "url": "#"
+      },
+      {
+        "label": "iHeartRadio",
+        "url": "#"
+      }
+    ],
+    "episodes": [
+      {
+        "n": 12,
+        "title": "Cold Nights, Clear Mind",
+        "dur": "1:04:22",
+        "date": "2026-06-10",
+        "audio": "",
+        "desc": "On grinding through the winter, staying independent, and why tired hits different up north."
+      },
+      {
+        "n": 11,
+        "title": "The Beat Business",
+        "dur": "58:40",
+        "date": "2026-05-27",
+        "audio": "",
+        "desc": "Selling beats, licensing, and turning a laptop into a label."
+      },
+      {
+        "n": 10,
+        "title": "Live & Unfiltered",
+        "dur": "1:12:05",
+        "date": "2026-05-13",
+        "audio": "",
+        "desc": "Stories from the road and what really happens after the show."
+      },
+      {
+        "n": 9,
+        "title": "Why Sota Different",
+        "dur": "47:18",
+        "date": "2026-04-29",
+        "audio": "",
+        "desc": "The origin of the name, the sound, and the mission."
+      }
+    ]
+  },
+  "photos": [
+    {
+      "cap": "FIRST AVE · 2025",
+      "hue": 205,
+      "image": ""
+    },
+    {
+      "cap": "STUDIO SESSION",
+      "hue": 255,
+      "image": ""
+    },
+    {
+      "cap": "CROWD GO CRAZY",
+      "hue": 190,
+      "image": ""
+    },
+    {
+      "cap": "BACKSTAGE",
+      "hue": 230,
+      "image": ""
+    },
+    {
+      "cap": "THE VOGUE · CHI",
+      "hue": 280,
+      "image": ""
+    },
+    {
+      "cap": "SOUNDCHECK",
+      "hue": 210,
+      "image": ""
+    }
+  ],
+  "videos": [
+    {
+      "cap": "FROSTBITE (Official Video)",
+      "hue": 205,
+      "url": "#",
+      "thumb": ""
+    },
+    {
+      "cap": "Live at 7th St Entry",
+      "hue": 250,
+      "url": "#",
+      "thumb": ""
+    }
+  ],
+  "sotamag": {
+    "instagram": "https://www.instagram.com/sota_mag/",
+    "submit": "",
+    "tagline": "Underground music & culture — curated the Sota way.",
+    "issues": [
+      {
+        "title": "Issue 01",
+        "date": "2026-01",
+        "hue": 205,
+        "blurb": "The Cold Open — debut issue.",
+        "pdf": "",
+        "pages": [],
+        "caption": "The debut issue of SOTA Mag.",
+        "transcript": "",
+        "cover": ""
+      },
+      {
+        "title": "Issue 02",
+        "date": "2026-03",
+        "hue": 255,
+        "blurb": "Spring underground spotlight.",
+        "pdf": "",
+        "pages": [],
+        "caption": "",
+        "transcript": "",
+        "cover": ""
+      },
+      {
+        "title": "Issue 03",
+        "date": "2026-05",
+        "hue": 190,
+        "blurb": "Producers & the beat economy.",
+        "pdf": "",
+        "pages": [],
+        "caption": "",
+        "transcript": "",
+        "cover": ""
+      }
+    ]
+  },
+  "reviews": {
+    "twitch": "",
+    "tiktok": "https://www.tiktok.com/@thefavoriteproducer",
+    "tagline": "Honest music reviews — live on Twitch, clipped on TikTok.",
+    "items": [
+      {
+        "title": "Live Review Stream",
+        "platform": "Twitch",
+        "hue": 265,
+        "url": "",
+        "note": "Catch the next live review session."
+      },
+      {
+        "title": "Quick Takes",
+        "platform": "TikTok",
+        "hue": 200,
+        "url": "https://www.tiktok.com/@thefavoriteproducer",
+        "note": "Bite-size reviews & reactions."
+      },
+      {
+        "title": "Latest Breakdown",
+        "platform": "TikTok",
+        "hue": 230,
+        "url": "https://www.tiktok.com/@thefavoriteproducer",
+        "note": "Track-by-track on a new drop."
+      }
+    ]
+  }
+}

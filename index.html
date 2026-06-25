@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TRAPP SOTA — Sota Different</title>
+<meta name="description" content="Trapp Sota (Sota Different) — official hub. Music, beats for sale, shows, the Sota Tired podcast, media and booking." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<!-- 2026 trend fonts: Clash Display + Satoshi + General Sans (Fontshare); Sora + JetBrains Mono (Google) -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- PDF.js: page-by-page magazine reader -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>if(window.pdfjsLib){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
+<style>
+/* ============================================================
+   TRAPP SOTA — design tokens
+   Cold / frost / premium-dark identity ("Sota" = the cold north)
+   ============================================================ */
+:root{
+  /* ============ TYPOGRAPHY — 2026 font system ============
+     Swap any of the 3 lines below. Fonts listed in the menu are already loaded. */
+  --font-display:'Clash Display','Syne',sans-serif;            /* headlines + TRAPP SOTA wordmark */
+  --font-body:'Satoshi','Space Grotesk',system-ui,sans-serif;  /* paragraphs + buttons + UI */
+  --font-mono:'JetBrains Mono','Space Mono',monospace;         /* data labels: BPM, key, dates, prices */
+  /* --- 2026 swap menu (edit the 3 lines above) ---
+       DISPLAY : 'Clash Display'  |  'Sora'  |  'General Sans'
+       BODY    : 'Satoshi'        |  'General Sans'  |  'Sora'
+       MONO    : 'JetBrains Mono'
+     Add another trending face: drop a <link> in <head> (Google Fonts or Fontshare),
+     then use its name here. Hot in 2026: 'Fraunces' (funky serif), 'Switzer', 'Anton'. */
+  --void:#0A0C10;        /* base background, charcoal w/ blue undertone */
+  --void-2:#0D1117;
+  --slate:#12161D;       /* raised surface */
+  --slate-2:#161C25;
+  --line:rgba(120,150,180,.14);
+  --line-strong:rgba(120,180,220,.30);
+  --frost:#EAF2F8;       /* primary text */
+  --steel:#8A97A6;       /* muted text */
+  --steel-dim:#5A6573;
+  --ice:#62C9FF;         /* primary accent (electric ice) */
+  --ice-deep:#2E8FD6;
+  --cryo:#9AA8FF;        /* secondary accent (frost indigo) */
+  --glow:rgba(98,201,255,.28);
+  --radius:14px;
+  --radius-lg:22px;
+  --maxw:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--frost);
+  font-family:var(--font-body),system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ambient cold aurora + grain ------------------------------- */
+.bg-fx{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.aurora{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;mix-blend-mode:screen}
+.aurora.a1{width:60vw;height:60vw;top:-20vw;left:-10vw;background:radial-gradient(circle,rgba(46,143,214,.55),transparent 60%);animation:drift1 26s var(--ease) infinite alternate}
+.aurora.a2{width:50vw;height:50vw;bottom:-18vw;right:-8vw;background:radial-gradient(circle,rgba(154,168,255,.40),transparent 60%);animation:drift2 32s var(--ease) infinite alternate}
+.aurora.a3{width:38vw;height:38vw;top:40%;left:55%;background:radial-gradient(circle,rgba(98,201,255,.22),transparent 65%);animation:drift1 38s var(--ease) infinite alternate-reverse}
+@keyframes drift1{to{transform:translate(8vw,6vh) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-7vw,-5vh) scale(1.1)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ---------- typography helpers ---------- */
+.display{font-family:var(--font-display),sans-serif;font-weight:800;line-height:.92;letter-spacing:-.02em}
+.mono{font-family:var(--font-mono),monospace}
+.eyebrow{font-family:var(--font-mono),monospace;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ice);display:inline-flex;align-items:center;gap:.6em}
+.eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--ice),transparent)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:4px}
+
+/* ---------- layout shell ---------- */
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.view{display:none;padding:120px 0 90px;animation:viewIn .5s var(--ease)}
+.view.active{display:block}
+@keyframes viewIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+header{position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:linear-gradient(180deg,rgba(10,12,16,.86),rgba(10,12,16,.55));
+  border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:72px}
+.brand{display:flex;flex-direction:column;line-height:1;cursor:pointer;flex-shrink:0}
+.brand b{font-family:var(--font-display);font-weight:800;font-size:1.18rem;letter-spacing:.02em}
+.brand span{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.42em;color:var(--ice);margin-top:3px}
+.navlinks{display:flex;gap:4px;margin-left:auto}
+.navlinks button{background:none;border:0;color:var(--steel);font-family:var(--font-body);font-size:.82rem;font-weight:500;
+  letter-spacing:.04em;padding:9px 13px;border-radius:9px;cursor:pointer;transition:.2s var(--ease);position:relative}
+.navlinks button:hover{color:var(--frost);background:rgba(120,180,220,.06)}
+.navlinks button.on{color:var(--void);background:var(--ice)}
+.nav-social{display:flex;gap:6px;margin-left:14px;padding-left:16px;border-left:1px solid var(--line)}
+.icbtn{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;color:var(--steel);transition:.2s var(--ease)}
+.icbtn:hover{color:var(--ice);border-color:var(--line-strong);transform:translateY(-2px)}
+.icbtn svg{width:16px;height:16px;fill:currentColor}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:9px;width:42px;height:38px;color:var(--frost);cursor:pointer;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.burger span{width:18px;height:2px;background:currentColor;transition:.25s}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-body);font-weight:700;font-size:.9rem;
+  letter-spacing:.02em;padding:13px 22px;border-radius:11px;cursor:pointer;border:1px solid transparent;transition:.22s var(--ease)}
+.btn svg{width:16px;height:16px;fill:currentColor}
+.btn-ice{background:var(--ice);color:var(--void);box-shadow:0 8px 30px -10px var(--glow)}
+.btn-ice:hover{transform:translateY(-2px);box-shadow:0 14px 40px -10px var(--glow)}
+.btn-ghost{background:rgba(120,180,220,.04);color:var(--frost);border-color:var(--line-strong)}
+.btn-ghost:hover{background:rgba(120,180,220,.1);transform:translateY(-2px)}
+.btn-sm{padding:9px 15px;font-size:.8rem}
+
+/* ---------- frosted glass card ---------- */
+.glass{background:linear-gradient(160deg,rgba(22,28,37,.9),rgba(13,17,23,.75));
+  border:1px solid var(--line);border-radius:var(--radius-lg);backdrop-filter:blur(6px);
+  position:relative;overflow:hidden}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(160deg,rgba(120,200,255,.22),transparent 40%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+
+/* section heads */
+.sec-head{margin-bottom:42px}
+.sec-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1;margin:14px 0 12px;letter-spacing:-.02em}
+.sec-head p{color:var(--steel);max-width:60ch}
+
+/* ============================================================
+   HERO (HOME)
+   ============================================================ */
+.hero{position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 50px}
+.hero-tag{margin-bottom:26px}
+.hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(3.4rem,15vw,11rem);line-height:.82;letter-spacing:-.03em;position:relative}
+.hero h1 .l2{display:block;color:transparent;-webkit-text-stroke:1.5px var(--steel-dim);position:relative}
+.sweep{background:linear-gradient(100deg,var(--frost) 30%,var(--ice) 50%,var(--frost) 70%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 6s linear infinite}
+@keyframes sweep{to{background-position:-250% 0}}
+.hero-sub{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin:34px 0 36px;color:var(--steel);max-width:62ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+.ticker{margin-top:60px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden;white-space:nowrap;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ticker .run{display:inline-block;animation:scroll 24s linear infinite;font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:var(--steel-dim)}
+.ticker .run b{color:var(--ice);margin:0 .15em}
+.ticker .run em{color:var(--frost);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* home quick-grid */
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.qcard{padding:22px;cursor:pointer;transition:.25s var(--ease);min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
+.qcard:hover{transform:translateY(-4px)}
+.qcard .qn{font-family:var(--font-mono);font-size:.7rem;color:var(--ice);letter-spacing:.2em}
+.qcard h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem;margin-top:auto}
+.qcard p{color:var(--steel);font-size:.82rem;margin-top:4px}
+.qcard .arr{font-size:1.1rem;color:var(--steel);transition:.25s}
+.qcard:hover .arr{color:var(--ice);transform:translateX(4px)}
+
+/* ============================================================
+   MUSIC
+   ============================================================ */
+.releases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.release{padding:0;overflow:hidden;cursor:pointer;transition:.25s var(--ease)}
+.release:hover{transform:translateY(-5px)}
+.cover{aspect-ratio:1;position:relative;display:grid;place-items:center;overflow:hidden}
+.cover .ttl{position:relative;z-index:2;font-family:var(--font-display);font-weight:800;font-size:1.7rem;text-align:center;padding:0 18px;mix-blend-mode:overlay;color:#fff}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,10,14,.75))}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.cover:has(.cover-img) .ttl{display:none}
+.cover:has(.cover-img)::after{display:none}
+.release-body{padding:18px 20px 22px}
+.release-body .meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:.7rem;color:var(--steel);letter-spacing:.1em;margin-bottom:8px}
+.release-body h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem}
+.plat{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.plat a{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;padding:6px 10px;border:1px solid var(--line);border-radius:7px;color:var(--steel);transition:.2s}
+.plat a:hover{color:var(--ice);border-color:var(--line-strong)}
+.embed-slot{margin-top:40px;padding:30px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+/* listen-everywhere bar + live embed */
+.stream-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.stream-bar a{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-body);font-weight:700;font-size:.84rem;
+  padding:11px 17px;border-radius:11px;border:1px solid var(--line-strong);background:rgba(120,180,220,.05);color:var(--frost);transition:.2s var(--ease)}
+.stream-bar a:hover{background:rgba(98,201,255,.12);transform:translateY(-2px)}
+.stream-bar a svg{width:17px;height:17px;fill:var(--ice)}
+.embed-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:rgba(10,12,16,.5)}
+.embed-wrap iframe{display:block;width:100%;border:0}
+.embed-slot .info{flex:1;min-width:260px}
+.embed-fake{width:300px;height:152px;border-radius:14px;background:linear-gradient(135deg,#1DB954 0%,#0d3a20 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px;position:relative;overflow:hidden}
+.embed-fake .wave{position:absolute;inset:0;opacity:.25;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 7px);mask:linear-gradient(180deg,transparent,#000)}
+.embed-fake b{font-family:var(--font-display);font-size:1.1rem;position:relative}
+.embed-fake span{font-family:var(--font-mono);font-size:.65rem;opacity:.8;position:relative}
+
+/* ============================================================
+   BEATS STORE
+   ============================================================ */
+.beat-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:26px;
+  padding:16px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(13,17,23,.5)}
+.beat-bar .lic{font-family:var(--font-mono);font-size:.74rem;color:var(--steel)}
+.beat-bar .lic b{color:var(--ice)}
+.beats{display:flex;flex-direction:column;gap:12px}
+.beat{display:grid;grid-template-columns:54px 1fr auto auto;gap:18px;align-items:center;padding:14px 18px;transition:.2s var(--ease)}
+.beat:hover{transform:translateX(4px)}
+.beat.playing{border-color:var(--line-strong);box-shadow:0 0 0 1px var(--glow)}
+.play{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:rgba(98,201,255,.06);
+  display:grid;place-items:center;cursor:pointer;color:var(--ice);transition:.2s;flex-shrink:0}
+.play:hover{background:var(--ice);color:var(--void);transform:scale(1.06)}
+.play svg{width:16px;height:16px;fill:currentColor}
+.beat-info h4{font-family:var(--font-display);font-weight:700;font-size:1.08rem}
+.beat-info .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px}
+.beat-info .tags span{font-family:var(--font-mono);font-size:.62rem;color:var(--steel);background:rgba(120,180,220,.06);padding:2px 8px;border-radius:5px;letter-spacing:.06em}
+.beat-data{font-family:var(--font-mono);font-size:.72rem;color:var(--steel);text-align:right;line-height:1.7}
+.beat-data b{color:var(--frost)}
+.beat-buy{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.beat-buy .price{font-family:var(--font-display);font-weight:800;font-size:1.3rem;color:var(--frost)}
+.beat-contract{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.05em;color:var(--ice);opacity:.85}
+.beat-contract svg{width:12px;height:12px;fill:currentColor}
+.beat-contract:hover{opacity:1;text-decoration:underline}
+.beat-progress{grid-column:1/-1;height:3px;border-radius:3px;background:rgba(120,180,220,.12);overflow:hidden;display:none}
+.beat.playing .beat-progress{display:block}
+.beat-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ice),var(--cryo))}
+
+/* ============================================================
+   MEDIA / GALLERY
+   ============================================================ */
+.tabs{display:flex;gap:8px;margin-bottom:28px}
+.tab{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--line);
+  border-radius:9px;background:none;color:var(--steel);cursor:pointer;transition:.2s}
+.tab.on{color:var(--void);background:var(--ice);border-color:var(--ice)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.shot{aspect-ratio:4/5;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;border:1px solid var(--line)}
+.shot::after{content:"⤢";position:absolute;top:12px;right:14px;color:#fff;opacity:0;transition:.25s;font-size:1.1rem}
+.shot:hover::after{opacity:.9}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:14px;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;
+  color:#fff;background:linear-gradient(transparent,rgba(8,10,14,.85));opacity:0;transition:.25s}
+.shot:hover .cap{opacity:1}
+.videos{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.video{aspect-ratio:16/9;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:1px solid var(--line);display:grid;place-items:center}
+.video .vplay{width:64px;height:64px;border-radius:50%;background:rgba(10,12,16,.6);backdrop-filter:blur(4px);display:grid;place-items:center;border:1px solid rgba(255,255,255,.3);transition:.25s}
+.video:hover .vplay{transform:scale(1.1);background:var(--ice)}
+.video .vplay svg{width:22px;height:22px;fill:#fff}
+.video:hover .vplay svg{fill:var(--void)}
+.video .vcap{position:absolute;left:16px;bottom:14px;font-family:var(--font-display);font-weight:700;z-index:2}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,8,11,.94);backdrop-filter:blur(8px);display:none;place-items:center;padding:30px}
+.lightbox.on{display:grid}
+.lightbox .lb-frame{width:min(560px,90vw);aspect-ratio:4/5;border-radius:18px;border:1px solid var(--line-strong);box-shadow:0 30px 80px -20px #000}
+.lightbox .lb-cap{position:absolute;bottom:34px;font-family:var(--font-mono);font-size:.8rem;color:var(--steel);letter-spacing:.1em}
+.lb-close{position:absolute;top:24px;right:28px;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:rgba(20,24,32,.7);color:var(--frost);font-size:1.4rem;cursor:pointer}
+
+/* ============================================================
+   SHOWS / CALENDAR
+   ============================================================ */
+.shows{display:flex;flex-direction:column;gap:14px}
+.show{display:grid;grid-template-columns:96px 1fr auto;gap:24px;align-items:center;padding:20px 24px;transition:.2s var(--ease)}
+.show:hover{transform:translateX(5px)}
+.show.past{opacity:.5}
+.show .date{text-align:center;border-right:1px solid var(--line);padding-right:20px}
+.show .date .mo{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.25em;color:var(--ice);text-transform:uppercase}
+.show .date .day{font-family:var(--font-display);font-weight:800;font-size:2.4rem;line-height:1}
+.show .where h4{font-family:var(--font-display);font-weight:700;font-size:1.3rem}
+.show .where p{color:var(--steel);font-size:.9rem;margin-top:3px}
+.show .where .badge{display:inline-block;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;color:var(--ice);
+  border:1px solid var(--line-strong);padding:2px 8px;border-radius:5px;margin-top:8px;text-transform:uppercase}
+.show .act{display:flex;gap:10px;align-items:center}
+.cal-empty{padding:50px;text-align:center;color:var(--steel)}
+
+/* ============================================================
+   PODCAST
+   ============================================================ */
+.pod-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;margin-bottom:46px;align-items:stretch}
+.pod-art{border-radius:var(--radius-lg);min-height:300px;position:relative;overflow:hidden;display:grid;place-content:center;text-align:center;padding:30px;
+  background:linear-gradient(150deg,#1a1230,#0b1622 60%);border:1px solid var(--line)}
+.pod-art .glyph{font-family:var(--font-display);font-weight:800;font-size:clamp(2.5rem,6vw,4rem);line-height:.9;letter-spacing:-.02em}
+.pod-art .glyph span{color:var(--ice)}
+.pod-art .sub{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.3em;color:var(--steel);margin-top:14px;text-transform:uppercase}
+.pod-intro{display:flex;flex-direction:column;justify-content:center;padding:30px}
+.pod-intro h2{font-family:var(--font-display);font-weight:800;font-size:2.2rem;line-height:1;margin-bottom:14px}
+.pod-intro p{color:var(--steel);margin-bottom:22px}
+.pod-subs{display:flex;gap:10px;flex-wrap:wrap}
+.episodes{display:flex;flex-direction:column;gap:12px}
+.ep{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;padding:18px 22px;transition:.2s var(--ease)}
+.ep:hover{transform:translateX(4px)}
+.ep .epn{font-family:var(--font-mono);font-size:.72rem;color:var(--ice);letter-spacing:.1em;white-space:nowrap}
+.ep-mid h4{font-family:var(--font-display);font-weight:700;font-size:1.15rem}
+.ep-mid p{color:var(--steel);font-size:.86rem;margin-top:4px;max-width:64ch}
+.ep-mid .dur{font-family:var(--font-mono);font-size:.66rem;color:var(--steel-dim);margin-top:8px;letter-spacing:.08em}
+.ep .play{width:42px;height:42px}
+
+/* ============================================================
+   BOOKING
+   ============================================================ */
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.form{padding:34px}
+.field{margin-bottom:18px}
+.field label{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--steel);margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;background:rgba(10,12,16,.6);border:1px solid var(--line);border-radius:10px;
+  color:var(--frost);font-family:var(--font-body);font-size:.95rem;padding:13px 15px;transition:.2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ice);background:rgba(10,12,16,.85)}
+.field textarea{resize:vertical;min-height:110px}
+.field.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field.row label{grid-column:1/-1}
+.contact-side{padding:34px;display:flex;flex-direction:column;gap:26px}
+.cblock h4{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ice);margin-bottom:8px}
+.cblock a,.cblock p{font-family:var(--font-display);font-weight:700;font-size:1.25rem;color:var(--frost);transition:.2s;word-break:break-word}
+.cblock a:hover{color:var(--ice)}
+.cblock .note{font-family:var(--font-body);font-weight:400;font-size:.85rem;color:var(--steel)}
+.form-note{font-family:var(--font-mono);font-size:.7rem;color:var(--steel-dim);margin-top:6px;line-height:1.6}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;background:linear-gradient(180deg,transparent,rgba(13,17,23,.6))}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px}
+.foot .fbrand b{font-family:var(--font-display);font-weight:800;font-size:1.7rem}
+.foot .fbrand p{color:var(--steel);font-size:.88rem;margin-top:10px;max-width:34ch}
+.foot-social{display:flex;gap:10px;margin-top:18px}
+.foot h5{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--steel-dim);margin-bottom:14px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot ul button{background:none;border:0;color:var(--steel);font-family:var(--font-body);font-size:.9rem;cursor:pointer;transition:.2s;text-align:left}
+.foot ul button:hover{color:var(--ice)}
+.foot-news{display:flex;gap:8px;margin-top:10px}
+.foot-news input{flex:1;background:rgba(10,12,16,.6);border:1px solid var(--line);border-radius:9px;color:var(--frost);padding:10px 12px;font-family:var(--font-body);font-size:.85rem}
+.foot-news input:focus{outline:none;border-color:var(--ice)}
+.copy{margin-top:46px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-family:var(--font-mono);font-size:.7rem;color:var(--steel-dim);letter-spacing:.08em}
+
+/* toast */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);z-index:200;
+  background:var(--ice);color:var(--void);font-family:var(--font-body);font-weight:700;font-size:.88rem;
+  padding:13px 22px;border-radius:11px;box-shadow:0 14px 40px -10px var(--glow);transition:.35s var(--ease);opacity:0}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+/* ============================================================
+   SOTA MAG
+   ============================================================ */
+.mag-intro{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.mag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.issue{cursor:pointer;transition:.25s var(--ease)}
+.issue:hover{transform:translateY(-5px)}
+.icover{aspect-ratio:3/4;border:1px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0;position:relative;overflow:hidden;display:grid;place-content:center;text-align:center;padding:18px}
+.icover .imast{position:absolute;top:14px;left:0;right:0;text-align:center;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.4em;color:rgba(255,255,255,.85);z-index:2}
+.icover .iname{position:relative;z-index:2;font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:#fff;line-height:1;mix-blend-mode:overlay}
+.icover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(8,10,14,.7))}
+.shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.shot .cap{z-index:2}
+.shot::after{z-index:3}
+.icover:has(.cover-img) .iname{display:none}
+.ibody{padding:14px 16px 16px;border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;background:rgba(13,17,23,.5)}
+.ibody .imeta{font-family:var(--font-mono);font-size:.66rem;color:var(--ice);letter-spacing:.12em}
+.ibody h4{font-family:var(--font-display);font-weight:600;font-size:1.05rem;margin-top:5px;line-height:1.2}
+.ibody .read{margin-top:11px;font-family:var(--font-body);font-weight:700;font-size:.8rem;color:var(--frost);display:inline-flex;gap:6px;align-items:center;transition:.2s}
+.issue:hover .read{color:var(--ice)}
+/* reader */
+.reader{position:fixed;inset:0;z-index:120;background:rgba(6,8,11,.96);backdrop-filter:blur(10px);display:none;flex-direction:column;padding:16px}
+.reader.on{display:flex}
+.reader-top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px;flex-shrink:0}
+.reader-top h3{font-family:var(--font-display);font-weight:700;font-size:1.15rem}
+.rclose{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:rgba(20,24,32,.7);color:var(--frost);font-size:1.3rem;cursor:pointer;flex-shrink:0}
+.reader-stage{flex:1;min-height:0;display:grid;place-items:center;overflow:hidden}
+.reader-stage iframe{width:100%;height:100%;border:0;border-radius:12px;background:#fff}
+.reader-stage img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 20px 60px -20px #000}
+.reader-ph{width:min(440px,84vw);aspect-ratio:3/4;border-radius:14px;display:grid;place-content:center;text-align:center;padding:30px;border:1px solid var(--line-strong)}
+.reader-ph .iname{font-family:var(--font-display);font-weight:700;font-size:2rem;color:#fff;mix-blend-mode:overlay}
+.reader-ph p{color:rgba(255,255,255,.9);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;margin-top:16px;line-height:1.9}
+.reader-nav{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:14px;flex-shrink:0;min-height:46px}
+.reader-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:rgba(98,201,255,.06);color:var(--ice);font-size:1.3rem;cursor:pointer;transition:.2s}
+.reader-nav button:hover:not(:disabled){background:var(--ice);color:var(--void)}
+.reader-nav button:disabled{opacity:.3;cursor:default}
+.reader-nav .pg{font-family:var(--font-mono);font-size:.74rem;color:var(--steel);letter-spacing:.1em;min-width:72px;text-align:center}
+.reader-cap{font-family:var(--font-mono);font-size:.66rem;color:var(--steel);letter-spacing:.06em;margin-top:4px}
+.reader-stage canvas{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 20px 60px -20px #000;background:#fff}
+.reader-transcript{flex-shrink:0;max-height:30vh;overflow:auto;margin-top:12px;padding:15px 18px;border:1px solid var(--line);border-radius:12px;
+  background:rgba(13,17,23,.6);font-family:var(--font-body);font-size:.9rem;line-height:1.7;color:var(--steel);white-space:pre-wrap}
+.reader-transcript:empty{display:none}
+.reader-transcript h5{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;color:var(--ice);margin-bottom:8px;text-transform:uppercase}
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{display:block;cursor:pointer;transition:.25s var(--ease);overflow:hidden}
+.review:hover{transform:translateY(-5px)}
+.rev-cover{aspect-ratio:16/10;position:relative;display:grid;place-items:center}
+.rev-cover .rev-plat{position:absolute;top:12px;left:14px;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(8,10,14,.5);padding:3px 9px;border-radius:6px;backdrop-filter:blur(4px)}
+.rev-play{width:54px;height:54px;border-radius:50%;background:rgba(10,12,16,.55);border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;backdrop-filter:blur(4px);transition:.25s}
+.rev-play svg{width:20px;height:20px;fill:#fff}
+.review:hover .rev-play{background:var(--ice);transform:scale(1.08)}
+.review:hover .rev-play svg{fill:var(--void)}
+.rev-body{padding:14px 16px 16px;border:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.rev-body h4{font-family:var(--font-display);font-weight:600;font-size:1.05rem}
+.rev-body p{color:var(--steel);font-size:.85rem;margin-top:4px}
+@media(max-width:920px){.reviews-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.reviews-grid{grid-template-columns:1fr}}
+
+@media(max-width:1040px){
+  /* 8 nav tabs need room — collapse to menu on smaller desktops/tablets */
+  .navlinks,.nav-social{display:none}
+  .navlinks.open{display:flex;position:fixed;top:72px;left:0;right:0;flex-direction:column;gap:2px;padding:14px;
+    background:rgba(10,12,16,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);margin:0}
+  .navlinks.open button{text-align:left;padding:13px}
+  .burger{display:flex}
+}
+@media(max-width:920px){
+  .quick{grid-template-columns:repeat(2,1fr)}
+  .releases{grid-template-columns:repeat(2,1fr)}
+  .mag-grid{grid-template-columns:repeat(3,1fr)}
+  .pod-hero,.book-grid{grid-template-columns:1fr}
+  .videos{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot .fbrand{grid-column:1/-1}
+}
+@media(max-width:680px){
+  body{font-size:16px}
+  .releases,.gallery{grid-template-columns:repeat(2,1fr)}
+  .quick{grid-template-columns:1fr}
+  .mag-grid{grid-template-columns:repeat(2,1fr)}
+  .beat{grid-template-columns:46px 1fr;gap:12px}
+  .beat-data,.beat-buy{grid-column:2;align-items:flex-start;text-align:left}
+  .beat-buy{flex-direction:row;justify-content:space-between;width:100%}
+  .show{grid-template-columns:70px 1fr;gap:14px}
+  .show .act{grid-column:2}
+  .field.row{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="bg-fx"><div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div></div>
+<div class="grain"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="wrap nav">
+    <div class="brand" onclick="go('home')">
+      <b>TRAPP SOTA</b><span>SOTA DIFFERENT</span>
+    </div>
+    <nav class="navlinks" id="navlinks">
+      <button data-v="home" class="on" onclick="go('home')">Home</button>
+      <button data-v="music" onclick="go('music')">Music</button>
+      <button data-v="beats" onclick="go('beats')">Beats</button>
+      <button data-v="media" onclick="go('media')">Media</button>
+      <button data-v="shows" onclick="go('shows')">Shows</button>
+      <button data-v="podcast" onclick="go('podcast')">Podcast</button>
+      <button data-v="reviews" onclick="go('reviews')">Live Reviews</button>
+      <button data-v="sotamag" onclick="go('sotamag')">SOTA Mag</button>
+      <button data-v="book" onclick="go('book')">Book</button>
+    </nav>
+    <button class="burger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== HOME ===================== -->
+<section class="view active" id="view-home">
+  <div class="hero">
+    <span class="eyebrow hero-tag">Independent · Artist · Producer</span>
+    <h1 class="display">
+      <span class="sweep">TRAPP</span>
+      <span class="l2">SOTA</span>
+    </h1>
+    <div class="hero-sub">
+      <span>The official home of <b style="color:var(--frost)">Sota Different</b> — streaming releases, beats for license, live shows, the <b style="color:var(--ice)">Sota Tired</b> podcast, and bookings. One cold, centralized hub.</span>
+    </div>
+    <div class="hero-cta">
+      <button class="btn btn-ice" onclick="go('music')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Listen now
+      </button>
+      <button class="btn btn-ghost" onclick="go('book')">Book a show</button>
+      <button class="btn btn-ghost" onclick="go('beats')">Buy beats</button>
+    </div>
+
+    <div class="ticker">
+      <div class="run">
+        SOTA <b>DIFFERENT</b> &nbsp;✦&nbsp; <em>NEW HEAT IN STOCK</em> &nbsp;✦&nbsp; SOTA <b>TIRED</b> POD OUT NOW &nbsp;✦&nbsp; <em>BOOKING 2026</em> &nbsp;✦&nbsp;
+        SOTA <b>DIFFERENT</b> &nbsp;✦&nbsp; <em>NEW HEAT IN STOCK</em> &nbsp;✦&nbsp; SOTA <b>TIRED</b> POD OUT NOW &nbsp;✦&nbsp; <em>BOOKING 2026</em> &nbsp;✦&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="quick" id="quickGrid"></div>
+</section>
+
+<!-- ===================== MUSIC ===================== -->
+<section class="view" id="view-music">
+  <div class="sec-head">
+    <span class="eyebrow">01 — Catalog</span>
+    <h2 class="display">Music out now</h2>
+    <p>Stream Trapp Sota everywhere. Hit play below, or jump straight to your platform of choice.</p>
+  </div>
+
+  <div class="stream-bar" id="streamBar"></div>
+  <div class="embed-wrap" id="embedWrap"></div>
+
+  <div class="sec-head" style="margin:54px 0 28px">
+    <span class="eyebrow">Discography</span>
+    <h2 class="display" style="font-size:2rem">Every release</h2>
+  </div>
+  <div class="releases" id="releaseGrid"></div>
+</section>
+
+<!-- ===================== BEATS ===================== -->
+<section class="view" id="view-beats">
+  <div class="sec-head">
+    <span class="eyebrow">02 — Beat Store</span>
+    <h2 class="display">Beats for sale</h2>
+    <p>Production by Sota. Preview in-browser, then license. Hit a play button to hear a live preview loop.</p>
+  </div>
+  <div class="beat-bar">
+    <div class="lic">Licensing: <b>MP3 Lease $30</b> · <b>WAV Lease $50</b> · <b>Exclusive $300+</b></div>
+    <a class="btn btn-ghost btn-sm" id="beatstoreLink" target="_blank" rel="noopener">Full store on BeatStars →</a>
+  </div>
+  <div class="beats" id="beatList"></div>
+</section>
+
+<!-- ===================== MEDIA ===================== -->
+<section class="view" id="view-media">
+  <div class="sec-head">
+    <span class="eyebrow">03 — Visuals</span>
+    <h2 class="display">From the stage</h2>
+    <p>Shots and footage from shows, sessions and the road.</p>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="mediaTab('photos',this)">Photos</button>
+    <button class="tab" onclick="mediaTab('videos',this)">Videos</button>
+  </div>
+  <div class="gallery" id="photoGrid"></div>
+  <div class="videos" id="videoGrid" style="display:none"></div>
+</section>
+
+<!-- ===================== SHOWS ===================== -->
+<section class="view" id="view-shows">
+  <div class="sec-head">
+    <span class="eyebrow">04 — Calendar</span>
+    <h2 class="display">Upcoming shows</h2>
+    <p>Catch Sota live. Tap a date for tickets or RSVP.</p>
+  </div>
+  <div class="shows" id="upcomingShows"></div>
+
+  <div class="sec-head" style="margin-top:60px">
+    <span class="eyebrow">Archive</span>
+    <h2 class="display" style="font-size:2rem">Past dates</h2>
+  </div>
+  <div class="shows" id="pastShows"></div>
+</section>
+
+<!-- ===================== PODCAST ===================== -->
+<section class="view" id="view-podcast">
+  <div class="sec-head">
+    <span class="eyebrow">05 — Sota Tired</span>
+    <h2 class="display">The podcast</h2>
+    <p>Late-night talk, real conversations, no filter.</p>
+  </div>
+  <div class="pod-hero">
+    <div class="pod-art">
+      <div class="glyph">SOTA<br><span>TIRED</span></div>
+      <div class="sub">A Podcast · Hosted by Sota</div>
+    </div>
+    <div class="glass pod-intro">
+      <h2 class="display">Tune in</h2>
+      <p>New episodes on the regular. Listen on Spotify below, or subscribe on Apple Podcasts & iHeartRadio.</p>
+      <div class="pod-subs" id="podSubs"></div>
+    </div>
+  </div>
+  <div class="embed-wrap" id="podEmbed" style="margin-bottom:26px"></div>
+  <div class="episodes" id="episodeList"></div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="view" id="view-reviews">
+  <div class="sec-head">
+    <span class="eyebrow">06 — Live Reviews</span>
+    <h2 class="display">Live music reviews</h2>
+    <p id="revTagline"></p>
+  </div>
+  <div class="mag-intro" id="revLinks"></div>
+  <div class="reviews-grid" id="reviewsGrid" style="margin-top:28px"></div>
+</section>
+
+<!-- ===================== SOTA MAG ===================== -->
+<section class="view" id="view-sotamag">
+  <div class="sec-head">
+    <span class="eyebrow">07 — SOTA Mag</span>
+    <h2 class="display">The magazine</h2>
+    <p id="magTagline"></p>
+  </div>
+  <div class="mag-intro" id="magIntro"></div>
+  <div class="mag-grid" id="magGrid" style="margin-top:28px"></div>
+</section>
+
+<!-- ===================== BOOK ===================== -->
+<section class="view" id="view-book">
+  <div class="sec-head">
+    <span class="eyebrow">08 — Booking & Contact</span>
+    <h2 class="display">Let's work</h2>
+    <p>Shows, features, beats, press, or podcast guesting — send it through.</p>
+  </div>
+  <div class="book-grid">
+    <div class="glass form">
+      <div class="field"><label>Your name</label><input id="bk-name" placeholder="First & last"></div>
+      <div class="field"><label>Email</label><input id="bk-email" type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>Organization / venue (optional)</label><input id="bk-org" placeholder="Venue, label, brand…"></div>
+      <div class="field row">
+        <label>What's the ask?</label>
+        <select id="bk-type">
+          <option>Live booking / show</option><option>Feature / collab</option>
+          <option>Beat licensing / exclusive</option><option>Podcast guest</option>
+          <option>Press / interview</option><option>SOTA Mag submission</option><option>Other</option>
+        </select>
+        <input id="bk-date" type="text" onfocus="this.type='date'" placeholder="Date (if applicable)">
+      </div>
+      <div class="field"><label>Details</label><textarea id="bk-msg" placeholder="City, budget, timeline, vibe — give me the picture."></textarea></div>
+      <button class="btn btn-ice" style="width:100%;justify-content:center" onclick="submitBooking()">Send booking request</button>
+      <p class="form-note">Opens your email app with everything filled in, addressed to the booking inbox. Want true one-click submit? Connect a free form service (Formspree) — drop the endpoint in <span style="color:var(--ice)">CONFIG.formEndpoint</span>.</p>
+    </div>
+    <div class="glass contact-side" id="contactSide"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="fbrand">
+        <b>TRAPP SOTA</b>
+        <p>Sota Different. Independent artist, producer & host of the Sota Tired podcast.</p>
+        <div class="foot-social" id="footSocial"></div>
+        <div class="foot-news">
+          <input id="newsEmail" placeholder="Email for drops & show alerts">
+          <button class="btn btn-ice btn-sm" onclick="joinList()">Join</button>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><button onclick="go('music')">Music</button></li>
+          <li><button onclick="go('beats')">Beats for sale</button></li>
+          <li><button onclick="go('media')">Media</button></li>
+          <li><button onclick="go('shows')">Shows</button></li>
+        </ul>
+      </div>
+      <div>
+        <h5>More</h5>
+        <ul>
+          <li><button onclick="go('podcast')">Sota Tired pod</button></li>
+          <li><button onclick="go('reviews')">Live music reviews</button></li>
+          <li><button onclick="go('sotamag')">SOTA Mag</button></li>
+          <li><button onclick="go('book')">Booking &amp; contact</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="yr"></span> TRAPP SOTA · ALL RIGHTS RESERVED</span>
+      <span>SOTA DIFFERENT — BUILT COLD ❄</span>
+    </div>
+  </div>
+</footer>
+
+<!-- lightbox + toast -->
+<div class="lightbox" id="lightbox" onclick="closeLb()">
+  <button class="lb-close" aria-label="Close">×</button>
+  <div class="lb-frame" id="lbFrame"></div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+<!-- SOTA Mag reader -->
+<div class="reader" id="reader">
+  <div class="reader-top">
+    <div><h3 id="readerTitle">SOTA Mag</h3><div class="reader-cap" id="readerCap"></div></div>
+    <button class="rclose" onclick="closeReader()" aria-label="Close reader">×</button>
+  </div>
+  <div class="reader-stage" id="readerStage"></div>
+  <div class="reader-nav" id="readerNav"></div>
+  <div class="reader-transcript" id="readerTranscript"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+/* ============================================================
+   CONFIG  ——  EDIT EVERYTHING HERE
+   This is your control panel. Add releases, beats, shows,
+   episodes, photos and links by editing the lists below.
+   ============================================================ */
+const DEFAULTS = {
+  /* --- where people find you. Replace # with your real URLs --- */
+  socials:{
+    instagram:"https://www.instagram.com/trappsota",
+    twitter:"https://x.com/trappsota",
+    tiktok:"https://www.tiktok.com/@thefavoriteproducer",
+    youtube:"https://www.youtube.com/results?search_query=Trapp+Sota",
+    spotify:"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N",
+    appleMusic:"https://music.apple.com/us/artist/trapp-sota/1757435105",
+    soundcloud:"https://soundcloud.com/trapp-sota",
+    beatstars:"https://www.beatstars.com/trappsota"
+  },
+  /* extra brand links (used on Music page + footer) */
+  facebook:"https://www.facebook.com/61566843698788",
+  unitedmasters:"https://unitedmasters.com/a/trapp-sota",
+  sotaMag:"https://www.instagram.com/sota_mag/",
+  bookingEmail:"trappsotaofficial@gmail.com",   // booking + general contact
+  beatEmail:"sotadifferentllc@gmail.com",        // beat inquiries / licensing
+  magEmail:"sotamagteam@gmail.com",              // SOTA Mag submissions
+  managementEmail:"",                            // none at the moment
+  phone:"",                                      // optional
+  city:"Philadelphia, PA",
+  formEndpoint:"",                  // optional Formspree URL for one-click submit
+  spotifyEmbed:"https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
+
+  /* MUSIC: "Listen everywhere" bar — artist-level links to each platform */
+  streaming:{
+    "Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N",
+    "Apple Music":"https://music.apple.com/us/artist/trapp-sota/1757435105",
+    "Amazon Music":"https://music.amazon.com/search/Trapp%20Sota",
+    "YouTube":"https://www.youtube.com/results?search_query=Trapp+Sota",
+    "SoundCloud":"https://soundcloud.com/trapp-sota",
+    "All Links":"https://unitedmasters.com/a/trapp-sota"
+  },
+
+  /* --- MUSIC: your releases (real discography) --- */
+  releases:[
+    {title:"Fixated", year:"2026", type:"Single", hue:198, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/2b/ca/932bca09-c763-5ff8-4ce3-946fdc3f1066/827425143507-copy-e7f25895.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/fixated-single/1895647334","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"Best of Both Worlds", year:"2026", type:"Single", hue:222, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/9a/8e/999a8ee6-ce26-a51a-4aab-10394b3dbebb/822299627849-copy-176738b6.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/best-of-both-worlds-single/1888627615","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"One More Day", year:"2026", type:"Single", hue:188, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/ea/92/c6ea9221-eb92-4fd6-6ab8-91056cf5f55a/822299550390.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/one-more-day-single/1887632300","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"Not Your Neighborhood Hero", year:"2026", type:"EP", hue:255, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/85/bc/9785bc50-dd40-3968-7007-d3ed8bc385dc/199976705696.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/not-your-neighborhood-hero-ep/1874392728","All Platforms":"https://unitedmasters.com/m/not-your-neighborhood-hero"}},
+    {title:"Protective Custody", year:"2025", type:"Album", hue:238, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/96/fe/39/96fe3927-d03a-306d-c6db-220df9f0e582/199633036217-copy-5a92c0ac.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/protective-custody/1833090783","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"Big Rich Town", year:"2025", type:"Single", hue:208, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/67/7e/58677e5b-408d-4da4-c9ae-7856395bd070/199826079472.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/big-rich-town-single/1847677957","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"ringtone", year:"2025", type:"Single", hue:280, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e4/8c/72/e48c7291-2472-7fb7-8496-83d37b1e42a7/199479337899.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/ringtone-single/1825243813","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"Baby, That's Sota", year:"2025", type:"Single", hue:200, cover:"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/83/79/76/83797633-85b4-2025-a812-646b07b39fda/199355643342.png/600x600bb.jpg",
+      links:{"Apple Music":"https://music.apple.com/us/album/baby-thats-sota-single/1816970066","Spotify":"https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N"}},
+    {title:"S.O.T.A", year:"2024", type:"EP", hue:262,
+      links:{"All Platforms":"https://unitedmasters.com/m/s-o-t-a","SoundCloud":"https://soundcloud.com/trapp-sota/4-levels-sota-ep"}},
+  ],
+
+  /* --- BEATS: your store. bpm drives the preview tempo --- */
+  beats:[
+    {title:"GLACIER",   bpm:140, key:"F# Min",  price:30, tags:["Dark","Trap","808"],     buy:"#", contract:""},
+    {title:"WHITEOUT",  bpm:75,  key:"C Min",   price:35, tags:["Melodic","R&B"],          buy:"#", contract:""},
+    {title:"BLIZZARD",  bpm:150, key:"G Min",   price:30, tags:["Hard","Aggressive"],      buy:"#", contract:""},
+    {title:"DRIFT",     bpm:130, key:"A Min",   price:40, tags:["Ambient","Spacey"],       buy:"#", contract:""},
+    {title:"ICEPICK",   bpm:160, key:"D Min",   price:30, tags:["Rage","Hyper"],           buy:"#", contract:""},
+    {title:"PERMAFROST",bpm:88,  key:"E Min",   price:50, tags:["Soul","Sample"],          buy:"#", contract:""},
+  ],
+
+  /* --- SHOWS: upcoming + past. Use ISO dates (YYYY-MM-DD) --- */
+  shows:[
+    {date:"2026-07-12", venue:"First Avenue", city:"Minneapolis, MN", badge:"Headline", tickets:"#"},
+    {date:"2026-08-03", venue:"The Vogue",     city:"Chicago, IL",     badge:"Support",  tickets:"#"},
+    {date:"2026-09-19", venue:"Skyway Theatre", city:"Minneapolis, MN", badge:"Festival", tickets:"#"},
+    {date:"2026-05-02", venue:"Amsterdam Bar",  city:"St. Paul, MN",    badge:"Headline", tickets:"#"},
+    {date:"2026-03-15", venue:"7th St Entry",   city:"Minneapolis, MN", badge:"Headline", tickets:"#"},
+  ],
+
+  /* --- PODCAST: Sota Tired episodes. audio = url to mp3 (optional) --- */
+  podcast:{
+    spotifyShowEmbed:"",   // paste your Spotify SHOW embed URL to play episodes on-page
+    subscribe:{Spotify:"#","Apple Podcasts":"#",iHeartRadio:"#"},
+    episodes:[
+      {n:12,title:"Cold Nights, Clear Mind",dur:"1:04:22",date:"2026-06-10",audio:"",
+        desc:"On grinding through the winter, staying independent, and why tired hits different up north."},
+      {n:11,title:"The Beat Business",dur:"58:40",date:"2026-05-27",audio:"",
+        desc:"Selling beats, licensing, and turning a laptop into a label."},
+      {n:10,title:"Live & Unfiltered",dur:"1:12:05",date:"2026-05-13",audio:"",
+        desc:"Stories from the road and what really happens after the show."},
+      {n:9,title:"Why Sota Different",dur:"47:18",date:"2026-04-29",audio:"",
+        desc:"The origin of the name, the sound, and the mission."},
+    ]
+  },
+
+  /* --- MEDIA --- */
+  photos:[
+    {cap:"FIRST AVE · 2025",hue:205},{cap:"STUDIO SESSION",hue:255},{cap:"CROWD GO CRAZY",hue:190},
+    {cap:"BACKSTAGE",hue:230},{cap:"THE VOGUE · CHI",hue:280},{cap:"SOUNDCHECK",hue:210},
+  ],
+  videos:[
+    {cap:"FROSTBITE (Official Video)",hue:205,url:"#"},
+    {cap:"Live at 7th St Entry",hue:250,url:"#"},
+  ],
+
+  /* --- SOTA MAG: the magazine. Per issue, set EITHER a hosted "pdf" URL
+         OR a "pages" array of image URLs. Leave both empty for a placeholder. --- */
+  sotamag:{
+    instagram:"https://www.instagram.com/sota_mag/",
+    submit:"",   // optional: link for submissions / features
+    tagline:"Underground music & culture — curated the Sota way.",
+    issues:[
+      {title:"Issue 01", date:"2026-01", hue:205, blurb:"The Cold Open — debut issue.", pdf:"", pages:[], caption:"The debut issue of SOTA Mag.", transcript:""},
+      {title:"Issue 02", date:"2026-03", hue:255, blurb:"Spring underground spotlight.", pdf:"", pages:[], caption:"", transcript:""},
+      {title:"Issue 03", date:"2026-05", hue:190, blurb:"Producers & the beat economy.", pdf:"", pages:[], caption:"", transcript:""},
+    ]
+  },
+
+  /* --- REVIEWS: music reviews. Live on Twitch, clips on TikTok. --- */
+  reviews:{
+    twitch:"",   // your Twitch channel URL
+    tiktok:"https://www.tiktok.com/@thefavoriteproducer",
+    tagline:"Honest music reviews — live on Twitch, clipped on TikTok.",
+    items:[
+      {title:"Live Review Stream", platform:"Twitch", hue:265, url:"", note:"Catch the next live review session."},
+      {title:"Quick Takes", platform:"TikTok", hue:200, url:"https://www.tiktok.com/@thefavoriteproducer", note:"Bite-size reviews & reactions."},
+      {title:"Latest Breakdown", platform:"TikTok", hue:230, url:"https://www.tiktok.com/@thefavoriteproducer", note:"Track-by-track on a new drop."},
+    ]
+  },
+};
+
+/* ---- Load CMS-managed content; fall back to DEFAULTS when offline (file://) ---- */
+let CONFIG;
+try{
+  const _r=await fetch('./content.json',{cache:'no-store'});
+  if(!_r.ok) throw 0;
+  CONFIG=await _r.json();
+}catch(_e){ CONFIG=DEFAULTS; }
+/* normalize link maps (object OR array) -> array of {label,url} so render is uniform */
+function _toLinks(x){return Array.isArray(x)?x:(x&&typeof x==='object'?Object.entries(x).map(([label,url])=>({label,url})):[]);}
+CONFIG.streaming=_toLinks(CONFIG.streaming);
+if(CONFIG.podcast)CONFIG.podcast.subscribe=_toLinks(CONFIG.podcast.subscribe);
+(CONFIG.releases||[]).forEach(r=>{r.links=_toLinks(r.links);});
+
+/* ============================================================
+   ICONS
+   ============================================================ */
+const ICON={
+  instagram:'<path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.3-.4.17-.7.36-1 .66-.3.3-.5.6-.66 1-.1.3-.26.8-.3 1.7C3.6 8.5 3.6 8.9 3.6 12s0 3.5.07 4.7c.04.9.2 1.4.3 1.7.17.4.36.7.66 1 .3.3.6.5 1 .66.3.1.8.26 1.7.3 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.3.4-.17.7-.36 1-.66.3-.3.5-.6.66-1 .1-.3.26-.8.3-1.7.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.3-1.7-.17-.4-.36-.7-.66-1-.3-.3-.6-.5-1-.66-.3-.1-.8-.26-1.7-.3C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 1.8a3.1 3.1 0 100 6.2 3.1 3.1 0 000-6.2zm5.1-.3a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3z"/>',
+  twitter:'<path d="M18.2 2.5h3.3l-7.2 8.2 8.5 11.3h-6.7l-5.2-6.9-6 6.9H1.6l7.7-8.8L1.2 2.5h6.8l4.7 6.3 5.5-6.3zm-1.2 17.7h1.8L7.1 4.3H5.2l11.8 15.9z"/>',
+  tiktok:'<path d="M16.5 2c.3 2.1 1.5 3.9 3.5 4.4v3.1c-1.3.1-2.5-.3-3.6-.9v6.9c0 3.9-3.2 6.6-6.7 6.2-3-.3-5.3-2.9-5.2-5.9.1-3.2 2.9-5.7 6.1-5.4v3.2c-.5-.1-1-.2-1.5-.1-1.3.2-2.2 1.3-2.1 2.6.1 1.3 1.2 2.3 2.5 2.2 1.3-.1 2.3-1.2 2.3-2.5V2h3.7z"/>',
+  youtube:'<path d="M23 7.5c-.3-1-1-1.8-2-2C19 5 12 5 12 5s-7 0-9 .5c-1 .2-1.8 1-2 2C.5 9.5.5 12 .5 12s0 2.5.5 4.5c.3 1 1 1.8 2 2C5 19 12 19 12 19s7 0 9-.5c1-.2 1.7-1 2-2 .5-2 .5-4.5.5-4.5s0-2.5-.5-4.5zM9.5 15.5v-7l6 3.5-6 3.5z"/>',
+  spotify:'<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.2c-2.35-1.43-5.3-1.76-8.8-.96a.62.62 0 11-.28-1.22c3.83-.87 7.1-.5 9.74 1.12.3.18.4.58.2.86zm1.23-2.74a.78.78 0 01-1.07.26c-2.7-1.66-6.8-2.14-9.99-1.17a.78.78 0 11-.45-1.49c3.64-1.1 8.16-.57 11.25 1.33.37.23.49.71.26 1.07zm.1-2.85C14.8 8.95 9.3 8.76 6.2 9.7a.94.94 0 11-.54-1.8c3.56-1.08 9.63-.87 13.43 1.39a.94.94 0 01-.96 1.61z"/>',
+  appleMusic:'<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4 4.5v7.2c0 1.4-1 2.3-2.3 2.3-1.2 0-2.1-.8-2.1-2 0-1.1.9-2 2.2-2 .4 0 .8.1 1 .2V8.6l-4.4 1v6.4c0 1.4-1 2.3-2.3 2.3-1.2 0-2.1-.9-2.1-2 0-1.2.9-2 2.2-2 .4 0 .7.1 1 .2V7.4l5.8-1.3c.6-.1 1 .2 1 .9z"/>',
+  soundcloud:'<path d="M3 14v3h1v-3H3zm2-1v4h1v-4H5zm2-1v5h1v-5H7zm2-2v7h1v-7H9zm2 1v6h9c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.6 0-.9.1C20.6 8.6 18 6.5 15 6.5c-1.5 0-2.9.5-4 1.4V13z"/>',
+  beatstars:'<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 4l1.8 3.7 4.1.6-3 2.9.7 4-3.6-1.9L8.4 17l.7-4-3-2.9 4.1-.6L12 6z"/>',
+  rss:'<path d="M4 11a9 9 0 019 9h2.5A11.5 11.5 0 004 8.5V11zm0 4a5 5 0 015 5h2.5A7.5 7.5 0 004 12.5V15zm1.5 1.5a1.8 1.8 0 100 3.5 1.8 1.8 0 000-3.5z"/>',
+  amazon:'<path d="M18.4 16.9c-2 1.5-4.9 2.3-7.4 2.3-3.5 0-6.6-1.3-9-3.4-.2-.2 0-.4.2-.3 2.6 1.5 5.7 2.4 9 2.4 2.2 0 4.6-.5 6.8-1.4.3-.1.6.2.4.4zm.8-1c-.3-.3-1.7-.2-2.4-.1-.2 0-.2-.2-.1-.3.9-.7 2.6-.5 2.8-.3.2.2 0 1.9-.9 2.7-.1.1-.3.1-.2-.1.2-.5.6-1.6.4-1.9zM12 4a4.9 4.9 0 00-4.9 4.4l2.3.2c.2-1.2.9-1.9 2-1.9 1.1 0 1.8.6 1.8 1.9v.5c-1.6 0-3 .1-4.2.6-1.4.6-2.3 1.6-2.3 3.2 0 2 1.3 3 2.9 3 1.4 0 2.2-.3 3.3-1.4.3.5.5.8 1.1 1.3.2.1.3.1.5 0l1.4-1.2c.1-.1.1-.3 0-.4-.4-.5-.8-1-.8-2V8.3c0-1.4 0-2.6-1-3.5C13.7 4 12.7 4 12 4zm1.2 7.5c0 .9 0 1.6-.5 2.4-.3.6-.9.9-1.4.9-.8 0-1.3-.6-1.3-1.5 0-1.7 1.5-2 3-2v.2z"/>',
+  link:'<path d="M10.6 13.4a1 1 0 010-1.4l3-3a3.5 3.5 0 014.9 4.9l-1.3 1.3a1 1 0 01-1.4-1.4l1.3-1.3a1.5 1.5 0 00-2.1-2.1l-3 3a1 1 0 01-1.4 0zm2.8-2.8a1 1 0 010 1.4l-3 3a3.5 3.5 0 01-4.9-4.9l1.3-1.3a1 1 0 011.4 1.4L6.9 12.5a1.5 1.5 0 002.1 2.1l3-3a1 1 0 011.4 0z"/>',
+  twitch:'<path d="M4 2 3 6v13h4v3h3l3-3h4l5-5V2H4zm15 9-3 3h-4l-3 3v-3H6V4h13v7zM15 7h-2v5h2V7zm-5 0H8v5h2V7z"/>',
+  iheart:'<path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/>',
+  play:'<path d="M8 5v14l11-7z"/>',
+  pause:'<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>',
+};
+function svg(name){return `<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[name]||''}</svg>`}
+function art(hue){return `linear-gradient(150deg,hsl(${hue} 55% 22%),hsl(${(hue+40)%360} 45% 9%))`}
+
+/* ============================================================
+   NAVIGATION (client-side views = "pages")
+   ============================================================ */
+function go(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  document.getElementById('navlinks').classList.remove('open');
+  stopBeat();closeReader();
+  window.scrollTo({top:0,behavior:'instant'in document.documentElement.style?'instant':'auto'});
+  if(history.replaceState)history.replaceState(null,'','#'+v);
+}
+function toggleNav(){document.getElementById('navlinks').classList.toggle('open')}
+
+/* ============================================================
+   RENDER: socials
+   ============================================================ */
+function socialIcons(container,cls){
+  const keys=Object.keys(CONFIG.socials);
+  document.getElementById(container).innerHTML=keys.map(k=>{
+    const url=CONFIG.socials[k]; const ic=ICON[k]?k:'spotify';
+    return `<a class="${cls}" href="${url}" target="_blank" rel="noopener" aria-label="${k}">${svg(ic)}</a>`;
+  }).join('');
+}
+socialIcons('footSocial','icbtn');
+
+/* home quick grid */
+const QUICK=[
+  {v:'music',n:'01',t:'Music',d:'Stream every release'},
+  {v:'beats',n:'02',t:'Beats',d:'License production'},
+  {v:'media',n:'03',t:'Media',d:'Photos & footage'},
+  {v:'shows',n:'04',t:'Shows',d:'Live dates & tickets'},
+  {v:'podcast',n:'05',t:'Sota Tired',d:'Listen to the pod'},
+  {v:'reviews',n:'06',t:'Live Reviews',d:'Twitch & TikTok'},
+  {v:'sotamag',n:'07',t:'SOTA Mag',d:'Read the magazine'},
+  {v:'book',n:'08',t:'Book',d:'Booking & contact'},
+];
+document.getElementById('quickGrid').innerHTML=QUICK.map(q=>`
+  <div class="glass qcard" onclick="go('${q.v}')">
+    <span class="qn">${q.n}</span>
+    <div><h3>${q.t}</h3><p>${q.d}</p></div>
+    <span class="arr">→</span>
+  </div>`).join('');
+
+/* ============================================================
+   RENDER: music
+   ============================================================ */
+document.getElementById('releaseGrid').innerHTML=CONFIG.releases.map(r=>`
+  <div class="glass release">
+    <div class="cover" style="background:${art(r.hue)}"><span class="ttl">${r.title}</span>${r.cover?`<img class="cover-img" src="${r.cover}" alt="${r.title} cover art" loading="lazy" onerror="this.remove()">`:''}</div>
+    <div class="release-body">
+      <div class="meta"><span>${r.type.toUpperCase()}</span><span>${r.year}</span></div>
+      <h3>${r.title}</h3>
+      <div class="plat">${(r.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')}</div>
+    </div>
+  </div>`).join('');
+document.getElementById('beatstoreLink').href=CONFIG.socials.beatstars||'#';
+
+/* listen-everywhere bar */
+const STREAM_ICON={"Spotify":"spotify","Apple Music":"appleMusic","Amazon Music":"amazon","YouTube":"youtube","SoundCloud":"soundcloud","All Links":"link"};
+document.getElementById('streamBar').innerHTML=(CONFIG.streaming||[]).map(l=>
+  `<a href="${l.url}" target="_blank" rel="noopener">${svg(STREAM_ICON[l.label]||'link')} ${l.label}</a>`).join('');
+
+/* live player embed (real Spotify artist player when set) */
+(function(){
+  const w=document.getElementById('embedWrap');
+  if(CONFIG.spotifyEmbed){
+    w.innerHTML=`<iframe src="${CONFIG.spotifyEmbed}" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Trapp Sota on Spotify"></iframe>`;
+  }else{
+    w.style.border='none';
+  }
+})();
+
+/* ============================================================
+   RENDER: beats + WebAudio preview engine
+   ============================================================ */
+document.getElementById('beatList').innerHTML=CONFIG.beats.map((b,i)=>{
+  const buyHref=(b.buy&&b.buy!=='#')?b.buy:`mailto:${CONFIG.beatEmail}?subject=${encodeURIComponent('Beat license inquiry — '+b.title)}`;
+  return `
+  <div class="glass beat" id="beat-${i}">
+    <button class="play" onclick="toggleBeat(${i})" aria-label="Preview ${b.title}">${svg('play')}</button>
+    <div class="beat-info">
+      <h4>${b.title}</h4>
+      <div class="tags">${b.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+      ${b.contract?`<a class="beat-contract" href="${b.contract}" target="_blank" rel="noopener">${svg('link')} License agreement (PDF)</a>`:''}
+    </div>
+    <div class="beat-data"><b>${b.bpm}</b> BPM<br>${b.key}</div>
+    <div class="beat-buy">
+      <span class="price">$${b.price}</span>
+      <a class="btn btn-ice btn-sm" href="${buyHref}" target="_blank" rel="noopener">License</a>
+    </div>
+    <div class="beat-progress"><i></i></div>
+  </div>`;}).join('');
+
+let actx,curBeat=-1,beatTimer,progTimer;
+function ensureCtx(){if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)();if(actx.state==='suspended')actx.resume();}
+function kick(t){const o=actx.createOscillator(),g=actx.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(45,t+.12);g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.18);o.connect(g).connect(actx.destination);o.start(t);o.stop(t+.2);}
+function hat(t){const b=actx.createBuffer(1,actx.sampleRate*.04,actx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=actx.createBufferSource();s.buffer=b;const f=actx.createBiquadFilter();f.type='highpass';f.frequency.value=8000;const g=actx.createGain();g.gain.setValueAtTime(.25,t);g.gain.exponentialRampToValueAtTime(.001,t+.04);s.connect(f).connect(g).connect(actx.destination);s.start(t);s.stop(t+.05);}
+function bass(t,freq){const o=actx.createOscillator(),g=actx.createGain();o.type='triangle';o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(.001,t);g.gain.linearRampToValueAtTime(.5,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+.4);o.connect(g).connect(actx.destination);o.start(t);o.stop(t+.42);}
+const KEYFREQ={'F# Min':46,'C Min':65,'G Min':49,'A Min':55,'D Min':73,'E Min':41};
+function playLoop(i){
+  const b=CONFIG.beats[i];const spb=60/b.bpm;const step=spb/2;let bar=0;
+  const root=KEYFREQ[b.key]||55;const pattern=[0,3,5,3,0,2,5,7];
+  const tick=()=>{
+    if(curBeat!==i)return;
+    const t0=actx.currentTime+.05;
+    for(let s=0;s<8;s++){const t=t0+s*step;
+      hat(t);
+      if(s===0||s===4)kick(t);
+      if(s===2||s===6)kick(t+step*.5);
+      if(s%2===0)bass(t,root*Math.pow(2,pattern[(s+bar*2)%8]/12));
+    }
+    bar++;
+    const prog=document.querySelector(`#beat-${i} .beat-progress i`);
+    if(prog){prog.style.transition='none';prog.style.width='0';requestAnimationFrame(()=>{prog.style.transition=`width ${step*8}s linear`;prog.style.width='100%';});}
+    beatTimer=setTimeout(tick,step*8*1000);
+  };
+  tick();
+}
+function toggleBeat(i){ensureCtx();if(curBeat===i){stopBeat();return;}stopBeat();curBeat=i;
+  const el=document.getElementById('beat-'+i);el.classList.add('playing');
+  el.querySelector('.play').innerHTML=svg('pause');playLoop(i);}
+function stopBeat(){if(curBeat>-1){const el=document.getElementById('beat-'+curBeat);if(el){el.classList.remove('playing');el.querySelector('.play').innerHTML=svg('play');}}
+  clearTimeout(beatTimer);curBeat=-1;}
+
+/* ============================================================
+   RENDER: media gallery + lightbox
+   ============================================================ */
+document.getElementById('photoGrid').innerHTML=CONFIG.photos.map((p,i)=>`
+  <div class="shot" style="background:${art(p.hue)}" onclick="openLb(${i})">
+    ${p.image?`<img class="shot-img" src="${p.image}" alt="${(p.cap||'').replace(/"/g,'')}" loading="lazy" onerror="this.remove()">`:''}
+    <div class="cap">${p.cap||''}</div>
+  </div>`).join('');
+document.getElementById('videoGrid').innerHTML=CONFIG.videos.map(v=>`
+  <a class="video" style="background:${art(v.hue)}" href="${v.url}" target="_blank" rel="noopener">
+    <div class="vplay">${svg('play')}</div>
+    <div class="vcap">${v.cap}</div>
+  </a>`).join('');
+function mediaTab(t,btn){
+  document.querySelectorAll('#view-media .tab').forEach(x=>x.classList.remove('on'));btn.classList.add('on');
+  document.getElementById('photoGrid').style.display=t==='photos'?'grid':'none';
+  document.getElementById('videoGrid').style.display=t==='videos'?'grid':'none';
+}
+function openLb(i){const p=CONFIG.photos[i];const f=document.getElementById('lbFrame');
+  f.style.background=art(p.hue);
+  f.innerHTML=p.image?`<img src="${p.image}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`:'';
+  document.getElementById('lbCap').textContent=p.cap||'';document.getElementById('lightbox').classList.add('on');}
+function closeLb(){document.getElementById('lightbox').classList.remove('on');}
+
+/* ============================================================
+   RENDER: SOTA MAG + issue reader
+   ============================================================ */
+const MAG=CONFIG.sotamag;
+const MAGMO=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+function magDate(d){if(!d)return '';const x=d.split('-');return x[1]?MAGMO[+x[1]-1]+' '+x[0]:x[0];}
+document.getElementById('magTagline').textContent=MAG.tagline||'';
+document.getElementById('magIntro').innerHTML=
+  `<a class="btn btn-ice btn-sm" href="${MAG.instagram}" target="_blank" rel="noopener">${svg('instagram')} Follow @sota_mag</a>`
+  + (MAG.submit?`<a class="btn btn-ghost btn-sm" href="${MAG.submit}" target="_blank" rel="noopener">Submit / Feature</a>`:'');
+document.getElementById('magGrid').innerHTML=MAG.issues.map((iss,i)=>`
+  <div class="issue" onclick="openIssue(${i})">
+    <div class="icover" style="background:${art(iss.hue)}">
+      ${iss.cover?`<img class="cover-img" src="${iss.cover}" alt="" loading="lazy" onerror="this.remove()">`:''}
+      <div class="imast">SOTA MAG</div>
+      <div class="iname">${iss.title}</div>
+    </div>
+    <div class="ibody">
+      <div class="imeta">${magDate(iss.date)}</div>
+      <h4>${iss.blurb||iss.title}</h4>
+      <span class="read">Read issue →</span>
+    </div>
+  </div>`).join('');
+
+let magPages=[],magPage=0,magTotal=0,readerMode='ph',pdfDoc=null;
+function escTx(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function openIssue(i){
+  const iss=MAG.issues[i];
+  document.getElementById('readerTitle').textContent=iss.title;
+  document.getElementById('readerCap').textContent=iss.caption||magDate(iss.date)||'';
+  document.getElementById('readerTranscript').innerHTML=iss.transcript?`<h5>Transcript</h5>${escTx(iss.transcript)}`:'';
+  const stage=document.getElementById('readerStage'),nav=document.getElementById('readerNav');
+  magPage=0;magTotal=0;readerMode='ph';pdfDoc=null;
+  if(iss.pdf){
+    readerMode='pdf';stage.innerHTML='<canvas id="magCanvas"></canvas>';nav.innerHTML='<span class="pg">Loading…</span>';
+    if(window.pdfjsLib){
+      pdfjsLib.getDocument(iss.pdf).promise.then(doc=>{pdfDoc=doc;magTotal=doc.numPages;magPage=0;renderPdfPage();})
+        .catch(()=>{readerMode='iframe';stage.innerHTML=`<iframe src="${iss.pdf}" title="${iss.title}"></iframe>`;nav.innerHTML='';});
+    }else{readerMode='iframe';stage.innerHTML=`<iframe src="${iss.pdf}" title="${iss.title}"></iframe>`;nav.innerHTML='';}
+  }else if(iss.pages&&iss.pages.length){
+    readerMode='images';magPages=iss.pages;magTotal=iss.pages.length;magPage=0;renderImgPage();
+  }else{
+    stage.innerHTML=`<div class="reader-ph" style="background:${art(iss.hue)}"><div class="iname">${iss.title}</div>
+      <p>ADD THIS ISSUE TO READ IT HERE<br>upload a PDF or page images in Studio<br>or CONFIG.sotamag.issues</p></div>`;
+    nav.innerHTML='';
+  }
+  document.getElementById('reader').classList.add('on');
+}
+function navBar(){
+  document.getElementById('readerNav').innerHTML=
+    `<button onclick="magNav(-1)" ${magPage<=0?'disabled':''} aria-label="Previous page">\u2039</button>
+     <span class="pg">${magTotal?magPage+1:1} / ${magTotal||1}</span>
+     <button onclick="magNav(1)" ${magPage>=magTotal-1?'disabled':''} aria-label="Next page">\u203a</button>`;
+}
+function renderImgPage(){document.getElementById('readerStage').innerHTML=`<img src="${magPages[magPage]}" alt="Page ${magPage+1}">`;navBar();}
+function renderPdfPage(){
+  if(!pdfDoc)return;const stage=document.getElementById('readerStage');
+  pdfDoc.getPage(magPage+1).then(page=>{
+    let canvas=document.getElementById('magCanvas');
+    if(!canvas){stage.innerHTML='<canvas id="magCanvas"></canvas>';canvas=document.getElementById('magCanvas');}
+    const base=page.getViewport({scale:1});
+    const avail=(stage.clientHeight||stage.getBoundingClientRect().height||500)-8;
+    const scale=Math.max(.2,avail/base.height);
+    const vp=page.getViewport({scale});
+    canvas.width=vp.width;canvas.height=vp.height;
+    page.render({canvasContext:canvas.getContext('2d'),viewport:vp});
+    navBar();
+  });
+}
+function magNav(d){magPage=Math.max(0,Math.min(magTotal-1,magPage+d));
+  if(readerMode==='pdf')renderPdfPage();else if(readerMode==='images')renderImgPage();}
+function closeReader(){const r=document.getElementById('reader');if(r){r.classList.remove('on');document.getElementById('readerStage').innerHTML='';pdfDoc=null;}}
+
+/* ============================================================
+   RENDER: REVIEWS (Twitch + TikTok)
+   ============================================================ */
+const REV=CONFIG.reviews;
+document.getElementById('revTagline').textContent=REV.tagline||'';
+document.getElementById('revLinks').innerHTML=
+  (REV.twitch?`<a class="btn btn-ice btn-sm" href="${REV.twitch}" target="_blank" rel="noopener">${svg('twitch')} Watch live on Twitch</a>`:'')
+  +(REV.tiktok?`<a class="btn btn-ghost btn-sm" href="${REV.tiktok}" target="_blank" rel="noopener">${svg('tiktok')} Reviews on TikTok</a>`:'');
+document.getElementById('reviewsGrid').innerHTML=REV.items.map(r=>`
+  <a class="glass review" ${r.url?`href="${r.url}" target="_blank" rel="noopener"`:''}>
+    <div class="rev-cover" style="background:${art(r.hue)}"><span class="rev-plat">${r.platform}</span><div class="rev-play">${svg('play')}</div></div>
+    <div class="rev-body"><h4>${r.title}</h4><p>${r.note||''}</p></div>
+  </a>`).join('');
+
+/* ============================================================
+   RENDER: shows / calendar
+   ============================================================ */
+const MO=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+function showCard(s,past){
+  const d=new Date(s.date+'T00:00:00');
+  return `<div class="glass show ${past?'past':''}">
+    <div class="date"><div class="mo">${MO[d.getMonth()]}</div><div class="day">${String(d.getDate()).padStart(2,'0')}</div></div>
+    <div class="where"><h4>${s.venue}</h4><p>${s.city} · ${d.getFullYear()}</p><span class="badge">${s.badge}</span></div>
+    <div class="act">${past?'<span class="mono" style="color:var(--steel-dim);font-size:.72rem">PLAYED</span>'
+      :`<a class="btn btn-ice btn-sm" href="${s.tickets}" target="_blank" rel="noopener">Tickets</a>`}</div>
+  </div>`;
+}
+(function renderShows(){
+  const today=new Date();today.setHours(0,0,0,0);
+  const sorted=[...CONFIG.shows].sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const up=sorted.filter(s=>new Date(s.date+'T00:00:00')>=today);
+  const past=sorted.filter(s=>new Date(s.date+'T00:00:00')<today).reverse();
+  document.getElementById('upcomingShows').innerHTML=up.length?up.map(s=>showCard(s,false)).join('')
+    :'<div class="glass cal-empty">No dates on the calendar right now — check back soon, or <b style="color:var(--ice);cursor:pointer" onclick="go(\'book\')">book a show</b>.</div>';
+  document.getElementById('pastShows').innerHTML=past.map(s=>showCard(s,true)).join('');
+})();
+
+/* ============================================================
+   RENDER: podcast
+   ============================================================ */
+document.getElementById('podSubs').innerHTML=(CONFIG.podcast.subscribe||[]).map(l=>{
+  const k=l.label,u=l.url;
+  const ic=k==='Spotify'?'spotify':k==='Apple Podcasts'?'appleMusic':k==='iHeartRadio'?'iheart':'rss';
+  return `<a class="btn btn-ghost btn-sm" href="${u}" target="_blank" rel="noopener">${svg(ic)} ${k}</a>`;
+}).join('');
+(function(){const w=document.getElementById('podEmbed');const u=CONFIG.podcast.spotifyShowEmbed;
+  if(u){w.innerHTML=`<iframe src="${u}" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Sota Tired on Spotify"></iframe>`;}else{w.style.display='none';}})();
+document.getElementById('episodeList').innerHTML=CONFIG.podcast.episodes.map((e,i)=>`
+  <div class="glass ep">
+    <span class="epn">EP ${String(e.n).padStart(2,'0')}</span>
+    <div class="ep-mid">
+      <h4>${e.title}</h4><p>${e.desc}</p>
+      <div class="dur">${e.dur} · ${new Date(e.date+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+    </div>
+    <button class="play" onclick="playEp(${i})" aria-label="Play episode">${svg('play')}</button>
+  </div>`).join('');
+let epAudio;
+function playEp(i){
+  const e=CONFIG.podcast.episodes[i];
+  if(!e.audio){toast('Add this episode’s audio URL in CONFIG.podcast to play here — or use a subscribe link above.');return;}
+  if(epAudio)epAudio.pause();
+  epAudio=new Audio(e.audio);epAudio.play();toast('Now playing: '+e.title);
+}
+
+/* ============================================================
+   RENDER: contact + booking
+   ============================================================ */
+(function contact(){
+  const c=CONFIG;
+  document.getElementById('contactSide').innerHTML=`
+    <div class="cblock"><h4>Booking & General</h4><a href="mailto:${c.bookingEmail}">${c.bookingEmail}</a></div>
+    <div class="cblock"><h4>Beat Inquiries</h4><a href="mailto:${c.beatEmail}">${c.beatEmail}</a></div>
+    <div class="cblock"><h4>SOTA Mag Submissions</h4><a href="mailto:${c.magEmail}">${c.magEmail}</a></div>
+    ${c.phone?`<div class="cblock"><h4>Phone</h4><a href="tel:${c.phone.replace(/[^+\d]/g,'')}">${c.phone}</a></div>`:''}
+    <div class="cblock"><h4>Based in</h4><p>${c.city}</p></div>`;
+})();
+function submitBooking(){
+  const g=id=>document.getElementById(id).value.trim();
+  const name=g('bk-name'),email=g('bk-email'),type=g('bk-type');
+  if(!name||!email){toast('Add your name and email first.');return;}
+  let to=CONFIG.bookingEmail;
+  if(/beat/i.test(type))to=CONFIG.beatEmail;
+  else if(/mag/i.test(type))to=CONFIG.magEmail;
+  const body=`Name: ${name}%0AEmail: ${email}%0AOrg/Venue: ${g('bk-org')}%0AType: ${type}%0ADate: ${g('bk-date')}%0A%0A${g('bk-msg')}`;
+  if(CONFIG.formEndpoint){
+    fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,email,org:g('bk-org'),type,date:g('bk-date'),message:g('bk-msg'),to})})
+      .then(()=>toast('Sent. You’ll hear back soon.')).catch(()=>toast('Could not send — try the email option.'));
+    return;
+  }
+  window.location.href=`mailto:${to}?subject=${encodeURIComponent(type+' — '+name)}&body=${body}`;
+  toast('Opening your email app…');
+}
+function joinList(){const e=document.getElementById('newsEmail').value.trim();
+  if(!e||!e.includes('@')){toast('Enter a valid email.');return;}
+  document.getElementById('newsEmail').value='';toast('You’re on the list. Stay cold. ❄');}
+
+/* ============================================================
+   misc
+   ============================================================ */
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3200);}
+document.getElementById('yr').textContent=new Date().getFullYear();
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeLb();closeReader();}
+  if(document.getElementById('reader').classList.contains('on')&&magTotal>1){
+    if(e.key==='ArrowLeft')magNav(-1);
+    if(e.key==='ArrowRight')magNav(1);
+  }
+});
+/* deep-link support */
+const h=location.hash.replace('#','');
+if(h&&document.getElementById('view-'+h))go(h);
+/* expose handlers used by inline onclick= (module scope isn't global) */
+Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp});
+</script>
+</body>
+</html>
