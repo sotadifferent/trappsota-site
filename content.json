@@ -372,7 +372,8 @@
   },
   "photos": [
     {
-      "cap": "FIRST AVE · 2025",
+      "image": "assets/7C50DC90-04E8-4807-AE78-A0AFAAB48A66.jpg",
+      "cap": "Gems Bar & Lounge - Brooklyn, NY",
       "hue": 205
     },
     {
@@ -390,22 +391,6 @@
     {
       "cap": "THE VOGUE · CHI",
       "hue": 280
-    },
-    {
-      "cap": "SOUNDCHECK",
-      "hue": 210
-    }
-  ],
-  "videos": [
-    {
-      "cap": "FROSTBITE (Official Video)",
-      "url": "#",
-      "hue": 205
-    },
-    {
-      "cap": "Live at 7th St Entry",
-      "url": "#",
-      "hue": 250
     }
   ],
   "sotamag": {
