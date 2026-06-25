@@ -159,6 +159,13 @@ content:
           - { name: twitch, label: Twitch channel URL, type: string }
           - { name: tiktok, label: TikTok URL, type: string }
           - { name: tagline, label: Tagline, type: string }
+          - name: nero
+            label: "Nero.fan submission banner"
+            type: object
+            fields:
+              - { name: enabled, label: "Show banner", type: boolean }
+              - { name: url, label: "Submission link (nero.fan/...)", type: string }
+              - { name: handle, label: "Display text (e.g. NERO.FAN/TRAPPSOTA)", type: string }
           - name: items
             label: Review entries
             type: object
