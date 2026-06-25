@@ -311,10 +311,6 @@
       "image": "assets/444C00C4-1F4E-48AF-BB97-EB2701566137-1.jpg",
       "cap": "Gems Lounge & Bar - Brooklyn, NY",
       "hue": 230
-    },
-    {
-      "cap": "THE VOGUE · CHI",
-      "hue": 280
     }
   ],
   "videos": [
@@ -351,8 +347,9 @@
       },
       {
         "title": "Issue 03",
-        "date": "2025-07",
+        "date": "2025-09",
         "blurb": "Producers & the beat economy.",
+        "pdf": "assets/SOTA Mag Issue No. 3 - September [PUBLISHED].pdf",
         "hue": 190
       }
     ]
