@@ -1,4 +1,12 @@
 {
+  "bookingEmail": "trappsotaofficial@gmail.com",
+  "beatEmail": "sotadifferentllc@gmail.com",
+  "magEmail": "sotamagteam@gmail.com",
+  "city": "Philadelphia, PA",
+  "spotifyEmbed": "https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
+  "facebook": "https://www.facebook.com/61566843698788",
+  "unitedmasters": "https://unitedmasters.com/a/trapp-sota",
+  "sotaMag": "https://www.instagram.com/sota_mag/",
   "socials": {
     "instagram": "https://www.instagram.com/trappsota",
     "twitter": "https://x.com/trappsota",
@@ -9,17 +17,6 @@
     "soundcloud": "https://soundcloud.com/trapp-sota",
     "beatstars": "https://www.beatstars.com/trappsota"
   },
-  "facebook": "https://www.facebook.com/61566843698788",
-  "unitedmasters": "https://unitedmasters.com/a/trapp-sota",
-  "sotaMag": "https://www.instagram.com/sota_mag/",
-  "bookingEmail": "trappsotaofficial@gmail.com",
-  "beatEmail": "sotadifferentllc@gmail.com",
-  "magEmail": "sotamagteam@gmail.com",
-  "managementEmail": "",
-  "phone": "",
-  "city": "Philadelphia, PA",
-  "formEndpoint": "",
-  "spotifyEmbed": "https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
   "streaming": [
     {
       "label": "Spotify",
@@ -51,8 +48,8 @@
       "title": "Fixated",
       "year": "2026",
       "type": "Single",
-      "hue": 198,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/2b/ca/932bca09-c763-5ff8-4ce3-946fdc3f1066/827425143507-copy-e7f25895.png/600x600bb.jpg",
+      "hue": 198,
       "links": [
         {
           "label": "Apple Music",
@@ -68,8 +65,8 @@
       "title": "Best of Both Worlds",
       "year": "2026",
       "type": "Single",
-      "hue": 222,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/9a/8e/999a8ee6-ce26-a51a-4aab-10394b3dbebb/822299627849-copy-176738b6.png/600x600bb.jpg",
+      "hue": 222,
       "links": [
         {
           "label": "Apple Music",
@@ -85,8 +82,8 @@
       "title": "One More Day",
       "year": "2026",
       "type": "Single",
-      "hue": 188,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/ea/92/c6ea9221-eb92-4fd6-6ab8-91056cf5f55a/822299550390.png/600x600bb.jpg",
+      "hue": 188,
       "links": [
         {
           "label": "Apple Music",
@@ -102,8 +99,8 @@
       "title": "Not Your Neighborhood Hero",
       "year": "2026",
       "type": "EP",
-      "hue": 255,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/85/bc/9785bc50-dd40-3968-7007-d3ed8bc385dc/199976705696.png/600x600bb.jpg",
+      "hue": 255,
       "links": [
         {
           "label": "Apple Music",
@@ -119,8 +116,8 @@
       "title": "Protective Custody",
       "year": "2025",
       "type": "Album",
-      "hue": 238,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/96/fe/39/96fe3927-d03a-306d-c6db-220df9f0e582/199633036217-copy-5a92c0ac.png/600x600bb.jpg",
+      "hue": 238,
       "links": [
         {
           "label": "Apple Music",
@@ -136,8 +133,8 @@
       "title": "Big Rich Town",
       "year": "2025",
       "type": "Single",
-      "hue": 208,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/67/7e/58677e5b-408d-4da4-c9ae-7856395bd070/199826079472.png/600x600bb.jpg",
+      "hue": 208,
       "links": [
         {
           "label": "Apple Music",
@@ -153,8 +150,8 @@
       "title": "ringtone",
       "year": "2025",
       "type": "Single",
-      "hue": 280,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e4/8c/72/e48c7291-2472-7fb7-8496-83d37b1e42a7/199479337899.png/600x600bb.jpg",
+      "hue": 280,
       "links": [
         {
           "label": "Apple Music",
@@ -170,8 +167,8 @@
       "title": "Baby, That's Sota",
       "year": "2025",
       "type": "Single",
-      "hue": 200,
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/83/79/76/83797633-85b4-2025-a812-646b07b39fda/199355643342.png/600x600bb.jpg",
+      "hue": 200,
       "links": [
         {
           "label": "Apple Music",
@@ -210,11 +207,7 @@
         "Dark",
         "Trap",
         "808"
-      ],
-      "contract": "",
-      "beatstars": "",
-      "stripe": "",
-      "preview": ""
+      ]
     },
     {
       "title": "WHITEOUT",
@@ -224,11 +217,7 @@
       "tags": [
         "Melodic",
         "R&B"
-      ],
-      "contract": "",
-      "beatstars": "",
-      "stripe": "",
-      "preview": ""
+      ]
     },
     {
       "title": "BLIZZARD",
@@ -238,11 +227,7 @@
       "tags": [
         "Hard",
         "Aggressive"
-      ],
-      "contract": "",
-      "beatstars": "",
-      "stripe": "",
-      "preview": ""
+      ]
     },
     {
       "title": "DRIFT",
@@ -252,11 +237,7 @@
       "tags": [
         "Ambient",
         "Spacey"
-      ],
-      "contract": "",
-      "beatstars": "",
-      "stripe": "",
-      "preview": ""
+      ]
     },
     {
       "title": "ICEPICK",
@@ -266,11 +247,7 @@
       "tags": [
         "Rage",
         "Hyper"
-      ],
-      "contract": "",
-      "beatstars": "",
-      "stripe": "",
-      "preview": ""
+      ]
     },
     {
       "title": "PERMAFROST",
@@ -280,56 +257,23 @@
       "tags": [
         "Soul",
         "Sample"
-      ],
-      "contract": "",
-      "beatstars": "",
-      "stripe": "",
-      "preview": ""
+      ]
     }
   ],
   "shows": [
     {
-      "date": "2026-07-12",
-      "venue": "First Avenue",
-      "city": "Minneapolis, MN",
-      "badge": "Headline",
-      "tickets": "#"
-    },
-    {
-      "date": "2026-08-03",
-      "venue": "The Vogue",
-      "city": "Chicago, IL",
-      "badge": "Support",
-      "tickets": "#"
-    },
-    {
-      "date": "2026-09-19",
-      "venue": "Skyway Theatre",
-      "city": "Minneapolis, MN",
-      "badge": "Festival",
-      "tickets": "#"
-    },
-    {
-      "date": "2026-05-02",
-      "venue": "Amsterdam Bar",
-      "city": "St. Paul, MN",
-      "badge": "Headline",
-      "tickets": "#"
-    },
-    {
-      "date": "2026-03-15",
-      "venue": "7th St Entry",
-      "city": "Minneapolis, MN",
-      "badge": "Headline",
+      "date": "2026-08-08",
+      "venue": "Philly Phest",
+      "city": "Philadelphia",
+      "badge": "Performer",
       "tickets": "#"
     }
   ],
   "podcast": {
-    "spotifyShowEmbed": "",
     "subscribe": [
       {
         "label": "Spotify",
-        "url": "#"
+        "url": "#https://open.spotify.com/show/0anh4R7BhTf7qEKgfQVLkO?si=8ca2c394205248cc"
       },
       {
         "label": "Apple Podcasts",
@@ -344,33 +288,29 @@
       {
         "n": 12,
         "title": "Cold Nights, Clear Mind",
-        "dur": "1:04:22",
         "date": "2026-06-10",
-        "audio": "",
+        "dur": "1:04:22",
         "desc": "On grinding through the winter, staying independent, and why tired hits different up north."
       },
       {
         "n": 11,
         "title": "The Beat Business",
-        "dur": "58:40",
         "date": "2026-05-27",
-        "audio": "",
+        "dur": "58:40",
         "desc": "Selling beats, licensing, and turning a laptop into a label."
       },
       {
         "n": 10,
         "title": "Live & Unfiltered",
-        "dur": "1:12:05",
         "date": "2026-05-13",
-        "audio": "",
+        "dur": "1:12:05",
         "desc": "Stories from the road and what really happens after the show."
       },
       {
         "n": 9,
         "title": "Why Sota Different",
-        "dur": "47:18",
         "date": "2026-04-29",
-        "audio": "",
+        "dur": "47:18",
         "desc": "The origin of the name, the sound, and the mission."
       }
     ]
@@ -378,147 +318,90 @@
   "photos": [
     {
       "cap": "FIRST AVE · 2025",
-      "hue": 205,
-      "image": ""
+      "hue": 205
     },
     {
       "cap": "STUDIO SESSION",
-      "hue": 255,
-      "image": ""
+      "hue": 255
     },
     {
       "cap": "CROWD GO CRAZY",
-      "hue": 190,
-      "image": ""
+      "hue": 190
     },
     {
       "cap": "BACKSTAGE",
-      "hue": 230,
-      "image": ""
+      "hue": 230
     },
     {
       "cap": "THE VOGUE · CHI",
-      "hue": 280,
-      "image": ""
+      "hue": 280
     },
     {
       "cap": "SOUNDCHECK",
-      "hue": 210,
-      "image": ""
+      "hue": 210
     }
   ],
   "videos": [
     {
       "cap": "FROSTBITE (Official Video)",
-      "hue": 205,
       "url": "#",
-      "thumb": ""
+      "hue": 205
     },
     {
       "cap": "Live at 7th St Entry",
-      "hue": 250,
       "url": "#",
-      "thumb": ""
+      "hue": 250
     }
   ],
   "sotamag": {
     "instagram": "https://www.instagram.com/sota_mag/",
-    "submit": "",
     "tagline": "Underground music & culture — curated the Sota way.",
     "issues": [
       {
         "title": "Issue 01",
         "date": "2026-01",
-        "hue": 205,
         "blurb": "The Cold Open — debut issue.",
-        "pdf": "",
-        "pages": [],
         "caption": "The debut issue of SOTA Mag.",
-        "transcript": "",
-        "cover": ""
+        "hue": 205
       },
       {
         "title": "Issue 02",
         "date": "2026-03",
-        "hue": 255,
         "blurb": "Spring underground spotlight.",
-        "pdf": "",
-        "pages": [],
-        "caption": "",
-        "transcript": "",
-        "cover": ""
+        "hue": 255
       },
       {
         "title": "Issue 03",
         "date": "2026-05",
-        "hue": 190,
         "blurb": "Producers & the beat economy.",
-        "pdf": "",
-        "pages": [],
-        "caption": "",
-        "transcript": "",
-        "cover": ""
+        "hue": 190
       }
     ]
   },
   "reviews": {
-    "twitch": "",
     "tiktok": "https://www.tiktok.com/@thefavoriteproducer",
     "tagline": "Honest music reviews — live on Twitch, clipped on TikTok.",
     "items": [
       {
         "title": "Live Review Stream",
         "platform": "Twitch",
-        "hue": 265,
-        "url": "",
-        "note": "Catch the next live review session."
+        "note": "Catch the next live review session.",
+        "hue": 265
       },
       {
         "title": "Quick Takes",
         "platform": "TikTok",
-        "hue": 200,
         "url": "https://www.tiktok.com/@thefavoriteproducer",
-        "note": "Bite-size reviews & reactions."
+        "note": "Bite-size reviews & reactions.",
+        "hue": 200
       },
       {
         "title": "Latest Breakdown",
         "platform": "TikTok",
-        "hue": 230,
         "url": "https://www.tiktok.com/@thefavoriteproducer",
-        "note": "Track-by-track on a new drop."
+        "note": "Track-by-track on a new drop.",
+        "hue": 230
       }
-    ],
-    "nero": {
-      "enabled": true,
-      "url": "https://nero.fan/trappsota",
-      "handle": "NERO.FAN/TRAPPSOTA"
-    }
-  },
-  "licensing": [
-    {
-      "name": "MP3 Lease",
-      "price": 30,
-      "includes": "Tagless MP3 · up to 5,000 streams · non-profit live use"
-    },
-    {
-      "name": "WAV Lease",
-      "price": 50,
-      "includes": "WAV + MP3 · up to 10,000 streams · 1 music video"
-    },
-    {
-      "name": "Trackout / Premium",
-      "price": 100,
-      "includes": "Track stems + WAV + MP3 · up to 100,000 streams"
-    },
-    {
-      "name": "Unlimited",
-      "price": 150,
-      "includes": "WAV + stems · unlimited streams & sales"
-    },
-    {
-      "name": "Exclusive",
-      "price": 300,
-      "includes": "Full ownership · beat removed from the store"
-    }
-  ]
+    ]
+  }
 }
