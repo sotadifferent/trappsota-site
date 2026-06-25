@@ -220,6 +220,19 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;
 .beat-contract{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.05em;color:var(--ice);opacity:.85}
 .beat-contract svg{width:12px;height:12px;fill:currentColor}
 .beat-contract:hover{opacity:1;text-decoration:underline}
+.licbox{position:fixed;inset:0;z-index:120;background:rgba(6,8,11,.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+.licbox.on{display:flex}
+.licpanel{position:relative;width:min(560px,94vw);max-height:88vh;overflow:auto;padding:30px;border-radius:var(--radius-lg);background:linear-gradient(160deg,rgba(22,28,37,.97),rgba(13,17,23,.97));border:1px solid var(--line-strong)}
+.lic-head h3{font-size:1.9rem;margin:8px 0 4px}
+.lic-head .mono{font-family:var(--font-mono);font-size:.74rem;color:var(--steel);letter-spacing:.08em}
+.lic-tiers{display:flex;flex-direction:column;gap:8px;margin:20px 0}
+.lic-tier{display:grid;grid-template-columns:1fr auto;gap:3px 14px;align-items:baseline;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:rgba(10,12,16,.5)}
+.lic-tier .lt-name{font-family:var(--font-display);font-weight:700;font-size:1rem}
+.lic-tier .lt-price{font-family:var(--font-display);font-weight:800;font-size:1.15rem;color:var(--ice)}
+.lic-tier .lt-inc{grid-column:1/-1;font-family:var(--font-body);font-size:.8rem;color:var(--steel)}
+.lic-actions{display:flex;flex-direction:column;gap:10px}
+.lic-actions .btn{width:100%;justify-content:center}
+.lic-note{margin-top:16px;font-family:var(--font-mono);font-size:.66rem;line-height:1.7;color:var(--steel-dim)}
 .beat-progress{grid-column:1/-1;height:3px;border-radius:3px;background:rgba(120,180,220,.12);overflow:hidden;display:none}
 .beat.playing .beat-progress{display:block}
 .beat-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ice),var(--cryo))}
@@ -525,7 +538,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
     <p>Production by Sota. Preview in-browser, then license. Hit a play button to hear a live preview loop.</p>
   </div>
   <div class="beat-bar">
-    <div class="lic">Licensing: <b>MP3 Lease $30</b> · <b>WAV Lease $50</b> · <b>Exclusive $300+</b></div>
+    <div class="lic" id="licSummary"></div>
     <a class="btn btn-ghost btn-sm" id="beatstoreLink" target="_blank" rel="noopener">Full store on BeatStars →</a>
   </div>
   <div class="beats" id="beatList"></div>
@@ -678,6 +691,17 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
 </footer>
 
 <!-- lightbox + toast -->
+<!-- Beat license panel -->
+<div class="licbox" id="licbox" onclick="if(event.target===this)closeLicense()">
+  <div class="licpanel">
+    <button class="rclose" onclick="closeLicense()" aria-label="Close">×</button>
+    <div class="lic-head"><span class="eyebrow">License</span><h3 id="licTitle" class="display"></h3><div id="licMeta" class="mono"></div></div>
+    <div class="lic-tiers" id="licTiers"></div>
+    <div class="lic-actions" id="licActions"></div>
+    <p class="lic-note">BeatStars handles payment, your license contract, and instant download automatically. \u201CBuy here\u201D sends funds straight to you \u2014 files delivered by email.</p>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox" onclick="closeLb()">
   <button class="lb-close" aria-label="Close">×</button>
   <div class="lb-frame" id="lbFrame"></div>
@@ -759,13 +783,20 @@ const DEFAULTS = {
   ],
 
   /* --- BEATS: your store. bpm drives the preview tempo --- */
+  licensing:[
+    {name:"MP3 Lease", price:30, includes:"Tagless MP3 · up to 5,000 streams · non-profit live use"},
+    {name:"WAV Lease", price:50, includes:"WAV + MP3 · up to 10,000 streams · 1 music video"},
+    {name:"Trackout / Premium", price:100, includes:"Track stems + WAV + MP3 · up to 100,000 streams"},
+    {name:"Unlimited", price:150, includes:"WAV + stems · unlimited streams & sales"},
+    {name:"Exclusive", price:300, includes:"Full ownership · beat removed from the store"},
+  ],
   beats:[
-    {title:"GLACIER",   bpm:140, key:"F# Min",  price:30, tags:["Dark","Trap","808"],     buy:"#", contract:""},
-    {title:"WHITEOUT",  bpm:75,  key:"C Min",   price:35, tags:["Melodic","R&B"],          buy:"#", contract:""},
-    {title:"BLIZZARD",  bpm:150, key:"G Min",   price:30, tags:["Hard","Aggressive"],      buy:"#", contract:""},
-    {title:"DRIFT",     bpm:130, key:"A Min",   price:40, tags:["Ambient","Spacey"],       buy:"#", contract:""},
-    {title:"ICEPICK",   bpm:160, key:"D Min",   price:30, tags:["Rage","Hyper"],           buy:"#", contract:""},
-    {title:"PERMAFROST",bpm:88,  key:"E Min",   price:50, tags:["Soul","Sample"],          buy:"#", contract:""},
+    {title:"GLACIER",   bpm:140, key:"F# Min",  price:30, tags:["Dark","Trap","808"],     beatstars:"", stripe:"", preview:"", contract:""},
+    {title:"WHITEOUT",  bpm:75,  key:"C Min",   price:35, tags:["Melodic","R&B"],          beatstars:"", stripe:"", preview:"", contract:""},
+    {title:"BLIZZARD",  bpm:150, key:"G Min",   price:30, tags:["Hard","Aggressive"],      beatstars:"", stripe:"", preview:"", contract:""},
+    {title:"DRIFT",     bpm:130, key:"A Min",   price:40, tags:["Ambient","Spacey"],       beatstars:"", stripe:"", preview:"", contract:""},
+    {title:"ICEPICK",   bpm:160, key:"D Min",   price:30, tags:["Rage","Hyper"],           beatstars:"", stripe:"", preview:"", contract:""},
+    {title:"PERMAFROST",bpm:88,  key:"E Min",   price:50, tags:["Soul","Sample"],          beatstars:"", stripe:"", preview:"", contract:""},
   ],
 
   /* --- SHOWS: upcoming + past. Use ISO dates (YYYY-MM-DD) --- */
@@ -874,7 +905,7 @@ function go(v){
   document.getElementById('view-'+v).classList.add('active');
   document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
   document.getElementById('navlinks').classList.remove('open');
-  stopBeat();closeReader();
+  stopBeat();closeReader();closeLicense();
   window.scrollTo({top:0,behavior:'instant'in document.documentElement.style?'instant':'auto'});
   if(history.replaceState)history.replaceState(null,'','#'+v);
 }
@@ -942,23 +973,23 @@ document.getElementById('streamBar').innerHTML=(CONFIG.streaming||[]).map(l=>
 /* ============================================================
    RENDER: beats + WebAudio preview engine
    ============================================================ */
-document.getElementById('beatList').innerHTML=CONFIG.beats.map((b,i)=>{
-  const buyHref=(b.buy&&b.buy!=='#')?b.buy:`mailto:${CONFIG.beatEmail}?subject=${encodeURIComponent('Beat license inquiry — '+b.title)}`;
-  return `
+(function(){const t=CONFIG.licensing||[];const el=document.getElementById('licSummary');
+  if(el)el.innerHTML=t.length?'Licensing: '+t.map(x=>`<b>${x.name} $${x.price}</b>`).join(' · '):'';})();
+document.getElementById('beatList').innerHTML=CONFIG.beats.map((b,i)=>`
   <div class="glass beat" id="beat-${i}">
     <button class="play" onclick="toggleBeat(${i})" aria-label="Preview ${b.title}">${svg('play')}</button>
     <div class="beat-info">
       <h4>${b.title}</h4>
-      <div class="tags">${b.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+      <div class="tags">${(b.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
       ${b.contract?`<a class="beat-contract" href="${b.contract}" target="_blank" rel="noopener">${svg('link')} License agreement (PDF)</a>`:''}
     </div>
     <div class="beat-data"><b>${b.bpm}</b> BPM<br>${b.key}</div>
     <div class="beat-buy">
-      <span class="price">$${b.price}</span>
-      <a class="btn btn-ice btn-sm" href="${buyHref}" target="_blank" rel="noopener">License</a>
+      <span class="price">from $${b.price}</span>
+      <button class="btn btn-ice btn-sm" onclick="openLicense(${i})">License ▾</button>
     </div>
     <div class="beat-progress"><i></i></div>
-  </div>`;}).join('');
+  </div>`).join('');
 
 let actx,curBeat=-1,beatTimer,progTimer;
 function ensureCtx(){if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)();if(actx.state==='suspended')actx.resume();}
@@ -985,11 +1016,33 @@ function playLoop(i){
   };
   tick();
 }
-function toggleBeat(i){ensureCtx();if(curBeat===i){stopBeat();return;}stopBeat();curBeat=i;
+let prevAudio=null;
+function toggleBeat(i){if(curBeat===i){stopBeat();return;}stopBeat();curBeat=i;
   const el=document.getElementById('beat-'+i);el.classList.add('playing');
-  el.querySelector('.play').innerHTML=svg('pause');playLoop(i);}
-function stopBeat(){if(curBeat>-1){const el=document.getElementById('beat-'+curBeat);if(el){el.classList.remove('playing');el.querySelector('.play').innerHTML=svg('play');}}
+  el.querySelector('.play').innerHTML=svg('pause');
+  const b=CONFIG.beats[i],prog=el.querySelector('.beat-progress i');
+  if(b.preview){
+    prevAudio=new Audio(b.preview);prevAudio.loop=true;
+    prevAudio.ontimeupdate=()=>{if(prog&&prevAudio.duration){prog.style.transition='width .25s linear';prog.style.width=(prevAudio.currentTime/prevAudio.duration*100)+'%';}};
+    prevAudio.play().catch(()=>{ensureCtx();playLoop(i);});
+  }else{ensureCtx();playLoop(i);}
+}
+function stopBeat(){if(curBeat>-1){const el=document.getElementById('beat-'+curBeat);if(el){el.classList.remove('playing');el.querySelector('.play').innerHTML=svg('play');const p=el.querySelector('.beat-progress i');if(p){p.style.transition='none';p.style.width='0';}}}
+  if(prevAudio){try{prevAudio.pause();}catch(e){}prevAudio=null;}
   clearTimeout(beatTimer);curBeat=-1;}
+function openLicense(i){const b=CONFIG.beats[i];
+  document.getElementById('licTitle').textContent=b.title;
+  document.getElementById('licMeta').textContent=`${b.bpm} BPM · ${b.key}`;
+  const tiers=CONFIG.licensing||[];
+  document.getElementById('licTiers').innerHTML=tiers.map(t=>`<div class="lic-tier"><div class="lt-name">${t.name}</div><div class="lt-price">$${t.price}</div><div class="lt-inc">${t.includes||''}</div></div>`).join('');
+  const bs=b.beatstars||(CONFIG.socials&&CONFIG.socials.beatstars)||'';const acts=[];
+  if(bs)acts.push(`<a class="btn btn-ice" href="${bs}" target="_blank" rel="noopener">${svg('beatstars')} Get it on BeatStars</a>`);
+  if(b.stripe)acts.push(`<a class="btn btn-ghost" href="${b.stripe}" target="_blank" rel="noopener">Buy here — from $${b.price}</a>`);
+  else acts.push(`<a class="btn btn-ghost" href="mailto:${CONFIG.beatEmail}?subject=${encodeURIComponent('Beat license — '+b.title)}">Email to license</a>`);
+  if(b.contract)acts.push(`<a class="btn btn-ghost" href="${b.contract}" target="_blank" rel="noopener">${svg('link')} License terms (PDF)</a>`);
+  document.getElementById('licActions').innerHTML=acts.join('');
+  document.getElementById('licbox').classList.add('on');}
+function closeLicense(){const e=document.getElementById('licbox');if(e)e.classList.remove('on');}
 
 /* ============================================================
    RENDER: media gallery + lightbox
@@ -1202,7 +1255,7 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3200);}
 document.getElementById('yr').textContent=new Date().getFullYear();
 window.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeLb();closeReader();}
+  if(e.key==='Escape'){closeLb();closeReader();closeLicense();}
   if(document.getElementById('reader').classList.contains('on')&&magTotal>1){
     if(e.key==='ArrowLeft')magNav(-1);
     if(e.key==='ArrowRight')magNav(1);
@@ -1212,7 +1265,7 @@ window.addEventListener('keydown',e=>{
 const h=location.hash.replace('#','');
 if(h&&document.getElementById('view-'+h))go(h);
 /* expose handlers used by inline onclick= (module scope isn't global) */
-Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp});
+Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp,openLicense,closeLicense});
 </script>
 </body>
 </html>
