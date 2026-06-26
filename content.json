@@ -298,6 +298,13 @@
         "R&B"
       ],
       "preview": "assets/Concrete Psalm - F# Major - 129 BPM.wav"
+    },
+    {
+      "title": "You Never Knew",
+      "bpm": 129,
+      "key": "G# Minor",
+      "price": 20,
+      "preview": "assets/Slow Slide - G# Major - 129 BPM.mp3"
     }
   ],
   "shows": [
