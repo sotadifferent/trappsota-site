@@ -60,6 +60,26 @@ content:
               - { name: url, label: Link, type: string }
 
       # ---------- Beats ----------
+      - name: services
+        label: "Production Services (rate card on Beats page)"
+        type: object
+        fields:
+          - { name: email, label: "Inquiries email", type: string }
+          - { name: intro, label: Intro line, type: text }
+          - name: items
+            label: Services
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Service, type: string }
+              - { name: price, label: Price, type: string }
+          - name: bundles
+            label: Bundle packages
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Bundle, type: string }
+              - { name: price, label: Price, type: string }
       - name: licensing
         label: "License tiers (shown on every beat)"
         type: object
@@ -144,7 +164,23 @@ content:
         type: object
         fields:
           - { name: instagram, label: Instagram URL, type: string }
-          - { name: submit, label: "Submit / feature link (optional)", type: string }
+          - name: submit
+            label: "Get-featured / submission page"
+            type: object
+            fields:
+              - { name: intro, label: Intro line, type: text }
+              - { name: formUrl, label: "Submission form link (share URL — opens in new tab)", type: string }
+              - { name: note, label: "Pricing note", type: text }
+              - name: tiers
+                label: Feature tiers
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: Tier name, type: string }
+                  - { name: price, label: "Price (e.g. Starting at $55)", type: string }
+                  - { name: note, label: Note, type: string }
+              - { name: included, label: "What's included", type: string, list: true }
+              - { name: requirements, label: Requirements, type: string, list: true }
           - { name: tagline, label: Tagline, type: string }
           - name: issues
             label: Issues
@@ -162,6 +198,24 @@ content:
               - { name: hue, label: "Color seed (fallback)", type: number }
 
       # ---------- Live Music Reviews ----------
+      - name: faq
+        label: "FAQ (SOTA Mag + Beats)"
+        type: object
+        fields:
+          - name: mag
+            label: "SOTA Mag FAQ"
+            type: object
+            list: true
+            fields:
+              - { name: q, label: Question, type: string }
+              - { name: a, label: Answer, type: text }
+          - name: beats
+            label: "Beats & Production FAQ"
+            type: object
+            list: true
+            fields:
+              - { name: q, label: Question, type: string }
+              - { name: a, label: Answer, type: text }
       - name: reviews
         label: Live Music Reviews
         type: object
