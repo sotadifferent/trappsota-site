@@ -450,7 +450,7 @@
       },
       {
         "q": "How long does it take?",
-        "a": "Turnaround depends on the current queue and the scope of your feature — you’ll get an estimated timeline once your submission is reviewed."
+        "a": "Turnaround depends on the current queue and the scope of your feature; you’ll get an estimated timeline once your submission is reviewed."
       }
     ],
     "beats": [
@@ -464,7 +464,7 @@
       },
       {
         "q": "Can I hear a beat before I buy?",
-        "a": "Yes — every beat has an instant in-browser preview. Just press play on any track."
+        "a": "Yes; every beat has an instant in-browser preview. Just press play on any track."
       },
       {
         "q": "Do you make custom beats?",
@@ -476,7 +476,7 @@
       },
       {
         "q": "Do you offer mixing, mastering, or songwriting?",
-        "a": "Yes — mixing & mastering, songwriting, vocal arrangement, vocal features, and consulting are all available. See the production services list on the Beats page."
+        "a": "Yes; mixing & mastering, songwriting, vocal arrangement, vocal features, and consulting are all available. See the production services list on the Beats page."
       },
       {
         "q": "How do I pay?",
