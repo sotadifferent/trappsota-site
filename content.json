@@ -341,10 +341,10 @@
   ],
   "shows": [
     {
-      "date": "2026-07-12",
-      "venue": "First Avenue",
-      "city": "Minneapolis, MN",
-      "badge": "Headline",
+      "date": "2026-08-08",
+      "venue": "Philly Phest",
+      "city": "Philadelphia, PA",
+      "badge": "Performer",
       "tickets": "#"
     }
   ],
@@ -381,26 +381,9 @@
     {
       "cap": "CROWD GO CRAZY",
       "hue": 190
-    },
-    {
-      "cap": "BACKSTAGE",
-      "hue": 230
-    },
-    {
-      "cap": "THE VOGUE · CHI",
-      "hue": 280
-    },
-    {
-      "cap": "SOUNDCHECK",
-      "hue": 210
     }
   ],
   "videos": [
-    {
-      "cap": "FROSTBITE (Official Video)",
-      "url": "#",
-      "hue": 205
-    },
     {
       "cap": "Live at 7th St Entry",
       "url": "#",
