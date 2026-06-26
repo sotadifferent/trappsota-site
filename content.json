@@ -555,16 +555,9 @@
       {
         "title": "Quick Takes",
         "platform": "TikTok",
-        "url": "https://www.tiktok.com/@thefavoriteproducer",
+        "url": "https://www.tiktok.com/@trappsota?is_from_webapp=1&sender_device=pc",
         "note": "Bite-size reviews & reactions.",
         "hue": 200
-      },
-      {
-        "title": "Latest Breakdown",
-        "platform": "TikTok",
-        "url": "https://www.tiktok.com/@thefavoriteproducer",
-        "note": "Track-by-track on a new drop.",
-        "hue": 230
       }
     ]
   }
