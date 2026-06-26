@@ -441,23 +441,26 @@
     "issues": [
       {
         "title": "Issue 01",
-        "date": "2025-07",
-        "blurb": "DEBUT ISSUE",
+        "date": "2024-07",
+        "blurb": "July 2024",
         "caption": "The debut issue of SOTA Mag.",
+        "cover": "assets/SOTA Mag Issue No. 1 - July [PUBLISHED]-2.png",
         "pdf": "assets/SOTA Mag Issue No. 1 - July [PUBLISHED]-1.pdf",
         "hue": 205
       },
       {
         "title": "Issue 02",
-        "date": "2025-08",
-        "blurb": "#2",
+        "date": "2024-08",
+        "blurb": "August 2024",
+        "cover": "assets/SOTA Mag Issue No. 2 - August [PUBLISHED].png",
         "pdf": "assets/SOTA Mag Issue No. 2 - August [PUBLISHED]-1.pdf",
         "hue": 255
       },
       {
         "title": "Issue 03",
-        "date": "2025-09",
-        "blurb": "#3",
+        "date": "2024-09",
+        "blurb": "September 2024",
+        "cover": "assets/SOTA Mag Issue No. 3 - September [PUBLISHED].png",
         "pdf": "assets/SOTA Mag Issue No. 3 - September [PUBLISHED]-1.pdf",
         "hue": 190
       }
