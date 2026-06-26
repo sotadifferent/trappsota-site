@@ -397,6 +397,33 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
 .reader-nav button:hover:not(:disabled){background:var(--ice);color:var(--void)}
 .reader-nav button:disabled{opacity:.3;cursor:default}
 .reader-nav .pg{font-family:var(--font-mono);font-size:.74rem;color:var(--steel);letter-spacing:.1em;min-width:72px;text-align:center}
+.backlink{background:none;border:0;color:var(--steel);font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;cursor:pointer;margin-bottom:16px;transition:.2s}
+.backlink:hover{color:var(--ice)}
+.ms-tiers{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:24px}
+.ms-tier{flex:1;min-width:210px;padding:20px 22px;border:1px solid var(--line-strong);border-radius:14px;background:rgba(120,180,220,.04)}
+.ms-tier .mt-name{font-family:var(--font-display);font-weight:700;font-size:1.12rem}
+.ms-tier .mt-price{font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:var(--ice);margin:4px 0 6px}
+.ms-tier .mt-note{font-family:var(--font-body);font-size:.85rem;color:var(--steel)}
+.ms-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ms-block{padding:24px 26px}
+.ms-h{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ice);margin-bottom:14px}
+.ms-block ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ms-block li{position:relative;padding-left:22px;font-size:.94rem;color:var(--frost);line-height:1.5}
+.ms-block li::before{content:"";position:absolute;left:0;top:.52em;width:7px;height:7px;border-radius:50%;background:var(--ice)}
+.ms-note{margin-top:18px;font-family:var(--font-mono);font-size:.72rem;color:var(--steel);line-height:1.7}
+.form-embed{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.form-embed iframe{width:100%;height:760px;border:0;display:block}
+.form-ph{padding:32px;text-align:center}
+.form-ph p{color:var(--steel);margin-bottom:18px;max-width:52ch;margin-left:auto;margin-right:auto}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--line);border-radius:12px;background:rgba(13,17,23,.5);cursor:pointer;overflow:hidden;transition:border-color .2s}
+.faq-item:hover{border-color:var(--line-strong)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;font-family:var(--font-display);font-weight:600;font-size:1.02rem}
+.faq-x{font-family:var(--font-body);color:var(--ice);font-size:1.35rem;line-height:1;transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-x{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;padding:0 20px;color:var(--steel);font-size:.94rem;line-height:1.6;transition:max-height .3s var(--ease),padding .3s var(--ease)}
+.faq-item.open .faq-a{max-height:460px;padding:0 20px 18px}
+@media(max-width:680px){.ms-cols{grid-template-columns:1fr}.form-embed iframe{height:640px}}
 .reader-cap{font-family:var(--font-mono);font-size:.66rem;color:var(--steel);letter-spacing:.06em;margin-top:4px}
 .reader-stage canvas{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 20px 60px -20px #000;background:#fff}
 .reader-transcript{flex-shrink:0;max-height:30vh;overflow:auto;margin-top:12px;padding:15px 18px;border:1px solid var(--line);border-radius:12px;
@@ -562,6 +589,9 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
     <div class="svc-rows" id="svcBundles"></div>
     <a class="btn btn-ice svc-cta" id="svcCta" target="_blank" rel="noopener">Request a service / get a quote</a>
   </div>
+  <div style="text-align:center;margin-top:24px">
+    <button class="btn btn-ghost btn-sm" onclick="openFaq('beats')">Beats &amp; Production FAQ</button>
+  </div>
 </section>
 
 <!-- ===================== MEDIA ===================== -->
@@ -638,6 +668,42 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
   </div>
   <div class="mag-intro" id="magIntro"></div>
   <div class="mag-grid" id="magGrid" style="margin-top:28px"></div>
+</section>
+
+<!-- ===================== SOTA MAG — GET FEATURED ===================== -->
+<section class="view" id="view-magsubmit">
+  <button class="backlink" onclick="go('sotamag')">‹ SOTA Mag</button>
+  <div class="sec-head">
+    <span class="eyebrow">SOTA Mag · Get Featured</span>
+    <h2 class="display">Get featured on SOTA Mag</h2>
+    <p id="msIntro"></p>
+  </div>
+  <div class="ms-tiers" id="msTiers"></div>
+  <div class="ms-cols">
+    <div class="glass ms-block"><h4 class="ms-h">What’s included</h4><ul id="msIncluded"></ul></div>
+    <div class="glass ms-block"><h4 class="ms-h">Requirements for submission</h4><ul id="msReqs"></ul></div>
+  </div>
+  <p class="ms-note" id="msNote"></p>
+  <div class="sec-head" style="margin:46px 0 16px">
+    <span class="eyebrow">Submit</span>
+    <h2 class="display" style="font-size:2rem">Send your submission</h2>
+  </div>
+  <div id="msForm"></div>
+  <div style="margin-top:22px"><button class="btn btn-ghost btn-sm" onclick="openFaq('mag')">Read the submissions FAQ</button></div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="view" id="view-faq">
+  <button class="backlink" id="faqBack" onclick="go('sotamag')">‹ Back</button>
+  <div class="sec-head">
+    <span class="eyebrow">Help · FAQ</span>
+    <h2 class="display">Frequently asked questions</h2>
+  </div>
+  <div class="tabs">
+    <button class="tab on" id="faqTabMag" onclick="faqTab('mag')">SOTA Mag</button>
+    <button class="tab" id="faqTabBeats" onclick="faqTab('beats')">Beats &amp; Production</button>
+  </div>
+  <div class="faq-list" id="faqList"></div>
 </section>
 
 <!-- ===================== BOOK ===================== -->
@@ -877,7 +943,26 @@ const DEFAULTS = {
          OR a "pages" array of image URLs. Leave both empty for a placeholder. --- */
   sotamag:{
     instagram:"https://www.instagram.com/sota_mag/",
-    submit:"",   // optional: link for submissions / features
+    submit:{
+      intro:"A professionally written editorial feature that puts your music, art, and story in front of the SOTA Mag audience.",
+      formUrl:"https://docs.google.com/forms/d/e/1FAIpQLSfs2Tj6QFArjINrttg-b81a2n3bbeX3I5vXBcpBb8TMrtpZkg/viewform",
+      note:"Final pricing varies by artist and scope — you’ll receive a custom quote after you submit.",
+      tiers:[
+        {name:"Standard Feature", price:"Starting at $55", note:"Full professional write-up on your music & journey"},
+        {name:"Headliner Feature", price:"Starting at $75", note:"Premier headliner placement & spotlight"}
+      ],
+      included:[
+        "A professional write-up crafted by SOTA Mag, diving into your music, art, and journey",
+        "Up to two rounds of revisions so your feature reads exactly how you want",
+        "High-quality exposure — your feature stays live on SOTA Mag for up to one year"
+      ],
+      requirements:[
+        "6–8 high-quality, professional photos (JPEG or PNG)",
+        "Links to your music, project, or portfolio",
+        "Payment of the write-up fee before work begins",
+        "Any specific information or details you want highlighted"
+      ]
+    },
     tagline:"Underground music & culture — curated the Sota way.",
     issues:[
       {title:"Issue 01", date:"2026-01", hue:205, blurb:"The Cold Open — debut issue.", pdf:"", pages:[], caption:"The debut issue of SOTA Mag.", transcript:""},
@@ -898,6 +983,28 @@ const DEFAULTS = {
       {title:"Latest Breakdown", platform:"TikTok", hue:230, url:"https://www.tiktok.com/@thefavoriteproducer", note:"Track-by-track on a new drop."},
     ]
   },
+  faq:{
+    mag:[
+      {q:"What is a SOTA Mag feature?", a:"A professionally written editorial piece spotlighting your music, art, and story — published on SOTA Mag and shared with our audience."},
+      {q:"How much does a feature cost?", a:"Features start at $55 for a standard write-up and $75 for a headliner spot. Final pricing depends on the artist and scope, so you’ll receive a custom quote after submitting."},
+      {q:"What do I need to submit?", a:"6–8 high-quality photos (JPEG or PNG), links to your music or portfolio, any details you’d like highlighted, and payment of the write-up fee before work begins."},
+      {q:"How many revisions are included?", a:"Up to two rounds of revisions, so your feature reads exactly the way you want."},
+      {q:"How long does my feature stay live?", a:"Your feature stays published on SOTA Mag for up to one year, giving you long-term visibility."},
+      {q:"When do I pay?", a:"The write-up fee is due before work begins. You’ll receive payment details along with your quote."},
+      {q:"Who writes the feature?", a:"Every feature is researched and written by the SOTA Mag editorial team."},
+      {q:"How long does it take?", a:"Turnaround depends on the current queue and the scope of your feature — you’ll get an estimated timeline once your submission is reviewed."}
+    ],
+    beats:[
+      {q:"How do I license a beat?", a:"Open any beat, choose a license tier (MP3, WAV, Trackout, Unlimited, or Exclusive), and check out on BeatStars or buy directly. You’ll receive the files and your license agreement."},
+      {q:"What’s the difference between a lease and an exclusive?", a:"A lease lets you use the beat within set limits while it stays available to others. An exclusive transfers full ownership and removes the beat from the store."},
+      {q:"Can I hear a beat before I buy?", a:"Yes — every beat has an instant in-browser preview. Just press play on any track."},
+      {q:"Do you make custom beats?", a:"Absolutely. Custom production starts at $80 (non-exclusive) and $250 (exclusive). Reach out through the production services section for a quote."},
+      {q:"What files do I get?", a:"It depends on the tier: a tagless MP3, WAV, and/or full track stems, along with your license agreement."},
+      {q:"Do you offer mixing, mastering, or songwriting?", a:"Yes — mixing & mastering, songwriting, vocal arrangement, vocal features, and consulting are all available. See the production services list on the Beats page."},
+      {q:"How do I pay?", a:"Through BeatStars for instant delivery and contracts, or directly via the buy link / email for custom work."},
+      {q:"Do I keep the rights to the songs I make?", a:"With a lease you own your recording within the license terms; with an exclusive you own the beat outright. The license PDF spells out exactly what’s included."}
+    ]
+  }
 };
 
 /* ---- Load CMS-managed content; fall back to DEFAULTS when offline (file://) ---- */
@@ -913,7 +1020,7 @@ CONFIG.streaming=_toLinks(CONFIG.streaming);
 if(CONFIG.podcast)CONFIG.podcast.subscribe=_toLinks(CONFIG.podcast.subscribe);
 (CONFIG.releases||[]).forEach(r=>{r.links=_toLinks(r.links);});
 /* expose nav + handlers EARLY so tabs always work, even if a later section hits bad data */
-Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp,openLicense,closeLicense});
+Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp,openLicense,closeLicense,openFaq,faqTab});
 
 /* ============================================================
    ICONS
@@ -1130,7 +1237,36 @@ function magDate(d){if(!d)return '';const x=d.split('-');return x[1]?MAGMO[+x[1]
 document.getElementById('magTagline').textContent=MAG.tagline||'';
 document.getElementById('magIntro').innerHTML=
   `<a class="btn btn-ice btn-sm" href="${MAG.instagram}" target="_blank" rel="noopener">${svg('instagram')} Follow @sota_mag</a>`
-  + (MAG.submit?`<a class="btn btn-ghost btn-sm" href="${MAG.submit}" target="_blank" rel="noopener">Submit / Feature</a>`:'');
+  +`<button class="btn btn-ghost btn-sm" onclick="go('magsubmit')">Get featured →</button>`
+  +`<button class="btn btn-ghost btn-sm" onclick="openFaq('mag')">Submissions FAQ</button>`;
+/* ---- SOTA Mag: Get Featured page ---- */
+(function(){
+  const s=(CONFIG.sotamag&&CONFIG.sotamag.submit)||{};
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('msIntro',s.intro||'');set('msNote',s.note||'');
+  const tiers=document.getElementById('msTiers');
+  if(tiers)tiers.innerHTML=(s.tiers||[]).map(t=>`<div class="ms-tier"><div class="mt-name">${t.name}</div><div class="mt-price">${t.price}</div><div class="mt-note">${t.note||''}</div></div>`).join('');
+  const inc=document.getElementById('msIncluded');if(inc)inc.innerHTML=(s.included||[]).map(x=>`<li>${x}</li>`).join('');
+  const req=document.getElementById('msReqs');if(req)req.innerHTML=(s.requirements||[]).map(x=>`<li>${x}</li>`).join('');
+  const fw=document.getElementById('msForm');
+  if(fw){
+    if(s.formUrl){fw.innerHTML=`<div class="glass form-ph"><p>Fill out the submission form with your photos, music links, and the details you want highlighted. It opens in a new tab and takes about five minutes \u2014 every submission routes straight to the SOTA Mag review queue.</p><a class="btn btn-ice" href="${s.formUrl}" target="_blank" rel="noopener">Open the submission form \u2192</a></div>`;}
+    else{fw.innerHTML=`<div class="glass form-ph"><p>Your submission form isn\u2019t connected yet. Once it is, artists submit their photos, links and details through it \u2014 and every submission lands in one place for you to review.</p><a class="btn btn-ice" href="mailto:${CONFIG.magEmail}?subject=${encodeURIComponent('SOTA Mag feature submission')}">Submit by email for now</a></div>`;}
+  }
+})();
+/* ---- FAQ ---- */
+let faqCat='mag';
+function renderFaq(){
+  const list=(CONFIG.faq&&CONFIG.faq[faqCat])||[];
+  document.getElementById('faqList').innerHTML=list.length?list.map(f=>`<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">${f.q}<span class="faq-x">+</span></div><div class="faq-a">${f.a}</div></div>`).join(''):'<p style="color:var(--steel)">No questions added yet.</p>';
+  const tm=document.getElementById('faqTabMag'),tb=document.getElementById('faqTabBeats'),bk=document.getElementById('faqBack');
+  if(tm)tm.classList.toggle('on',faqCat==='mag');
+  if(tb)tb.classList.toggle('on',faqCat==='beats');
+  if(bk)bk.setAttribute('onclick',faqCat==='beats'?"go('beats')":"go('sotamag')");
+}
+function faqTab(c){faqCat=c;renderFaq();}
+function openFaq(c){faqCat=c||'mag';renderFaq();go('faq');}
+renderFaq();
 document.getElementById('magGrid').innerHTML=MAG.issues.map((iss,i)=>`
   <div class="issue" onclick="openIssue(${i})">
     <div class="icover" style="background:${art(iss.hue)}">
@@ -1320,7 +1456,7 @@ window.addEventListener('keydown',e=>{
 const h=location.hash.replace('#','');
 if(h&&document.getElementById('view-'+h))go(h);
 /* expose handlers used by inline onclick= (module scope isn't global) */
-Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp,openLicense,closeLicense});
+Object.assign(window,{go,toggleNav,toggleBeat,mediaTab,openLb,closeLb,openIssue,closeReader,magNav,submitBooking,joinList,playEp,openLicense,closeLicense,openFaq,faqTab});
 </script>
 </body>
 </html>
