@@ -416,12 +416,12 @@
       "tiers": [
         {
           "name": "Standard Feature",
-          "price": "Starting at $55",
+          "price": "Starting at $25",
           "note": "Full professional write-up on your music & journey"
         },
         {
           "name": "Headliner Feature",
-          "price": "Starting at $75",
+          "price": "Starting at $40",
           "note": "Premier headliner placement & spotlight"
         }
       ],
