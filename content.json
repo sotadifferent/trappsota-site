@@ -278,15 +278,15 @@
   ],
   "beats": [
     {
-      "title": "GLACIER",
-      "bpm": 140,
+      "title": "Around The Way",
+      "bpm": 144,
       "key": "F# Min",
-      "price": 30,
+      "price": 15,
       "tags": [
-        "Dark",
         "Trap",
         "808"
-      ]
+      ],
+      "preview": "assets/Around the Way - F# Minor - 144 BPM.mp3"
     },
     {
       "title": "WHITEOUT",
@@ -306,36 +306,6 @@
       "tags": [
         "Hard",
         "Aggressive"
-      ]
-    },
-    {
-      "title": "DRIFT",
-      "bpm": 130,
-      "key": "A Min",
-      "price": 40,
-      "tags": [
-        "Ambient",
-        "Spacey"
-      ]
-    },
-    {
-      "title": "ICEPICK",
-      "bpm": 160,
-      "key": "D Min",
-      "price": 30,
-      "tags": [
-        "Rage",
-        "Hyper"
-      ]
-    },
-    {
-      "title": "PERMAFROST",
-      "bpm": 88,
-      "key": "E Min",
-      "price": 50,
-      "tags": [
-        "Soul",
-        "Sample"
       ]
     }
   ],
