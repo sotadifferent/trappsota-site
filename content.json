@@ -289,24 +289,15 @@
       "preview": "assets/Around the Way - F# Minor - 144 BPM.mp3"
     },
     {
-      "title": "WHITEOUT",
-      "bpm": 75,
-      "key": "C Min",
-      "price": 35,
+      "title": "Concrete Psalms",
+      "bpm": 129,
+      "key": "F# Major",
+      "price": 15,
       "tags": [
         "Melodic",
         "R&B"
-      ]
-    },
-    {
-      "title": "BLIZZARD",
-      "bpm": 150,
-      "key": "G Min",
-      "price": 30,
-      "tags": [
-        "Hard",
-        "Aggressive"
-      ]
+      ],
+      "preview": "assets/Concrete Psalm - F# Major - 129 BPM.wav"
     }
   ],
   "shows": [
