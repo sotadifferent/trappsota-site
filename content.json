@@ -278,28 +278,6 @@
   ],
   "beats": [
     {
-      "title": "Around The Way",
-      "bpm": 144,
-      "key": "F# Min",
-      "price": 15,
-      "tags": [
-        "Trap",
-        "808"
-      ],
-      "preview": "assets/Around the Way - F# Minor - 144 BPM-clip-001883-004918.wav"
-    },
-    {
-      "title": "Concrete Halo",
-      "bpm": 129,
-      "key": "D# Major",
-      "price": 15,
-      "tags": [
-        "Melodic",
-        "R&B"
-      ],
-      "preview": "assets/Concrete Halo - D# Minor - 129 BPM-clip-001335-004420-1.wav"
-    },
-    {
       "title": "You Never Knew",
       "bpm": 149,
       "key": "B Minor",
@@ -312,6 +290,17 @@
       "key": "B Minor",
       "price": 15,
       "preview": "assets/Pulsewave [B minor.147]-clip-000000-003082.wav"
+    },
+    {
+      "title": "Around The Way",
+      "bpm": 144,
+      "key": "F# Minor",
+      "price": 15,
+      "preview": "assets/Around the Way - F# Minor - 144 BPM-clip-001883-004918-1.wav"
+    },
+    {
+      "title": "Apex",
+      "preview": "assets/Apex Burn-clip-000489-003543.wav"
     }
   ],
   "shows": [
