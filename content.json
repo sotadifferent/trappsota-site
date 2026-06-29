@@ -305,6 +305,13 @@
       "key": "B Minor",
       "price": 20,
       "preview": "assets/[B minor.149]-clip-000000-003023.wav"
+    },
+    {
+      "title": "Pulsewave",
+      "bpm": 147,
+      "key": "B Minor",
+      "price": 15,
+      "preview": "assets/Pulsewave [B minor.147]-clip-000000-003082.wav"
     }
   ],
   "shows": [
