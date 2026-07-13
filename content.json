@@ -304,6 +304,13 @@
       "key": "F# Major",
       "price": 10,
       "preview": "assets/Around the Way.mp3"
+    },
+    {
+      "title": "Concrete Halo",
+      "bpm": 132,
+      "key": "D# Minor",
+      "price": 10,
+      "preview": "assets/Concrete Halo - D# Minor - 129 BPM-clip-001335-004420-clip-000000-003086.mp3"
     }
   ],
   "shows": [
