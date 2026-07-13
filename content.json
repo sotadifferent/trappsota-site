@@ -292,15 +292,14 @@
       "preview": "assets/Pulsewave [B minor.147]-clip-000000-003082.wav"
     },
     {
-      "title": "Around The Way",
-      "bpm": 144,
-      "key": "F# Minor",
-      "price": 15,
-      "preview": "assets/Around the Way - F# Minor - 144 BPM-clip-001883-004918-1.wav"
-    },
-    {
       "title": "Apex",
       "preview": "assets/Apex Burn-clip-000489-003543.wav"
+    },
+    {
+      "title": "Blaze",
+      "bpm": 120,
+      "key": "G Minor",
+      "price": 5
     }
   ],
   "shows": [
