@@ -316,14 +316,17 @@
       "title": "The Avenue Melody",
       "bpm": 132,
       "key": "D# Minor",
-      "preview": "assets/Gutter Piano - D# Major - 129 BPM-clip-000985-004048-clip-000000-003062.mp3"
+      "price": 15,
+      "preview": "assets/Gutter Piano - D# Major - 129 BPM-clip-000985-004048-clip-000000-003062-1.mp3"
     },
     {
       "title": "Sexy Drill Type Beat",
       "bpm": 140,
       "key": "G Minor",
+      "price": 15,
       "preview": "assets/S. Drill __ G minor __ 140-clip-001053-004074-clip-000000-003021.mp3"
-    }
+    },
+    {}
   ],
   "shows": [
     {
