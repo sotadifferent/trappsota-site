@@ -300,6 +300,13 @@
       "bpm": 120,
       "key": "G Minor",
       "price": 5
+    },
+    {
+      "title": "Around The Way",
+      "bpm": 93,
+      "key": "Bb Minor",
+      "price": 10,
+      "preview": "assets/Around the Way.mp3"
     }
   ],
   "shows": [
