@@ -913,23 +913,23 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
     <p>Shows, features, beats, press, or podcast guesting — send it through.</p>
   </div>
   <div class="book-grid">
-    <div class="glass form">
-      <div class="field"><label>Your name</label><input id="bk-name" placeholder="First & last"></div>
-      <div class="field"><label>Email</label><input id="bk-email" type="email" placeholder="you@email.com"></div>
-      <div class="field"><label>Organization / venue (optional)</label><input id="bk-org" placeholder="Venue, label, brand…"></div>
+    <form class="glass form" id="bookingForm" onsubmit="submitBooking(event)">
+      <div class="field"><label for="bk-name">Your name</label><input id="bk-name" name="name" autocomplete="name" placeholder="First & last" required></div>
+      <div class="field"><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+      <div class="field"><label for="bk-org">Organization / venue (optional)</label><input id="bk-org" name="organization" autocomplete="organization" placeholder="Venue, label, brand…"></div>
       <div class="field row">
-        <label>What's the ask?</label>
-        <select id="bk-type">
+        <label for="bk-type">What's the ask?</label>
+        <select id="bk-type" name="request_type">
           <option>Live booking / show</option><option>Feature / collab</option>
           <option>Beat licensing / exclusive</option><option>Production / mixing / songwriting</option><option>Podcast guest</option>
           <option>Press / interview</option><option>SOTA Mag submission</option><option>Other</option>
         </select>
-        <input id="bk-date" type="text" onfocus="this.type='date'" placeholder="Date (if applicable)">
+        <input id="bk-date" name="requested_date" type="text" onfocus="this.type='date'" placeholder="Date (if applicable)">
       </div>
-      <div class="field"><label>Details</label><textarea id="bk-msg" placeholder="City, budget, timeline, vibe — give me the picture."></textarea></div>
-      <button class="btn btn-ice" style="width:100%;justify-content:center" onclick="submitBooking()">Send booking request</button>
-      <p class="form-note">Opens your email app with everything filled in, addressed to the booking inbox. Want true one-click submit? Connect a free form service (Formspree) — drop the endpoint in <span style="color:var(--ice)">CONFIG.formEndpoint</span>.</p>
-    </div>
+      <div class="field"><label for="bk-msg">Details</label><textarea id="bk-msg" name="message" placeholder="City, budget, timeline, vibe — give me the picture." required></textarea></div>
+      <button class="btn btn-ice" id="bookingSubmit" type="submit" style="width:100%;justify-content:center">Send booking request</button>
+      <p class="form-note" id="bookingStatus" aria-live="polite">Your request goes directly to the Trapp Sota booking inbox. You’ll receive a confirmation here when it’s sent.</p>
+    </form>
     <div class="glass contact-side" id="contactSide"></div>
   </div>
 </section>
@@ -1054,7 +1054,7 @@ const DEFAULTS = {
   managementEmail:"",                            // none at the moment
   phone:"",                                      // optional
   city:"Philadelphia, PA",
-  formEndpoint:"",                  // optional Formspree URL for one-click submit
+  formEndpoint:"https://formspree.io/f/mdekgavn", // Formspree booking form
   spotifyEmbed:"https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
 
   /* MUSIC: "Listen everywhere" bar — artist-level links to each platform */
@@ -1673,19 +1673,28 @@ function playEp(i){
     ${c.phone?`<div class="cblock"><h4>Phone</h4><a href="tel:${c.phone.replace(/[^+\d]/g,'')}">${c.phone}</a></div>`:''}
     <div class="cblock"><h4>Based in</h4><p>${c.city}</p></div>`;
 })();
-function submitBooking(){
+async function submitBooking(event){
+  if(event)event.preventDefault();
+  const form=document.getElementById('bookingForm');
+  if(!form.reportValidity())return;
   const g=id=>document.getElementById(id).value.trim();
   const name=g('bk-name'),email=g('bk-email'),type=g('bk-type');
-  if(!name||!email){toast('Add your name and email first.');return;}
   let to=CONFIG.bookingEmail;
   if(/beat/i.test(type))to=CONFIG.beatEmail;
   else if(/mag/i.test(type))to=CONFIG.magEmail;
   else if(/production|mixing|songwriting/i.test(type))to=(CONFIG.services&&CONFIG.services.email)||CONFIG.beatEmail;
   const body=`Name: ${name}%0AEmail: ${email}%0AOrg/Venue: ${g('bk-org')}%0AType: ${type}%0ADate: ${g('bk-date')}%0A%0A${g('bk-msg')}`;
   if(CONFIG.formEndpoint){
-    fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name,email,org:g('bk-org'),type,date:g('bk-date'),message:g('bk-msg'),to})})
-      .then(()=>toast('Sent. You’ll hear back soon.')).catch(()=>toast('Could not send — try the email option.'));
+    const btn=document.getElementById('bookingSubmit'),status=document.getElementById('bookingStatus');
+    const original=btn.textContent;btn.disabled=true;btn.textContent='Sending…';status.textContent='Sending your request securely…';
+    try{
+      const response=await fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name,email,organization:g('bk-org'),request_type:type,requested_date:g('bk-date'),message:g('bk-msg'),routed_to:to,_subject:`Website booking — ${type} — ${name}`})});
+      if(!response.ok)throw new Error('Formspree rejected the request');
+      form.reset();status.textContent='Request sent successfully. The Trapp Sota team will be in touch.';toast('Booking request sent.');
+    }catch(error){
+      status.textContent=`Something went wrong. Please email ${to} directly.`;toast('Could not send — please try again.');
+    }finally{btn.disabled=false;btn.textContent=original;}
     return;
   }
   window.location.href=`mailto:${to}?subject=${encodeURIComponent(type+' — '+name)}&body=${body}`;
