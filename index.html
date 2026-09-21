@@ -534,23 +534,17 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
 
 body{
   color:var(--frost);
-  background:#69cbf5;
+  background-color:#56c7f2;
+  background-image:
+    radial-gradient(circle at 16% 10%,rgba(255,255,255,.72) 0 3%,transparent 15%),
+    radial-gradient(circle at 85% 16%,rgba(188,255,253,.52),transparent 24%),
+    linear-gradient(180deg,#168fd2 0%,#69cdf3 32%,#d8fbff 58%,#6fd6d9 72%,#168eb2 100%);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-attachment:scroll;
   text-shadow:0 1px 0 rgba(255,255,255,.28);
 }
-body::before{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(99,205,255,.02) 0%,rgba(220,252,255,.18) 55%,rgba(232,252,255,.72) 100%);
-}
-body::after{
-  content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.08;
-  background:linear-gradient(115deg,transparent 0 46%,rgba(255,255,255,.9) 49%,transparent 52%);
-}
-.bg-fx{z-index:-1;contain:strict;transform:translateZ(0)}
-.bg-fx::before{content:"";position:absolute;inset:0;background:#69cbf5 url('frutiger-aero-hero.png') center top / cover no-repeat;transform:translateZ(0)}
-.aurora{filter:blur(60px);mix-blend-mode:soft-light;opacity:.7}
-.aurora.a1{background:radial-gradient(circle,rgba(255,255,255,.8),transparent 62%)}
-.aurora.a2{background:radial-gradient(circle,rgba(111,224,44,.55),transparent 62%)}
-.aurora.a3{background:radial-gradient(circle,rgba(0,160,255,.5),transparent 65%)}
+.bg-fx,body::before,body::after{display:none}
 .grain{display:none}
 
 a{transition:color .2s var(--ease)}
@@ -697,7 +691,6 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
   .navlinks.open{top:84px;left:12px;right:12px;border:1px solid rgba(255,255,255,.9);border-radius:20px;background:linear-gradient(180deg,rgba(235,252,255,.97),rgba(83,191,229,.94));box-shadow:0 15px 35px rgba(0,64,104,.24)}
 }
 @media(max-width:680px){
-  .bg-fx::before{background-position:62% top}
   header{top:6px;left:6px;right:6px;border-radius:18px}
   .wrap{padding-left:16px;padding-right:16px}
   .hero{padding-top:130px;min-height:92vh}
