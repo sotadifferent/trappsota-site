@@ -329,6 +329,48 @@
   ],
   "shows": [
     {
+      "date": "2026-02-12",
+      "venue": "Who Really Outside?",
+      "city": "Jamaica, NY",
+      "badge": "Performer",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-02-21",
+      "venue": "Klick N Flow",
+      "city": "Camden, NJ",
+      "badge": "Performer",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-03-05",
+      "venue": "Universal Records",
+      "city": "Long Island, NY",
+      "badge": "Performer",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-04-11",
+      "venue": "Night of Piranhas",
+      "city": "Camden, NJ",
+      "badge": "Performer",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-04-24",
+      "venue": "The Sound Exchange",
+      "city": "",
+      "badge": "Performer",
+      "tickets": "#"
+    },
+    {
+      "date": "2026-07-17",
+      "venue": "Push Play Concert — Gems Lounge",
+      "city": "Brooklyn, NY",
+      "badge": "Performer",
+      "tickets": "#"
+    },
+    {
       "date": "2026-08-08",
       "venue": "Philly Phest",
       "city": "Philadelphia, PA",
@@ -337,15 +379,15 @@
     }
   ],
   "podcast": {
-    "spotifyShowEmbed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/show/0anh4R7BhTf7qEKgfQVLkO?utm_source=generator&si=e07017a1cb2d4754\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
+    "spotifyShowEmbed": "https://open.spotify.com/embed/show/0anh4R7BhTf7qEKgfQVLkO?utm_source=generator&si=e07017a1cb2d4754",
     "subscribe": [
       {
         "label": "Spotify",
-        "url": "#https://open.spotify.com/show/0anh4R7BhTf7qEKgfQVLkO?si=35f2b42a14d34f39"
+        "url": "https://open.spotify.com/show/0anh4R7BhTf7qEKgfQVLkO?si=35f2b42a14d34f39"
       },
       {
         "label": "Apple Podcasts",
-        "url": "#https://podcasts.apple.com/us/podcast/sota-tired/id1863432347"
+        "url": "https://podcasts.apple.com/us/podcast/sota-tired/id1863432347"
       }
     ],
     "episodes": [
@@ -353,7 +395,7 @@
         "n": 1,
         "title": "Pilot: Why Supporting My Friends is Ruining My Algorithm",
         "date": "2025-12-22",
-        "dur": "11:08:02",
+        "dur": "11:08",
         "desc": "In this first episode, I talk about how constantly liking and engaging with friends’ content can unintentionally train your algorithm. This episode breaks down the difference between real support and performative engagement, and why curating your feed is a form of self-care.\n\nDisclaimer: This episode was recorded during my first run, so there may be minor audio inconsistencies. Thank you for your patience as I grow and improve with each episode."
       }
     ]
