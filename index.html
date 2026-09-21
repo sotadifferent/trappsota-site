@@ -305,6 +305,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;
 .pod-intro p{color:var(--steel);margin-bottom:22px}
 .pod-subs{display:flex;gap:10px;flex-wrap:wrap}
 .episodes{display:flex;flex-direction:column;gap:12px}
+.pod-latest{margin:0 0 28px}.pod-latest .eyebrow{margin-bottom:12px}.pod-latest .ep{border-color:rgba(255,255,255,.95);box-shadow:inset 0 2px 0 rgba(255,255,255,.86),0 16px 34px rgba(0,76,123,.16)}
 .ep{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;padding:18px 22px;transition:.2s var(--ease)}
 .ep:hover{transform:translateX(4px)}
 .ep .epn{font-family:var(--font-mono);font-size:.72rem;color:var(--ice);letter-spacing:.1em;white-space:nowrap}
@@ -838,7 +839,7 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
 
   <div class="sec-head" style="margin-top:60px">
     <span class="eyebrow">Archive</span>
-    <h2 class="display" style="font-size:2rem">Past dates</h2>
+    <h2 class="display" style="font-size:2rem">Past performances</h2>
   </div>
   <div class="shows" id="pastShows"></div>
 </section>
@@ -850,6 +851,10 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
     <h2 class="display">The podcast</h2>
     <p>Late-night talk, real conversations, no filter.</p>
   </div>
+  <div class="pod-latest">
+    <span class="eyebrow">Latest episode</span>
+    <div class="episodes" id="episodeList"></div>
+  </div>
   <div class="pod-hero">
     <div class="pod-art">
       <div class="glyph">SOTA<br><span>TIRED</span></div>
@@ -857,12 +862,11 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
     </div>
     <div class="glass pod-intro">
       <h2 class="display">Tune in</h2>
-      <p>New episodes on the regular. Listen on Spotify below, or subscribe on Apple Podcasts & iHeartRadio.</p>
+      <p>Listen on Spotify below, or follow Sota Tired on Spotify and Apple Podcasts.</p>
       <div class="pod-subs" id="podSubs"></div>
     </div>
   </div>
   <div class="embed-wrap" id="podEmbed" style="margin-bottom:26px"></div>
-  <div class="episodes" id="episodeList"></div>
 </section>
 
 <!-- ===================== REVIEWS ===================== -->
@@ -1246,26 +1250,22 @@ const DEFAULTS = {
 
   /* --- SHOWS: upcoming + past. Use ISO dates (YYYY-MM-DD) --- */
   shows:[
-    {date:"2026-07-12", venue:"First Avenue", city:"Minneapolis, MN", badge:"Headline", tickets:"#"},
-    {date:"2026-08-03", venue:"The Vogue",     city:"Chicago, IL",     badge:"Support",  tickets:"#"},
-    {date:"2026-09-19", venue:"Skyway Theatre", city:"Minneapolis, MN", badge:"Festival", tickets:"#"},
-    {date:"2026-05-02", venue:"Amsterdam Bar",  city:"St. Paul, MN",    badge:"Headline", tickets:"#"},
-    {date:"2026-03-15", venue:"7th St Entry",   city:"Minneapolis, MN", badge:"Headline", tickets:"#"},
+    {date:"2026-02-12",venue:"Who Really Outside?",city:"Jamaica, NY",badge:"Performer",tickets:"#"},
+    {date:"2026-02-21",venue:"Klick N Flow",city:"Camden, NJ",badge:"Performer",tickets:"#"},
+    {date:"2026-03-05",venue:"Universal Records",city:"Long Island, NY",badge:"Performer",tickets:"#"},
+    {date:"2026-04-11",venue:"Night of Piranhas",city:"Camden, NJ",badge:"Performer",tickets:"#"},
+    {date:"2026-04-24",venue:"The Sound Exchange",city:"",badge:"Performer",tickets:"#"},
+    {date:"2026-07-17",venue:"Push Play Concert — Gems Lounge",city:"Brooklyn, NY",badge:"Performer",tickets:"#"},
+    {date:"2026-08-08",venue:"Philly Phest",city:"Philadelphia, PA",badge:"Performer",tickets:"#"},
   ],
 
   /* --- PODCAST: Sota Tired episodes. audio = url to mp3 (optional) --- */
   podcast:{
-    spotifyShowEmbed:"",   // paste your Spotify SHOW embed URL to play episodes on-page
-    subscribe:{Spotify:"#","Apple Podcasts":"#",iHeartRadio:"#"},
+    spotifyShowEmbed:"https://open.spotify.com/embed/show/0anh4R7BhTf7qEKgfQVLkO?utm_source=generator&si=e07017a1cb2d4754",
+    subscribe:{Spotify:"https://open.spotify.com/show/0anh4R7BhTf7qEKgfQVLkO?si=35f2b42a14d34f39","Apple Podcasts":"https://podcasts.apple.com/us/podcast/sota-tired/id1863432347"},
     episodes:[
-      {n:12,title:"Cold Nights, Clear Mind",dur:"1:04:22",date:"2026-06-10",audio:"",
-        desc:"On grinding through the winter, staying independent, and why tired hits different up north."},
-      {n:11,title:"The Beat Business",dur:"58:40",date:"2026-05-27",audio:"",
-        desc:"Selling beats, licensing, and turning a laptop into a label."},
-      {n:10,title:"Live & Unfiltered",dur:"1:12:05",date:"2026-05-13",audio:"",
-        desc:"Stories from the road and what really happens after the show."},
-      {n:9,title:"Why Sota Different",dur:"47:18",date:"2026-04-29",audio:"",
-        desc:"The origin of the name, the sound, and the mission."},
+      {n:1,title:"Pilot: Why Supporting My Friends is Ruining My Algorithm",dur:"11:08",date:"2025-12-22",audio:"",
+        desc:"In this first episode, I talk about how constantly liking and engaging with friends’ content can unintentionally train your algorithm. This episode breaks down the difference between real support and performative engagement, and why curating your feed is a form of self-care."},
     ]
   },
 
@@ -1751,7 +1751,7 @@ function showCard(s,past){
   const d=new Date(s.date+'T00:00:00');
   return `<div class="glass show ${past?'past':''}">
     <div class="date"><div class="mo">${MO[d.getMonth()]}</div><div class="day">${String(d.getDate()).padStart(2,'0')}</div></div>
-    <div class="where"><h4>${s.venue}</h4><p>${s.city} · ${d.getFullYear()}</p><span class="badge">${s.badge}</span></div>
+    <div class="where"><h4>${s.venue}</h4><p>${s.city?s.city+' · ':''}${d.getFullYear()}</p><span class="badge">${s.badge}</span></div>
     <div class="act">${past?'<span class="mono" style="color:var(--steel-dim);font-size:.72rem">PLAYED</span>'
       :`<a class="btn btn-ice btn-sm" href="${s.tickets}" target="_blank" rel="noopener">Tickets</a>`}</div>
   </div>`;
@@ -1770,13 +1770,15 @@ function showCard(s,past){
    RENDER: podcast
    ============================================================ */
 document.getElementById('podSubs').innerHTML=(CONFIG.podcast.subscribe||[]).map(l=>{
-  const k=l.label,u=l.url;
+  const k=l.label,u=(l.url||'').replace(/^#/,'');
   const ic=k==='Spotify'?'spotify':k==='Apple Podcasts'?'appleMusic':k==='iHeartRadio'?'iheart':'rss';
   return `<a class="btn btn-ghost btn-sm" href="${u}" target="_blank" rel="noopener">${svg(ic)} ${k}</a>`;
 }).join('');
-(function(){const w=document.getElementById('podEmbed');const u=CONFIG.podcast.spotifyShowEmbed;
+(function(){const w=document.getElementById('podEmbed');let u=CONFIG.podcast.spotifyShowEmbed||'';
+  const src=u.match(/src=["']([^"']+)/i);if(src)u=src[1];u=u.replace(/^#/,'');
   if(u){w.innerHTML=`<iframe src="${u}" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Sota Tired on Spotify"></iframe>`;}else{w.style.display='none';}})();
-document.getElementById('episodeList').innerHTML=CONFIG.podcast.episodes.map((e,i)=>`
+const POD_EPISODES=[...(CONFIG.podcast.episodes||[])].sort((a,b)=>new Date(b.date)-new Date(a.date));
+document.getElementById('episodeList').innerHTML=POD_EPISODES.map((e,i)=>`
   <div class="glass ep">
     <span class="epn">EP ${String(e.n).padStart(2,'0')}</span>
     <div class="ep-mid">
@@ -1787,8 +1789,8 @@ document.getElementById('episodeList').innerHTML=CONFIG.podcast.episodes.map((e,
   </div>`).join('');
 let epAudio;
 function playEp(i){
-  const e=CONFIG.podcast.episodes[i];
-  if(!e.audio){toast('Add this episode’s audio URL in CONFIG.podcast to play here — or use a subscribe link above.');return;}
+  const e=POD_EPISODES[i];
+  if(!e.audio){const spotify=(CONFIG.podcast.subscribe||[]).find(l=>l.label==='Spotify');if(spotify&&spotify.url){window.open(spotify.url.replace(/^#/,''),'_blank','noopener');toast('Opening Sota Tired on Spotify…');}else toast('Use a subscribe link to hear this episode.');return;}
   if(epAudio)epAudio.pause();
   epAudio=new Audio(e.audio);epAudio.play();toast('Now playing: '+e.title);
 }
