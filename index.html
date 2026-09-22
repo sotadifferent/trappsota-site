@@ -3,8 +3,47 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TRAPP SOTA — Sota Different</title>
-<meta name="description" content="Trapp Sota (Sota Different) — official hub. Music, beats for sale, shows, the Sota Tired podcast, media and booking." />
+<title>Trapp Sota | Artist, Producer &amp; Sota Different</title>
+<meta name="description" content="The official home of Philadelphia artist and producer Trapp Sota. Stream music, license beats, explore SOTA Mag, hear the Sota Tired podcast, and send booking inquiries." />
+<meta name="author" content="Trapp Sota" />
+<meta name="theme-color" content="#168fd2" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<link rel="canonical" href="https://sotadifferent.github.io/trappsota-site/" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/IMG_6735.JPG" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sota Different" />
+<meta property="og:title" content="Trapp Sota | Artist, Producer &amp; Sota Different" />
+<meta property="og:description" content="Music, production, live performances, SOTA Mag, the Sota Tired podcast, management strategy, and booking—all in one place." />
+<meta property="og:url" content="https://sotadifferent.github.io/trappsota-site/" />
+<meta property="og:image" content="https://sotadifferent.github.io/trappsota-site/assets/IMG_6735.JPG" />
+<meta property="og:image:width" content="1290" />
+<meta property="og:image:height" content="861" />
+<meta property="og:image:alt" content="Trapp Sota performing live" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Trapp Sota | Sota Different" />
+<meta name="twitter:description" content="The official home of artist and producer Trapp Sota." />
+<meta name="twitter:image" content="https://sotadifferent.github.io/trappsota-site/assets/IMG_6735.JPG" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MusicGroup",
+  "name":"Trapp Sota",
+  "alternateName":"Sota Different",
+  "url":"https://sotadifferent.github.io/trappsota-site/",
+  "image":"https://sotadifferent.github.io/trappsota-site/assets/IMG_6735.JPG",
+  "genre":["Hip-Hop","Rap"],
+  "foundingLocation":{"@type":"Place","name":"Philadelphia, PA"},
+  "sameAs":[
+    "https://www.instagram.com/trappsota",
+    "https://x.com/trappsota",
+    "https://www.tiktok.com/@thefavoriteproducer",
+    "https://open.spotify.com/artist/3ovVUSqySJILVXbwM9zZ4N",
+    "https://music.apple.com/us/artist/trapp-sota/1757435105",
+    "https://soundcloud.com/trapp-sota"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -368,8 +407,24 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
 .foot-news{display:flex;gap:8px;margin-top:10px}
 .foot-news input{flex:1;background:rgba(10,12,16,.6);border:1px solid var(--line);border-radius:9px;color:var(--frost);padding:10px 12px;font-family:var(--font-body);font-size:.85rem}
 .foot-news input:focus{outline:none;border-color:var(--ice)}
+.foot-consent{display:flex;align-items:flex-start;gap:8px;margin-top:9px;max-width:390px;color:var(--steel);font-size:.7rem;line-height:1.4}
+.foot-consent input{width:auto!important;flex:0 0 auto;margin-top:3px;accent-color:var(--ice)}
+.foot-consent a,.legal-copy a{color:var(--ice-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.news-status{min-height:1.1em;margin-top:7px;font-family:var(--font-mono);font-size:.65rem;color:var(--steel)}
 .copy{margin-top:46px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   font-family:var(--font-mono);font-size:.7rem;color:var(--steel-dim);letter-spacing:.08em}
+.copy button{background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.copy button:hover{color:var(--ice-deep)}
+
+/* privacy, terms & licensing */
+.legal-intro{max-width:72ch;margin-bottom:28px;color:var(--steel)}
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.legal-card{padding:28px}
+.legal-card h3{font-family:var(--font-display);font-size:1.45rem;color:var(--ice-deep);margin:10px 0 12px}
+.legal-copy{display:flex;flex-direction:column;gap:11px;color:var(--steel);font-size:.92rem;line-height:1.68}
+.legal-copy ul{padding-left:20px}
+.legal-copy li+li{margin-top:6px}
+.legal-date{margin-top:26px;font-family:var(--font-mono);font-size:.68rem;color:var(--steel-dim);letter-spacing:.08em}
 
 /* toast */
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);z-index:200;
@@ -504,6 +559,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:54px 0 40px;back
   .show .act{grid-column:2}
   .field.row{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
+  .legal-grid{grid-template-columns:1fr}
 }
 
 /* ============================================================
@@ -1024,6 +1080,55 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
   </div>
 </section>
 
+<!-- ===================== PRIVACY / TERMS ===================== -->
+<section class="view" id="view-legal">
+  <div class="sec-head">
+    <span class="eyebrow">Privacy · Terms · Licensing</span>
+    <h2 class="display">The clear version</h2>
+    <p class="legal-intro">What happens when you submit information, listen to previews, license music, or inquire about services through this website.</p>
+  </div>
+  <div class="legal-grid">
+    <article class="glass legal-card">
+      <span class="eyebrow">Privacy</span><h3>Information you choose to send</h3>
+      <div class="legal-copy">
+        <p>Booking, management, contact, and mailing-list forms collect only the information you enter, such as your name, email address, organization, links, requested date, and message.</p>
+        <p>That information is used to answer your request, evaluate a potential working relationship, provide requested services, or—when you explicitly join the list—send music, show, and project updates. It is not sold by Sota Different.</p>
+        <p>Form submissions are processed by <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree</a>. Embedded players and outbound services such as Spotify, Apple Music, YouTube, BeatStars, and social platforms operate under their own privacy policies.</p>
+        <p>To unsubscribe from updates or request access, correction, or deletion of information you submitted, email <a href="mailto:trappsotaofficial@gmail.com?subject=Privacy%20request">trappsotaofficial@gmail.com</a>.</p>
+      </div>
+    </article>
+    <article class="glass legal-card">
+      <span class="eyebrow">Site terms</span><h3>Using this website</h3>
+      <div class="legal-copy">
+        <p>Music, artwork, writing, branding, photographs, video, and other original material on this website remain the property of their respective rights holders. Viewing, streaming, or sharing a link does not transfer ownership or permission to reuse the material.</p>
+        <p>Information, dates, pricing, availability, and external links may change. Sota Different may update or remove website content at any time.</p>
+        <p>Submitting a booking, management, press, or service inquiry starts a conversation only. It does not create representation, exclusivity, a partnership, guaranteed work, or a binding agreement. Those relationships require separate written terms accepted by everyone involved.</p>
+      </div>
+    </article>
+    <article class="glass legal-card">
+      <span class="eyebrow">Music licensing</span><h3>Previews are not licenses</h3>
+      <div class="legal-copy">
+        <ul>
+          <li>Beat and music previews are provided for evaluation and personal listening only.</li>
+          <li>No recording, beat, stem, composition, or other right may be released, monetized, distributed, sampled, resold, or claimed without the applicable written license and completed payment.</li>
+          <li>The specific license delivered at purchase controls permitted streams, sales, performances, videos, credits, files, ownership, and exclusivity.</li>
+          <li>An exclusive beat is not reserved or transferred until the parties complete the stated purchase and written license.</li>
+        </ul>
+        <p>Questions about a license should be sent to <a href="mailto:sotadifferentllc@gmail.com?subject=Beat%20license%20question">sotadifferentllc@gmail.com</a> before release or payment.</p>
+      </div>
+    </article>
+    <article class="glass legal-card">
+      <span class="eyebrow">Services</span><h3>Scope, payments &amp; third parties</h3>
+      <div class="legal-copy">
+        <p>Production, consulting, management strategy, editorial, and creative services are governed by the scope, price, timeline, revision limits, cancellation terms, and deliverables confirmed in writing for that project.</p>
+        <p>Management services are limited to strategy and career-path development unless a separate written agreement says otherwise. They do not automatically include booking, production, engineering, photography, legal advice, financial advice, funding, or final decision-making authority.</p>
+        <p>Purchases or activity completed through third-party websites are also subject to that provider’s terms. Contact Sota Different before paying if any price, license, deliverable, or policy is unclear.</p>
+      </div>
+    </article>
+  </div>
+  <p class="legal-date">LAST UPDATED · SEPTEMBER 22, 2026</p>
+</section>
+
 <!-- ===================== BOOK ===================== -->
 <section class="view" id="view-book">
   <div class="sec-head">
@@ -1063,10 +1168,14 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
         <b>TRAPP SOTA</b>
         <p>Sota Different. Independent artist, producer & host of the Sota Tired podcast.</p>
         <div class="foot-social" id="footSocial"></div>
-        <div class="foot-news">
-          <input id="newsEmail" placeholder="Email for drops & show alerts">
-          <button class="btn btn-ice btn-sm" onclick="joinList()">Join</button>
-        </div>
+        <form id="newsletterForm" onsubmit="joinList(event)">
+          <div class="foot-news">
+            <input id="newsEmail" name="email" type="email" autocomplete="email" placeholder="Email for drops & show alerts" aria-label="Email for drops and show alerts" required>
+            <button class="btn btn-ice btn-sm" id="newsSubmit" type="submit">Join</button>
+          </div>
+          <label class="foot-consent"><input id="newsConsent" name="marketing_consent" type="checkbox" required><span>I agree to receive Trapp Sota music, show, and project updates. I can unsubscribe at any time. <a href="#legal" onclick="go('legal')">Privacy details</a>.</span></label>
+          <p class="news-status" id="newsStatus" aria-live="polite"></p>
+        </form>
       </div>
       <div>
         <h5>Explore</h5>
@@ -1091,7 +1200,7 @@ footer{border-top:1px solid rgba(255,255,255,.82);background:linear-gradient(180
     </div>
     <div class="copy">
       <span>© <span id="yr"></span> TRAPP SOTA · ALL RIGHTS RESERVED</span>
-      <span>SOTA DIFFERENT — BUILT COLD ❄</span>
+      <span><button onclick="go('legal')">PRIVACY · TERMS · LICENSING</button> &nbsp;·&nbsp; SOTA DIFFERENT — BUILT COLD ❄</span>
     </div>
   </div>
 </footer>
@@ -1861,9 +1970,23 @@ async function submitBooking(event){
   window.location.href=`mailto:${to}?subject=${encodeURIComponent(type+' — '+name)}&body=${body}`;
   toast('Opening your email app…');
 }
-function joinList(){const e=document.getElementById('newsEmail').value.trim();
-  if(!e||!e.includes('@')){toast('Enter a valid email.');return;}
-  document.getElementById('newsEmail').value='';toast('You’re on the list. Stay cold. ❄');}
+async function joinList(event){
+  if(event)event.preventDefault();
+  const form=document.getElementById('newsletterForm');
+  if(!form.reportValidity())return;
+  const email=document.getElementById('newsEmail').value.trim();
+  const consent=document.getElementById('newsConsent').checked;
+  const btn=document.getElementById('newsSubmit'),status=document.getElementById('newsStatus');
+  if(!CONFIG.formEndpoint){status.textContent='Email signup is temporarily unavailable. Please try again later.';return;}
+  const original=btn.textContent;btn.disabled=true;btn.textContent='Joining…';status.textContent='Adding you to the list…';
+  try{
+    const response=await fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({inquiry_type:'Mailing list signup',email,marketing_consent:consent?'Yes — explicitly provided':'No',source:'Website footer',_subject:`Mailing list signup — ${email}`})});
+    if(!response.ok)throw new Error('Formspree rejected the request');
+    form.reset();status.textContent='You’re on the list. Watch your inbox for Trapp Sota updates.';toast('You’re on the list. Stay cold. ❄');
+  }catch(error){status.textContent='Could not save your signup. Please try again in a moment.';toast('Signup did not go through.');}
+  finally{btn.disabled=false;btn.textContent=original;}
+}
 
 /* ============================================================
    misc
