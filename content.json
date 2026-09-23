@@ -402,16 +402,23 @@
   },
   "photos": [
     {
-      "cap": "FIRST AVE · 2025",
+      "image": "assets/gallery/2.jpg",
+      "cap": "Universal Records - Jamaica, NY - March 2026",
       "hue": 205
     },
     {
-      "cap": "STUDIO SESSION",
+      "image": "assets/gallery/1.jpg",
+      "cap": "Klick n' Flow - Camden, NJ - March 2026",
       "hue": 255
     },
     {
-      "cap": "CROWD GO CRAZY",
+      "image": "assets/gallery/3-1.jpg",
+      "cap": "The Sound Exchange - Philly, PA - April 2026",
       "hue": 190
+    },
+    {
+      "image": "assets/gallery/website-media.jpg",
+      "cap": "YoWhoDisCallin - Philly, PA - July 2026"
     }
   ],
   "videos": [
