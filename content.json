@@ -2,8 +2,8 @@
   "bookingEmail": "trappsotaofficial@gmail.com",
   "beatEmail": "sotadifferentllc@gmail.com",
   "magEmail": "sotamagteam@gmail.com",
-  "city": "Philadelphia, PA",
   "formEndpoint": "https://formspree.io/f/mdekgavn",
+  "city": "Philadelphia, PA",
   "spotifyEmbed": "https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
   "facebook": "https://www.facebook.com/61566843698788",
   "unitedmasters": "https://unitedmasters.com/a/trapp-sota",
@@ -200,7 +200,7 @@
   ],
   "services": {
     "email": "sotadifferentllc@gmail.com",
-    "intro": "Custom production beyond your regular beat store; beats, songwriting, vocals, mixing & more. Feel free to reach out for a quote!",
+    "intro": "Custom production beyond the beat store — beats, songwriting, vocals, mixing & more. Reach out for a quote.",
     "items": [
       {
         "name": "Custom Beat (non-exclusive)",
@@ -365,7 +365,7 @@
     },
     {
       "date": "2026-07-17",
-      "venue": "Push Play Concert x Gems Lounge",
+      "venue": "Push Play Concert — Gems Lounge",
       "city": "Brooklyn, NY",
       "badge": "Performer",
       "tickets": "#"
@@ -402,30 +402,38 @@
   },
   "photos": [
     {
-      "image": "assets/gallery/2.jpg",
-      "cap": "Universal Records - Jamaica, NY - March 2026",
+      "cap": "FIRST AVE · 2025",
       "hue": 205
     },
     {
-      "image": "assets/gallery/1.jpg",
-      "cap": "Klick n' Flow - Camden, NJ - March 2026",
+      "cap": "STUDIO SESSION",
       "hue": 255
     },
     {
-      "image": "assets/gallery/3-1.jpg",
-      "cap": "The Sound Exchange - Philly, PA - April 2026",
+      "cap": "CROWD GO CRAZY",
       "hue": 190
-    },
-    {
-      "image": "assets/gallery/website-media.jpg",
-      "cap": "YoWhoDisCallin - Philly, PA - July 2026"
     }
   ],
   "videos": [
     {
-      "cap": "Live at 7th St Entry",
-      "url": "#",
-      "hue": 250
+      "cap": "Concrete Confessions · Live Performance",
+      "url": "https://www.youtube.com/watch?v=EgX2i5zDGFo&list=RDEgX2i5zDGFo&start_radio=1",
+      "hue": 205
+    },
+    {
+      "cap": "Big Rich Town · Live Performance",
+      "url": "https://www.youtube.com/watch?v=hyGsBhKCDS4&list=RDhyGsBhKCDS4&start_radio=1",
+      "hue": 215
+    },
+    {
+      "cap": "Mission: Save Myself · Brooklyn Live Performance",
+      "url": "https://www.youtube.com/watch?v=IAXRPqQYCVI&list=RDIAXRPqQYCVI&start_radio=1",
+      "hue": 190
+    },
+    {
+      "cap": "Paper Trails · Sonny Digital Reaction",
+      "url": "https://www.youtube.com/watch?v=lqA6okkzTI4&t=7s",
+      "hue": 230
     }
   ],
   "sotamag": {
@@ -449,7 +457,7 @@
       "included": [
         "A professional write-up crafted by SOTA Mag, diving into your music, art, and journey",
         "Up to two rounds of revisions so your feature reads exactly how you want",
-        "High-quality exposure; your feature stays live on SOTA Mag for up to one year"
+        "High-quality exposure — your feature stays live on SOTA Mag for up to one year"
       ],
       "requirements": [
         "6–8 high-quality, professional photos (JPEG or PNG)",
