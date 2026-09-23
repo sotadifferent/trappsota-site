@@ -365,7 +365,7 @@
     },
     {
       "date": "2026-07-17",
-      "venue": "Push Play Concert — Gems Lounge",
+      "venue": "Push Play Concert x Gems Lounge",
       "city": "Brooklyn, NY",
       "badge": "Performer",
       "tickets": "#"
@@ -402,11 +402,13 @@
   },
   "photos": [
     {
-      "cap": "FIRST AVE · 2025",
+      "image": "assets/gallery/2.jpg",
+      "cap": "Universal Records - Jamaica, NY - March 2026",
       "hue": 205
     },
     {
-      "cap": "STUDIO SESSION",
+      "image": "assets/gallery/1.jpg",
+      "cap": "Klick n' Flow - Camden, NJ - March 2026",
       "hue": 255
     },
     {
@@ -442,7 +444,7 @@
       "included": [
         "A professional write-up crafted by SOTA Mag, diving into your music, art, and journey",
         "Up to two rounds of revisions so your feature reads exactly how you want",
-        "High-quality exposure — your feature stays live on SOTA Mag for up to one year"
+        "High-quality exposure; your feature stays live on SOTA Mag for up to one year"
       ],
       "requirements": [
         "6–8 high-quality, professional photos (JPEG or PNG)",
