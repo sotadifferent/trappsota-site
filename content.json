@@ -2,8 +2,8 @@
   "bookingEmail": "trappsotaofficial@gmail.com",
   "beatEmail": "sotadifferentllc@gmail.com",
   "magEmail": "sotamagteam@gmail.com",
-  "formEndpoint": "https://formspree.io/f/mdekgavn",
   "city": "Philadelphia, PA",
+  "formEndpoint": "https://formspree.io/f/mdekgavn",
   "spotifyEmbed": "https://open.spotify.com/embed/artist/3ovVUSqySJILVXbwM9zZ4N?utm_source=generator&theme=0",
   "facebook": "https://www.facebook.com/61566843698788",
   "unitedmasters": "https://unitedmasters.com/a/trapp-sota",
@@ -200,7 +200,7 @@
   ],
   "services": {
     "email": "sotadifferentllc@gmail.com",
-    "intro": "Custom production beyond the beat store — beats, songwriting, vocals, mixing & more. Reach out for a quote.",
+    "intro": "Custom production beyond your regular beat store; beats, songwriting, vocals, mixing & more. Feel free to reach out for a quote!",
     "items": [
       {
         "name": "Custom Beat (non-exclusive)",
