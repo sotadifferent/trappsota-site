@@ -1,6 +1,36 @@
 media:
-  input: assets
-  output: assets
+  - name: gallery
+    label: Gallery Photos
+    input: assets/gallery
+    output: assets/gallery
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: covers
+    label: Cover Artwork
+    input: assets/covers
+    output: assets/covers
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: audio
+    label: Audio Previews
+    input: assets/audio
+    output: assets/audio
+    categories: [audio]
+    extensions: [mp3, m4a, wav]
+    rename: safe
+  - name: documents
+    label: PDFs & Documents
+    input: assets/documents
+    output: assets/documents
+    categories: [document]
+    extensions: [pdf]
+    rename: safe
+  - name: legacy
+    label: Existing Assets (legacy)
+    input: assets
+    output: assets
 
 content:
   - name: content
@@ -35,7 +65,10 @@ content:
       - name: streaming
         label: "Music page: Listen-everywhere buttons"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
         fields:
           - { name: label, label: Button label, type: string }
           - { name: url, label: Link, type: string }
@@ -44,17 +77,29 @@ content:
       - name: releases
         label: Music releases
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} · {year}"
         fields:
-          - { name: title, label: Title, type: string }
-          - { name: year, label: Year, type: string }
-          - { name: type, label: "Type (Single / EP / Album)", type: string }
-          - { name: cover, label: "Cover image (optional)", type: image }
+          - { name: title, label: Title, type: string, required: true }
+          - { name: year, label: Year, type: string, required: true }
+          - { name: type, label: "Type (Single / EP / Album)", type: string, required: true }
+          - name: cover
+            label: "Cover image (optional)"
+            type: image
+            options:
+              media: covers
+              extensions: [jpg, jpeg, png, webp]
+              rename: safe
           - { name: hue, label: "Color seed 0-360 (fallback art)", type: number }
           - name: links
             label: Platform links
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
             fields:
               - { name: label, label: Platform, type: string }
               - { name: url, label: Link, type: string }
@@ -69,21 +114,30 @@ content:
           - name: items
             label: Services
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name} · {price}"
             fields:
               - { name: name, label: Service, type: string }
               - { name: price, label: Price, type: string }
           - name: bundles
             label: Bundle packages
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name} · {price}"
             fields:
               - { name: name, label: Bundle, type: string }
               - { name: price, label: Price, type: string }
       - name: licensing
         label: "License tiers (shown on every beat)"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name} · ${price}"
         fields:
           - { name: name, label: Tier name, type: string }
           - { name: price, label: "Price ($)", type: number }
@@ -91,7 +145,10 @@ content:
       - name: beats
         label: Beats for sale
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} · {bpm} BPM"
         fields:
           - { name: title, label: Title, type: string }
           - { name: bpm, label: BPM, type: number }
@@ -100,18 +157,33 @@ content:
           - { name: tags, label: Tags, type: string, list: true }
           - { name: beatstars, label: "BeatStars link (this beat)", type: string }
           - { name: stripe, label: "Buy-here link (Stripe Payment Link)", type: string }
-          - { name: preview, label: "Preview audio (optional MP3)", type: file }
-          - { name: contract, label: "License agreement (PDF)", type: file }
+          - name: preview
+            label: "Preview audio (MP3 recommended)"
+            type: file
+            options:
+              media: audio
+              extensions: [mp3, m4a, wav]
+              rename: safe
+          - name: contract
+            label: "License agreement (PDF)"
+            type: file
+            options:
+              media: documents
+              extensions: [pdf]
+              rename: safe
 
       # ---------- Shows ----------
       - name: shows
         label: "Shows (upcoming & past — sorted automatically by date)"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date} · {venue} · {city}"
         fields:
-          - { name: date, label: Date, type: date }
-          - { name: venue, label: Venue, type: string }
-          - { name: city, label: City, type: string }
+          - { name: date, label: Date, type: date, required: true }
+          - { name: venue, label: Venue, type: string, required: true }
+          - { name: city, label: City, type: string, required: true }
           - { name: badge, label: "Badge (Headline / Support / Festival)", type: string }
           - { name: tickets, label: Tickets link, type: string }
 
@@ -124,39 +196,69 @@ content:
           - name: subscribe
             label: Subscribe buttons
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
             fields:
               - { name: label, label: Label, type: string }
               - { name: url, label: Link, type: string }
           - name: episodes
             label: Episodes
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "Episode {n} · {title}"
             fields:
               - { name: n, label: "Episode #", type: number }
               - { name: title, label: Title, type: string }
               - { name: date, label: Date, type: date }
               - { name: dur, label: "Duration (e.g. 58:40)", type: string }
               - { name: desc, label: Description, type: text }
-              - { name: audio, label: "Audio file (optional)", type: file }
+              - name: audio
+                label: "Audio file (optional)"
+                type: file
+                options:
+                  media: audio
+                  extensions: [mp3, m4a]
+                  rename: safe
 
       # ---------- Media gallery ----------
       - name: photos
-        label: "Gallery: photos"
+        label: "Gallery: Photos"
+        description: "Upload web-sized 4:5 images. The list order is the website display order."
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index} · {cap}"
         fields:
-          - { name: image, label: Photo, type: image }
-          - { name: cap, label: Caption, type: string }
-          - { name: hue, label: "Color seed (fallback)", type: number }
+          - name: image
+            label: Photo
+            type: image
+            description: "JPG, PNG, or WebP. Use a 4:5 crop and keep the file under 1 MB. Replace placeholder entries as photos become available."
+            options:
+              media: gallery
+              extensions: [jpg, jpeg, png, webp]
+              rename: safe
+          - name: cap
+            label: Caption / image description
+            type: string
+            required: true
+            description: "Recommended: EVENT · CITY, STATE · MONTH YEAR"
+          - { name: hue, label: "Fallback color (use 205)", type: number }
       - name: videos
-        label: "Gallery: videos"
+        label: "Gallery: Videos"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index} · {cap}"
         fields:
-          - { name: cap, label: Title, type: string }
-          - { name: url, label: Video link, type: string }
-          - { name: hue, label: "Color seed", type: number }
+          - { name: cap, label: Title, type: string, required: true }
+          - { name: url, label: "YouTube or Vimeo link", type: string, required: true }
+          - { name: hue, label: "Fallback color (use 205)", type: number }
 
       # ---------- SOTA Mag ----------
       - name: sotamag
@@ -174,7 +276,10 @@ content:
               - name: tiers
                 label: Feature tiers
                 type: object
-                list: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{name} · {price}"
                 fields:
                   - { name: name, label: Tier name, type: string }
                   - { name: price, label: "Price (e.g. Starting at $55)", type: string }
@@ -185,15 +290,37 @@ content:
           - name: issues
             label: Issues
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title} · {date}"
             fields:
               - { name: title, label: Title, type: string }
               - { name: date, label: "Date (YYYY-MM)", type: string }
               - { name: blurb, label: Short blurb, type: string }
               - { name: caption, label: Caption, type: text }
-              - { name: cover, label: "Cover image", type: image }
-              - { name: pdf, label: "Issue PDF (flips page-by-page)", type: file }
-              - { name: pages, label: "OR page images (instead of a PDF)", type: image, list: true }
+              - name: cover
+                label: "Cover image"
+                type: image
+                options:
+                  media: covers
+                  extensions: [jpg, jpeg, png, webp]
+                  rename: safe
+              - name: pdf
+                label: "Issue PDF (flips page-by-page)"
+                type: file
+                options:
+                  media: documents
+                  extensions: [pdf]
+                  rename: safe
+              - name: pages
+                label: "OR page images (instead of a PDF)"
+                type: image
+                list: true
+                options:
+                  media: covers
+                  extensions: [jpg, jpeg, png, webp]
+                  rename: safe
               - { name: transcript, label: "Transcript (shows under the pages)", type: text }
               - { name: hue, label: "Color seed (fallback)", type: number }
 
@@ -205,14 +332,20 @@ content:
           - name: mag
             label: "SOTA Mag FAQ"
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{q}"
             fields:
               - { name: q, label: Question, type: string }
               - { name: a, label: Answer, type: text }
           - name: beats
             label: "Beats & Production FAQ"
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{q}"
             fields:
               - { name: q, label: Question, type: string }
               - { name: a, label: Answer, type: text }
@@ -233,7 +366,10 @@ content:
           - name: items
             label: Review entries
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title} · {platform}"
             fields:
               - { name: title, label: Title, type: string }
               - { name: platform, label: "Platform (Twitch / TikTok)", type: string }
